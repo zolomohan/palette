@@ -24,7 +24,7 @@ export default class ColorBox extends Component {
         <div className={`copy-overlay ${this.state.copied && 'show'}`} style={{backgroundColor: hex}} ></div>
 				<div className={`copy-message ${this.state.copied && 'show'}`}>
 					<h1>copied!</h1>
-					<p>{this.props.color}</p>
+					<p>{this.props.hex}</p>
 				</div>
         <span className='color-name'>{name}</span>
         <CopyToClipboard text = {hex} onCopy={this.handleCopy}>
