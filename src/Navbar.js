@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import Slider from '@material-ui/core/Slider';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -34,7 +35,7 @@ export default class Navbar extends Component {
 	render() {
 		return (
 			<nav className='Navbar'>
-				<div className='Navbar-brand'>palette</div>
+				<Link to='/' style = {{textDecoration: 'none'}}><span className='Navbar-brand'>palette</span></Link>
 				<div className='Navbar-slider'>
 					<span className='Navbar-slider-text'>{this.props.level}</span>
 					<Slider
