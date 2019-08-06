@@ -2,6 +2,7 @@
 
 .Navbar{
 	height: 6%;
+	display: flex;
 }
 
 .Navbar-brand{
@@ -18,4 +19,17 @@
 	letter-spacing: 1px;
 	background-color: #e7e7e7;
 	color: rgb(82, 82, 82);
+}
+
+.Navbar-slider{
+	min-width: 300px;
+	width: 25%;
+	display: flex;
+	align-items: center;
+}
+
+.Navbar-slider-text{
+	/* font-variant-numeric: tabular-nums; */
+	font-family: Blinker, sans-serif;
+	margin: 0 10px;
 }
