@@ -18,16 +18,16 @@ export default class ColorBox extends Component {
 	}
   
   render() {
-    const {color, name} = this.props;
+		const {hex , name} = this.props;
     return (
-      <div className='ColorBox' style={{backgroundColor: color}}>
-        <div className={`copy-overlay ${this.state.copied && 'show'}`} style={{backgroundColor: color}} ></div>
+      <div className='ColorBox' style={{backgroundColor: hex}}>
+        <div className={`copy-overlay ${this.state.copied && 'show'}`} style={{backgroundColor: hex}} ></div>
 				<div className={`copy-message ${this.state.copied && 'show'}`}>
 					<h1>copied!</h1>
 					<p>{this.props.color}</p>
 				</div>
         <span className='color-name'>{name}</span>
-        <CopyToClipboard text = {color} onCopy={this.handleCopy}>
+        <CopyToClipboard text = {hex} onCopy={this.handleCopy}>
           <button className='copy-button'>copy</button>
         </CopyToClipboard>
         <span className='see-more'>more</span>

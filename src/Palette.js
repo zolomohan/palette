@@ -8,7 +8,7 @@ export default class Palette extends Component {
       <div className='Palette'>
 				{/* Navbar */}
 				<div className='Palette-colors'>
-					{this.props.colors.map(color => <ColorBox {...color} />)}
+					{this.props.colors[400].map(color => <ColorBox {...color} />)}
 				</div>
         {/* Footer */}
       </div>
