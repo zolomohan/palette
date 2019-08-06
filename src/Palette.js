@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ColorBox from './ColorBox'
 import Navbar from './Navbar'
 import './Palette.css'
+import Footer from './Footer';
 
 export default class Palette extends Component {
 
@@ -26,7 +27,10 @@ export default class Palette extends Component {
 				<div className='Palette-colors'>
 					{this.props.colors[this.state.level].map(color => <ColorBox {...color} format = { this.state.format } />)}
 				</div>
-        {/* Footer */}
+				<Footer
+					paletteName = {this.props.paletteName}
+					emoji = {this.props.emoji}
+				/>
       </div>
     )
   }
