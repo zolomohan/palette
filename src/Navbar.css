@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Blinker&display=swap');
+
+.Navbar{
+	height: 6%;
+}
+
+.Navbar-brand{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	min-width: 150px;
+	width: 10%;
+	font-family: Blinker, sans-serif;
+	font-size: 24px;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 1px;
+	background-color: #e7e7e7;
+	color: rgb(82, 82, 82);
+}
