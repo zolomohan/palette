@@ -11,11 +11,14 @@ const styles = {
 		overflow: 'hidden',
 		'&:hover':{
 			cursor: 'pointer'
-		},
-		border: '1px solid black'
+		}
 	},
 	colors:{
-		backgroundColor: 'grey'
+		backgroundColor: '#dae1e4',
+		height: '150px',
+		widthL: '100%',
+		borderRadius: '5px',
+		overflow: 'hidden'
 	},
 	title:{
 		display: 'flex',
@@ -27,25 +30,35 @@ const styles = {
 		position: 'relative'
 	},
 	emoji: {
-		marginLeft: '1.5rem',
+		margin: '0 auto',
 		fontSize: '1.1rem'
+	},
+	miniBox: {
+		display: 'inline-block',
+		height: '25%',
+		width: '20%',
+		position: 'relative',
+		margin: '0 auto',
+		marginBottom: '-4px'
 	}
 }
 
 function MiniPalette(props) {
 
-	const { classes, paletteName, emoji, id } = props;
+	const { classes, paletteName, emoji, id, colors } = props;
 
 	return (
+		<Link to = {`palette/${id}`} style={{textDecoration: 'none', color: '#525252'}}>
 		<div className = {classes.root}>
-			<div className = { classes.colors } />
+			<div className = { classes.colors }>
+				{console.log(colors[0])}
+				{colors.map( color => (<div className = {classes.miniBox} style={{backgroundColor: color.color}}></div>))}
+			</div>
 			<h5 className = { classes.title }>
-				<Link to = {`palette/${id}`} style={{textDecoration: 'none', color: '#525252'}}>
-				
-				{paletteName} <span className = {classes.emoji}>{emoji}</span>
-				</Link>
+					{paletteName} <span className = {classes.emoji}>{emoji}</span>
 			</h5>
 		</div>
+		</Link>
 	);
 }
 
