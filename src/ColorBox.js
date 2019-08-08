@@ -20,7 +20,6 @@ export default class ColorBox extends Component {
 
 	render() {
 		const color = this.props[this.props.format];
-		console.log(color);
 		return (
 			<div className="ColorBox" style={{ backgroundColor: color }}>
 				<div className={`copy-overlay ${this.state.copied && 'show'}`} style={{ backgroundColor: color }} />

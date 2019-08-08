@@ -3,32 +3,32 @@ import { withStyles } from '@material-ui/styles';
 import MiniPalette from './MiniPalette';
 
 const styles = {
-	root: {
-		backgroundColor: 'blue',
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'flex-start',
-		height: '100vh'
+	root      : {
+		backgroundColor : 'blue',
+		display         : 'flex',
+		justifyContent  : 'center',
+		alignItems      : 'flex-start',
+		height          : '100vh'
 	},
-	container: {
-		width: '60%',
-		display: 'flex',
-		alignItems: 'flex-start',
-		flexDirection: 'column',
-		flexWrap: 'wrap',
-		color: 'white'
+	container : {
+		width         : '60%',
+		display       : 'flex',
+		alignItems    : 'flex-start',
+		flexDirection : 'column',
+		flexWrap      : 'wrap',
+		color         : 'white'
 	},
-	nav: {
-		display: 'flex',
-		width: '100%',
-		justifyContent: 'space-between'
+	nav       : {
+		display        : 'flex',
+		width          : '100%',
+		justifyContent : 'space-between'
 	},
-	palettes: {
-		display: 'grid',
-		boxSizing: 'border-box',
-		gridTemplateColumns: 'repeat(3, 30%)',
-		gridGap: '5%',
-		width: '100%'
+	palettes  : {
+		display             : 'grid',
+		boxSizing           : 'border-box',
+		gridTemplateColumns : 'repeat(3, 30%)',
+		gridGap             : '5%',
+		width               : '100%'
 	}
 };
 
@@ -41,7 +41,9 @@ class PaletteList extends Component {
 					<nav>
 						<h1>Palette</h1>
 					</nav>
-					<div className={classes.palettes}>{palettes.map((palette) => <MiniPalette {...palette} />)}</div>
+					<div className={classes.palettes}>
+						{palettes.map((palette) => <MiniPalette {...palette} key={palette.id} />)}
+					</div>
 				</div>
 			</div>
 		);
@@ -49,5 +51,3 @@ class PaletteList extends Component {
 }
 
 export default withStyles(styles)(PaletteList);
-
-// <Link to = {`palette/${palette.id}`}>{palette.paletteName}</Link>
