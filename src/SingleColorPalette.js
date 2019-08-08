@@ -24,7 +24,7 @@ export default class SingleColorPalette extends Component {
 
 	render() {
 		return (
-			<div className="Palette">
+			<div className="SingleColorPalette Palette">
 				<Navbar 
 					changeColorFormat={this.changeColorFormat}
 					format={this.state.format}
