@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Blinker&display=swap');
 
-.Footer{
+.Footer {
 	height: 4vh;
 	display: flex;
 	align-items: center;
@@ -8,14 +8,14 @@
 	background-color: #e7e7e7;
 }
 
-.Footer-paletteName{
+.Footer-paletteName {
 	font-family: Blinker, sans-serif;
 	letter-spacing: 1px;
 	color: #525252;
 	margin-right: 5px;
 }
 
-.Footer-emoji{
+.Footer-emoji {
 	margin: 5px;
 	font-size: 15px;
 }
