@@ -31,9 +31,11 @@ export default class ColorBox extends Component {
 				<CopyToClipboard text={color} onCopy={this.handleCopy}>
 					<button className="copy-button">copy</button>
 				</CopyToClipboard>
-				<Link to={`${this.props.paletteId}/${this.props.id}`}>
-					<span className="see-more">more</span>
-				</Link>
+				{!this.props.singleColorPalette && (
+					<Link to={`${this.props.paletteId}/${this.props.id}`}>
+						<span className="see-more">more</span>
+					</Link>
+				)}
 			</div>
 		);
 	}
