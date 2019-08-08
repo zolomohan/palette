@@ -13,7 +13,7 @@ export default class Navbar extends Component {
 		super(props);
 
 		this.state = {
-			snackbarOpen: false
+			snackbarOpen : false
 		};
 	}
 
@@ -36,16 +36,19 @@ export default class Navbar extends Component {
 				<Link to="/" style={{ textDecoration: 'none' }}>
 					<span className="Navbar-brand">palette</span>
 				</Link>
-				<div className="Navbar-slider">
-					<span className="Navbar-slider-text">{this.props.level}</span>
-					<Slider
-						defaultValue={this.props.level}
-						step={100}
-						min={100}
-						max={900}
-						onChange={this.handleSliderChange}
-					/>
-				</div>
+				{this.props.level && (
+					<div className="Navbar-slider">
+						<span className="Navbar-slider-text">{this.props.level}</span>
+						<Slider
+							defaultValue={this.props.level}
+							step={100}
+							min={100}
+							max={900}
+							onChange={this.handleSliderChange}
+						/>
+					</div>
+				)}
+
 				<div className="Navbar-select">
 					<Select value={this.props.format} onChange={this.handleFormatChange}>
 						<MenuItem value="hex">HEX - #abcdef</MenuItem>
@@ -56,13 +59,13 @@ export default class Navbar extends Component {
 				<Snackbar
 					message={<span id="message-id">Format Changed to {this.props.format.toUpperCase()}</span>}
 					anchorOrigin={{
-						vertical: 'bottom',
-						horizontal: 'left'
+						vertical   : 'bottom',
+						horizontal : 'left'
 					}}
 					open={this.state.snackbarOpen}
 					autoHideDuration={3000}
 					ContentProps={{
-						'aria-describedby': 'message-id'
+						'aria-describedby' : 'message-id'
 					}}
 					onClose={this.closeSnackbar}
 					action={[
