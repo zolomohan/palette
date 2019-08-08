@@ -40,7 +40,7 @@ class PaletteList extends Component {
 
 		return (
 			<div className={classes.root}>
-				<div className = {classes.container}>
+					<div className = {classes.container}>
 					<nav>
 						<h1>Palette</h1>
 					</nav>
