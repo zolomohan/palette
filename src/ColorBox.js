@@ -5,8 +5,11 @@ import { withStyles } from '@material-ui/styles';
 import chroma from 'chroma-js';
 import './ColorBox.css';
 
+const isLightColor = (color) => (chroma(color).luminance() <= 0.1 ? '#fff' : '#000');
+const isDarkColor = (color) => (chroma(color).luminance() <= 0.5 ? '#fff' : '#000');
+
 const styles = {
-	ColorBox   : {
+	ColorBox    : {
 		width                 : '20%',
 		height                : (props) => (props.singleColorPalette ? '50%' : '25%'),
 		position              : 'relative',
@@ -20,7 +23,59 @@ const styles = {
 		}
 	},
 
-	copyButton : {
+	copyOverlay : {
+		opacity         : '0',
+		zIndex          : '0',
+		height          : '100%',
+		width           : '100%',
+		transition      : '0.7s transform linear',
+		transform       : 'scale(0.1)',
+		backgroundColor : (props) => props[props.format]
+	},
+
+	showOverlay : {
+		zIndex    : '1',
+		opacity   : '1',
+		transform : 'scale(50)',
+		position  : 'absolute'
+	},
+
+	copyMessage : {
+		position       : 'fixed',
+		top            : '0',
+		bottom         : '0',
+		left           : '0',
+		right          : '0',
+		display        : 'flex',
+		justifyContent : 'center',
+		alignItems     : 'center',
+		flexDirection  : 'column',
+		fontSize       : '4rem',
+		color          : '#fff',
+		transform      : 'scale(0.1)',
+		opacity        : '0',
+		'& h1'         : {
+			backgroundColor : 'rgba(255, 255, 255, 0.3)',
+			textShadow      : '1px 2px rgba(102, 102, 102, 0.603)',
+			textTransform   : 'uppercase',
+			fontWeight      : '400',
+			width           : '100%',
+			textAlign       : 'center'
+		},
+		'& p'          : {
+			fontSize : '2rem'
+		}
+	},
+
+	showMessage : {
+		opacity         : '1',
+		transform       : 'scale(1)',
+		zIndex          : '2',
+		transition      : 'all 0.4s ease-in-out',
+		transitionDelay : '0.1s'
+	},
+
+	copyButton  : {
 		cursor          : 'pointer',
 		width           : '100px',
 		height          : '30px',
@@ -40,10 +95,10 @@ const styles = {
 		lineHeight      : '30px',
 		opacity         : 0,
 		transition      : '0.1s opacity linear',
-		color           : (props) => (chroma(props[props.format]).luminance() <= 0.1 ? '#fff' : '#000')
+		color           : (props) => isDarkColor(props[props.format])
 	},
 
-	colorName  : {
+	colorName   : {
 		position      : 'absolute',
 		left          : '0px',
 		bottom        : '0px',
@@ -51,10 +106,10 @@ const styles = {
 		textTransform : 'uppercase',
 		fontSize      : '12px',
 		padding       : '10px',
-		color         : (props) => (chroma(props[props.format]).luminance() <= 0.1 ? '#fff' : '#000')
+		color         : (props) => isLightColor(props[props.format])
 	},
 
-	seeMore    : {
+	seeMore     : {
 		position        : 'absolute',
 		bottom          : '0px',
 		right           : '0px',
@@ -65,11 +120,11 @@ const styles = {
 		padding         : '0 8px',
 		height          : '30px',
 		border          : 'none',
-		color           : (props) => (chroma(props[props.format]).luminance() <= 0.5 ? '#fff' : '#000')
+		color           : (props) => isDarkColor(props[props.format])
 	},
 
-	copyText   : {
-		color : (props) => (chroma(props[props.format]).luminance() <= 0.5 ? '#fff' : '#000')
+	copyText    : {
+		color : (props) => isDarkColor(props[props.format])
 	}
 };
 
@@ -77,9 +132,8 @@ export default withStyles(styles)(
 	class ColorBox extends Component {
 		constructor(props) {
 			super(props);
-
 			this.state = {
-				copied : false
+				copying : false
 			};
 		}
 
@@ -90,16 +144,16 @@ export default withStyles(styles)(
 		};
 
 		render() {
-			const { classes, singleColorPalette, paletteId, id } = this.props;
+			const { classes, singleColorPalette, paletteId, id, name } = this.props;
 			const color = this.props[this.props.format];
 			return (
 				<div className={classes.ColorBox}>
-					<div className={`copy-overlay ${this.state.copied && 'show'}`} style={{ backgroundColor: color }} />
-					<div className={`copy-message ${this.state.copied && 'show'}`}>
+					<div className={`${classes.copyOverlay} ${this.state.copying && classes.showOverlay}`} />
+					<div className={`${classes.copyMessage} ${this.state.copying && classes.showMessage}`}>
 						<h1 className={classes.copyText}>copied!</h1>
 						<p className={classes.copyText}>{color}</p>
 					</div>
-					<span className={classes.colorName}>{this.props.name}</span>
+					<span className={classes.colorName}>{name}</span>
 					<CopyToClipboard text={color} onCopy={this.handleCopy}>
 						<button className={classes.copyButton}>copy</button>
 					</CopyToClipboard>
