@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { SortableElement } from 'react-sortable-hoc';
 import chroma from 'chroma-js';
 
 const isLightColor = (color) => (color === undefined ? '#fff' : chroma(color).luminance() <= 0.1 ? '#fff' : '#000');
@@ -13,7 +14,6 @@ const styles = {
 		margin          : '0 auto',
 		display         : 'inline-block',
 		marginBottom    : '-6px',
-		transition      : 'all 0.1s linear',
 		backgroundColor : (props) => props.color.color
 	},
 	boxContent : {
@@ -40,17 +40,21 @@ const styles = {
 	}
 };
 
-export default withStyles(styles)(function DraggableColorBox(props) {
-	const { classes } = props;
-	function handleDeleteColor(){
-		props.deleteColor(props.color)
-	}
-	return (
-		<div className={classes.root}>
-			<div className={classes.boxContent}>
-				<span className={classes.colorName}>{props.color.name}</span>
-				<DeleteIcon className={classes.deleteIcon} onClick = {handleDeleteColor} />
-			</div>
-		</div>
-	);
-});
+export default SortableElement(
+	withStyles(styles)(
+		function DraggableColorBox(props) {
+			const { classes } = props;
+			function handleDeleteColor(){
+				props.deleteColor(props.color)
+			}
+			return (
+				<div className={classes.root}>
+					<div className={classes.boxContent}>
+						<span className={classes.colorName}>{props.color.name}</span>
+						<DeleteIcon className={classes.deleteIcon} onClick = {handleDeleteColor} />
+					</div>
+				</div>
+			);
+		}	
+	)
+);
