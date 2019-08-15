@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import PaletteList from './PaletteList';
+import NewPaletteForm from './NewPaletteForm';
 import Palette from './Palette';
 import SingleColorPalette from './SingleColorPalette';
-import seedColors from './seedColors';
-import { generatePalette } from './colorHelper';
-import NewPaletteForm from './NewPaletteForm';
+import seedColors from './helpers/seedColors';
+import { generatePalette } from './helpers/colorHelper';
 
 export default class App extends Component {
 	findPalette = (id) => seedColors.find((palette) => palette.id === id);
