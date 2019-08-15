@@ -17,6 +17,7 @@ import DraggableColorBox from './DraggableColorBox';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import randomHex from './helpers/randomColor';
 
+
 export default withStyles(styles, { withTheme: true })(
 	class NewPaletteForm extends Component {
 		state = {
