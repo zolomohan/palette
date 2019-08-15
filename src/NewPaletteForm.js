@@ -41,8 +41,11 @@ export default withStyles(styles, { withTheme: true })(
 		}
 
 		randomColor = () => {
-			this.setState({currentColor: randomHex()});
-			this.addColor();
+			this.setState({currentColor: randomHex()}, this.addColor);
+		}
+
+		clearPalette = () => {
+			this.setState({colors: []})
 		}
 
 		render() {
@@ -89,7 +92,7 @@ export default withStyles(styles, { withTheme: true })(
 						</div>
 						<Divider />
 						<div>
-							<Button color='secondary'>Clear Palette</Button>
+							<Button color='secondary' onClick={this.clearPalette}>Clear Palette</Button>
 							<Button color='primary' onClick = {this.randomColor}>Random Color</Button>
 						</div>
 						<ChromePicker color={currentColor} onChange={this.handleColorChange} />
