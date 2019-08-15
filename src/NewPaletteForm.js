@@ -11,14 +11,15 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChromePicker from 'react-color';
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
 import styles from './styles/NewPaletteFormStyles';
 
 export default withStyles(styles, { withTheme: true })(
 	class NewPaletteForm extends Component {
 		state = {
-			open : true,
-			currentColor: 'teal'
+			open         : true,
+			currentColor : 'teal',
+			colors       : ['teal']
 		};
 
 		handleDrawerOpen = () => {
@@ -30,8 +31,13 @@ export default withStyles(styles, { withTheme: true })(
 		};
 
 		handleColorChange = (newColor) => {
-			this.setState({currentColor: newColor.hex})
-		}
+			this.setState({ currentColor: newColor.hex });
+		};
+
+		addColor = () => {
+			console.log('hello')
+			this.setState({ colors: [ ...this.state.colors, this.state.currentColor ] });
+		};
 
 		render() {
 			const { classes } = this.props;
@@ -70,18 +76,24 @@ export default withStyles(styles, { withTheme: true })(
 						}}
 					>
 						<div className={classes.drawerHeader}>
+							<Typography variant='h5'>Pick a Color</Typography>
 							<IconButton onClick={this.handleDrawerClose}>
 								<ChevronLeftIcon />
 							</IconButton>
 						</div>
 						<Divider />
-						<Typography variant='h5'>Pick a Color</Typography>
 						<div>
 							<Button color='secondary'>Clear Palette</Button>
 							<Button color='primary'>Random Color</Button>
 						</div>
-						<ChromePicker color={currentColor} onChange = {this.handleColorChange}/>
-							<Button variant='contained' style={{backgroundColor: currentColor, transition: 'none'}}>Add Color</Button>
+						<ChromePicker color={currentColor} onChange={this.handleColorChange} />
+						<Button
+							variant='contained'
+							style={{ backgroundColor: currentColor, transition: 'none' }}
+							onClick={this.addColor}
+						>
+							Add Color
+						</Button>
 					</Drawer>
 					<main
 						className={clsx(classes.content, {
@@ -89,6 +101,9 @@ export default withStyles(styles, { withTheme: true })(
 						})}
 					>
 						<div className={classes.drawerHeader} />
+						<ul>
+							{this.state.colors.map(color => <li>{color}</li>)}
+						</ul>
 					</main>
 				</div>
 			);

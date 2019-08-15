@@ -1,4 +1,4 @@
-const drawerWidth = 350;
+const drawerWidth = 300;
 
 export default (theme) => ({
 	root         : {
@@ -37,7 +37,10 @@ export default (theme) => ({
 		alignItems     : 'center',
 		padding        : '0 8px',
 		...theme.mixins.toolbar,
-		justifyContent : 'flex-end'
+		justifyContent : 'space-between',
+		'& h5':{
+			fontFamily: 'Blinker',
+		}
 	},
 	content      : {
 		flexGrow   : 1,
