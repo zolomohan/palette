@@ -17,7 +17,6 @@ import DraggableColorBox from './DraggableColorBox';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import randomHex from './helpers/randomColor';
 
-
 export default withStyles(styles, { withTheme: true })(
 	class NewPaletteForm extends Component {
 		state = {
@@ -66,6 +65,10 @@ export default withStyles(styles, { withTheme: true })(
 				],
 				newColorName : ''
 			});
+		};
+
+		deleteColor = (deleteColor) => {
+			this.setState({ colors: this.state.colors.filter((color) => color.color !== deleteColor.color) });
 		};
 
 		randomColor = () => {
@@ -124,10 +127,10 @@ export default withStyles(styles, { withTheme: true })(
 									validators={[ 'required', 'uniquePaletteName' ]}
 									errorMessages={[ 'Palette Name is Required', 'Palette Name Already Taken' ]}
 								/>
-							<Button type='submit' color='primary'>
-								Save
-							</Button>
-						</ValidatorForm>
+								<Button type='submit' color='primary'>
+									Save
+								</Button>
+							</ValidatorForm>
 							<Button color='secondary'>Discard</Button>
 						</Toolbar>
 					</AppBar>
@@ -175,7 +178,7 @@ export default withStyles(styles, { withTheme: true })(
 						})}
 					>
 						<div className={classes.drawerHeader} />
-						{this.state.colors.map((color) => <DraggableColorBox color={color} />)}
+						{this.state.colors.map((color) => <DraggableColorBox color={color} deleteColor={this.deleteColor} />)}
 					</main>
 				</div>
 			);
