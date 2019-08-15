@@ -178,7 +178,7 @@ export default withStyles(styles, { withTheme: true })(
 						})}
 					>
 						<div className={classes.drawerHeader} />
-						{this.state.colors.map((color) => <DraggableColorBox color={color} deleteColor={this.deleteColor} />)}
+						{this.state.colors.map((color) => <DraggableColorBox color={color} deleteColor={this.deleteColor} key={color} />)}
 					</main>
 				</div>
 			);
