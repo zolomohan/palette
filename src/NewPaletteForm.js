@@ -14,14 +14,16 @@ import ChromePicker from 'react-color';
 import Button from '@material-ui/core/Button';
 import styles from './styles/NewPaletteFormStyles';
 import DraggableColorBox from './DraggableColorBox';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import randomHex from './helpers/randomColor';
 
 export default withStyles(styles, { withTheme: true })(
 	class NewPaletteForm extends Component {
 		state = {
-			open         : true,
-			currentColor : randomHex(),
-			colors       : []
+			open             : true,
+			currentColor     : randomHex(),
+			currentColorName : '',
+			colors           : []
 		};
 
 		handleDrawerOpen = () => {
@@ -34,23 +36,44 @@ export default withStyles(styles, { withTheme: true })(
 
 		handleColorChange = (newColor) => {
 			this.setState({ currentColor: newColor.hex });
-		}
+		};
+
+		handleColorNameChange = (evt) => {
+			this.setState({ currentColorName: evt.target.value });
+		};
 
 		addColor = () => {
-			this.setState({ colors: [ ...this.state.colors, this.state.currentColor ] });
-		}
+			this.setState({
+				colors : [
+					...this.state.colors,
+					{
+						color : this.state.currentColor,
+						name  : this.state.currentColorName
+					}
+				],
+				currentColorName: ''
+			});
+		};
 
 		randomColor = () => {
-			this.setState({currentColor: randomHex()}, this.addColor);
-		}
+			const randomColor = randomHex();
+			this.setState({ currentColor: randomColor, currentColorName: randomColor }, this.addColor);
+		};
 
 		clearPalette = () => {
-			this.setState({colors: []})
+			this.setState({ colors: [] });
+		};
+
+		componentDidMount(){
+			ValidatorForm.addValidationRule('uniqueColor', () => (
+				this.state.colors.every(({color}) => color !== this.state.currentColor)
+			))
 		}
+
 
 		render() {
 			const { classes } = this.props;
-			const { open, currentColor } = this.state;
+			const { open, currentColor, currentColorName } = this.state;
 
 			return (
 				<div className={classes.root}>
@@ -92,17 +115,25 @@ export default withStyles(styles, { withTheme: true })(
 						</div>
 						<Divider />
 						<div>
-							<Button color='secondary' onClick={this.clearPalette}>Clear Palette</Button>
-							<Button color='primary' onClick = {this.randomColor}>Random Color</Button>
+							<Button color='secondary' onClick={this.clearPalette}>
+								Clear Palette
+							</Button>
+							<Button color='primary' onClick={this.randomColor}>
+								Random Color
+							</Button>
 						</div>
 						<ChromePicker color={currentColor} onChange={this.handleColorChange} />
-						<Button
-							variant='contained'
-							style={{ backgroundColor: currentColor, transition: 'none' }}
-							onClick={this.addColor}
-						>
-							Add Color
-						</Button>
+						<ValidatorForm onSubmit={this.addColor}>
+							<TextValidator
+								value={currentColorName}
+								onChange={this.handleColorNameChange}
+								validators={[ 'required', 'uniqueColor' ]}
+								errorMessages = {['Color Name is Required', 'Color Already Used']}
+							/>
+							<Button type='submit' variant='contained' style={{ backgroundColor: currentColor, transition: 'none' }}>
+								Add Color
+							</Button>
+						</ValidatorForm>
 					</Drawer>
 					<main
 						className={clsx(classes.content, {
@@ -110,7 +141,7 @@ export default withStyles(styles, { withTheme: true })(
 						})}
 					>
 						<div className={classes.drawerHeader} />
-							{this.state.colors.map(color => <DraggableColorBox color={color} />)}
+						{this.state.colors.map((color) => <DraggableColorBox color={color} />)}
 					</main>
 				</div>
 			);

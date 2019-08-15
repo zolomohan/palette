@@ -11,7 +11,7 @@ const styles = {
 		display           : 'inline-block',
 		marginBottom      : '-4px',
 		transition        : 'all 0.1s linear',
-		backgroundColor   : (props) => props.color,
+		backgroundColor   : (props) => props.color.color,
 	}
 }
 
@@ -19,7 +19,7 @@ export default withStyles(styles)(
 	function DraggableColorBox(props) {
 	return (
 		<div className={props.classes.root}>
-			{props.color}
+			{props.color.name}
 		</div>
 	)
 })
