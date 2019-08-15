@@ -14,13 +14,14 @@ import ChromePicker from 'react-color';
 import Button from '@material-ui/core/Button';
 import styles from './styles/NewPaletteFormStyles';
 import DraggableColorBox from './DraggableColorBox';
+import randomHex from './helpers/randomColor';
 
 export default withStyles(styles, { withTheme: true })(
 	class NewPaletteForm extends Component {
 		state = {
 			open         : true,
-			currentColor : 'teal',
-			colors       : ['teal']
+			currentColor : randomHex(),
+			colors       : []
 		};
 
 		handleDrawerOpen = () => {
@@ -33,11 +34,16 @@ export default withStyles(styles, { withTheme: true })(
 
 		handleColorChange = (newColor) => {
 			this.setState({ currentColor: newColor.hex });
-		};
+		}
 
 		addColor = () => {
 			this.setState({ colors: [ ...this.state.colors, this.state.currentColor ] });
-		};
+		}
+
+		randomColor = () => {
+			this.setState({currentColor: randomHex()});
+			this.addColor();
+		}
 
 		render() {
 			const { classes } = this.props;
@@ -84,7 +90,7 @@ export default withStyles(styles, { withTheme: true })(
 						<Divider />
 						<div>
 							<Button color='secondary'>Clear Palette</Button>
-							<Button color='primary'>Random Color</Button>
+							<Button color='primary' onClick = {this.randomColor}>Random Color</Button>
 						</div>
 						<ChromePicker color={currentColor} onChange={this.handleColorChange} />
 						<Button
