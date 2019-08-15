@@ -17,7 +17,17 @@ export default {
 	nav       : {
 		display        : 'flex',
 		width          : '100%',
-		justifyContent : 'space-between'
+		justifyContent : 'space-between',
+		alignItems     : 'center',
+		fontFamily     : 'Blinker',
+		letterSpacing  : '1px',
+		textTransform  : 'uppercase',
+		'& a'          : {
+			color : 'white'
+		},
+		'& h1'         : {
+			fontWeight : '200'
+		}
 	},
 	palettes  : {
 		display             : 'grid',
