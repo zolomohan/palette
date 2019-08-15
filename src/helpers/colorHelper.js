@@ -30,6 +30,7 @@ function generatePalette(starterPalette) {
 			});
 		}
 	}
+	console.log(newPalette)
 	return newPalette;
 }
 

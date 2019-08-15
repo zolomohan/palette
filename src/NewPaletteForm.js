@@ -42,16 +42,27 @@ export default withStyles(styles, { withTheme: true })(
 			this.setState({ currentColorName: evt.target.value });
 		};
 
+		handleSavePalette = () => {
+			const newPalette = {
+				paletteName : 'Test Palette',
+				id          : 'Test-Palette',
+				emoji       : 'EN',
+				colors      : this.state.colors
+			};
+			this.props.savePalette(newPalette);
+			this.props.history.push('/');
+		};
+
 		addColor = () => {
 			this.setState({
-				colors : [
+				colors           : [
 					...this.state.colors,
 					{
 						color : this.state.currentColor,
 						name  : this.state.currentColorName
 					}
 				],
-				currentColorName: ''
+				currentColorName : ''
 			});
 		};
 
@@ -64,12 +75,11 @@ export default withStyles(styles, { withTheme: true })(
 			this.setState({ colors: [] });
 		};
 
-		componentDidMount(){
-			ValidatorForm.addValidationRule('uniqueColor', () => (
-				this.state.colors.every(({color}) => color !== this.state.currentColor)
-			))
+		componentDidMount() {
+			ValidatorForm.addValidationRule('uniqueColor', () =>
+				this.state.colors.every(({ color }) => color !== this.state.currentColor)
+			);
 		}
-
 
 		render() {
 			const { classes } = this.props;
@@ -80,6 +90,7 @@ export default withStyles(styles, { withTheme: true })(
 					<CssBaseline />
 					<AppBar
 						position='fixed'
+						color='default'
 						className={clsx(classes.appBar, {
 							[classes.appBarShift]: open
 						})}
@@ -96,6 +107,10 @@ export default withStyles(styles, { withTheme: true })(
 							<Typography variant='h6' color='inherit' noWrap>
 								New Palette
 							</Typography>
+							<Button color='secondary'>Discard</Button>
+							<Button onClick={this.handleSavePalette} color='primary'>
+								Save
+							</Button>
 						</Toolbar>
 					</AppBar>
 					<Drawer
@@ -128,7 +143,7 @@ export default withStyles(styles, { withTheme: true })(
 								value={currentColorName}
 								onChange={this.handleColorNameChange}
 								validators={[ 'required', 'uniqueColor' ]}
-								errorMessages = {['Color Name is Required', 'Color Already Used']}
+								errorMessages={[ 'Color Name is Required', 'Color Already Used' ]}
 							/>
 							<Button type='submit' variant='contained' style={{ backgroundColor: currentColor, transition: 'none' }}>
 								Add Color
