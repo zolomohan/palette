@@ -20,10 +20,11 @@ import randomHex from './helpers/randomColor';
 export default withStyles(styles, { withTheme: true })(
 	class NewPaletteForm extends Component {
 		state = {
-			open             : true,
-			currentColor     : randomHex(),
-			currentColorName : '',
-			colors           : []
+			open           : true,
+			newColor       : randomHex(),
+			newColorName   : '',
+			newPaletteName : '',
+			colors         : []
 		};
 
 		handleDrawerOpen = () => {
@@ -35,17 +36,17 @@ export default withStyles(styles, { withTheme: true })(
 		};
 
 		handleColorChange = (newColor) => {
-			this.setState({ currentColor: newColor.hex });
+			this.setState({ newColor: newColor.hex });
 		};
 
-		handleColorNameChange = (evt) => {
-			this.setState({ currentColorName: evt.target.value });
+		handleTextFieldChange = (evt) => {
+			this.setState({ [evt.target.name]: evt.target.value });
 		};
 
 		handleSavePalette = () => {
 			const newPalette = {
-				paletteName : 'Test Palette',
-				id          : 'Test-Palette',
+				paletteName : this.state.newPaletteName,
+				id          : this.state.newPaletteName.toLowerCase().replace(/ /g, '-'),
 				emoji       : 'EN',
 				colors      : this.state.colors
 			};
@@ -55,20 +56,20 @@ export default withStyles(styles, { withTheme: true })(
 
 		addColor = () => {
 			this.setState({
-				colors           : [
+				colors       : [
 					...this.state.colors,
 					{
-						color : this.state.currentColor,
-						name  : this.state.currentColorName
+						color : this.state.newColor,
+						name  : this.state.newColorName
 					}
 				],
-				currentColorName : ''
+				newColorName : ''
 			});
 		};
 
 		randomColor = () => {
 			const randomColor = randomHex();
-			this.setState({ currentColor: randomColor, currentColorName: randomColor }, this.addColor);
+			this.setState({ newColor: randomColor, newColorName: randomColor }, this.addColor);
 		};
 
 		clearPalette = () => {
@@ -77,13 +78,19 @@ export default withStyles(styles, { withTheme: true })(
 
 		componentDidMount() {
 			ValidatorForm.addValidationRule('uniqueColor', () =>
-				this.state.colors.every(({ color }) => color !== this.state.currentColor)
+				this.state.colors.every(({ color }) => color !== this.state.newColor)
+			);
+			ValidatorForm.addValidationRule('uniqueColorName', (value) =>
+				this.state.colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
+			);
+			ValidatorForm.addValidationRule('uniquePaletteName', (value) =>
+				this.props.palettes.every(({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase())
 			);
 		}
 
 		render() {
 			const { classes } = this.props;
-			const { open, currentColor, currentColorName } = this.state;
+			const { open, newColor, newColorName, newPaletteName } = this.state;
 
 			return (
 				<div className={classes.root}>
@@ -107,10 +114,20 @@ export default withStyles(styles, { withTheme: true })(
 							<Typography variant='h6' color='inherit' noWrap>
 								New Palette
 							</Typography>
-							<Button color='secondary'>Discard</Button>
-							<Button onClick={this.handleSavePalette} color='primary'>
+							<ValidatorForm onSubmit={this.handleSavePalette}>
+								<TextValidator
+									value={newPaletteName}
+									label='Palette Name'
+									name='newPaletteName'
+									onChange={this.handleTextFieldChange}
+									validators={[ 'required', 'uniquePaletteName' ]}
+									errorMessages={[ 'Palette Name is Required', 'Palette Name Already Taken' ]}
+								/>
+							<Button type='submit' color='primary'>
 								Save
 							</Button>
+						</ValidatorForm>
+							<Button color='secondary'>Discard</Button>
 						</Toolbar>
 					</AppBar>
 					<Drawer
@@ -137,15 +154,16 @@ export default withStyles(styles, { withTheme: true })(
 								Random Color
 							</Button>
 						</div>
-						<ChromePicker color={currentColor} onChange={this.handleColorChange} />
+						<ChromePicker color={newColor} onChange={this.handleColorChange} />
 						<ValidatorForm onSubmit={this.addColor}>
 							<TextValidator
-								value={currentColorName}
-								onChange={this.handleColorNameChange}
-								validators={[ 'required', 'uniqueColor' ]}
-								errorMessages={[ 'Color Name is Required', 'Color Already Used' ]}
+								value={newColorName}
+								name='newColorName'
+								onChange={this.handleTextFieldChange}
+								validators={[ 'required', 'uniqueColor', 'uniqueColorName' ]}
+								errorMessages={[ 'Color Name is Required', 'Color Already Used', 'Color Name Already Taken' ]}
 							/>
-							<Button type='submit' variant='contained' style={{ backgroundColor: currentColor, transition: 'none' }}>
+							<Button type='submit' variant='contained' style={{ backgroundColor: newColor, transition: 'none' }}>
 								Add Color
 							</Button>
 						</ValidatorForm>
