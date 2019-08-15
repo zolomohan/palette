@@ -1,6 +1,4 @@
-import chroma from 'chroma-js';
-
-const isLightColor = (color) => (color === undefined ? '#fff' : chroma(color).luminance() <= 0.1 ? '#fff' : '#000');
+import {isLightColor} from '../helpers/brightnessChecker';
 
 export default {
 	root       : {
