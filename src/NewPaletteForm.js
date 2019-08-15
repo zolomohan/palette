@@ -187,9 +187,9 @@ export default withStyles(styles, { withTheme: true })(
 							colors={this.state.colors}
 							deleteColor={this.deleteColor}
 							axis='xy'
-							onSortEnd = {this.onSortEnd}
+							onSortEnd={this.onSortEnd}
 							lockToContainerEdges
-							pressDelay={200}
+							distance={2}
 						/>
 					</main>
 				</div>
