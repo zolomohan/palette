@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import styles from './styles/NewPaletteFormStyles';
+import styles from './styles/NewPaletteNavbarStyles';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 export default withStyles(styles)(
@@ -51,25 +51,33 @@ export default withStyles(styles)(
 						<Typography variant='h6' color='inherit' noWrap>
 							New Palette
 						</Typography>
-						<ValidatorForm onSubmit={() => savePalette(newPaletteName)}>
-							<TextValidator
-								value={newPaletteName}
-								label='Palette Name'
-								name='newPaletteName'
-								onChange={this.handleTextFieldChange}
-								validators={[ 'required', 'uniquePaletteName' ]}
-								errorMessages={[ 'Palette Name is Required', 'Palette Name Already Taken' ]}
-							/>
-							<Button type='submit' color='primary'>
-								Save
-							</Button>
-						</ValidatorForm>
+					</Toolbar>
+					<div className={classes.navBtns}>
 						<Link to='/' style={{ textDecoration: 'none' }}>
 							<Button color='secondary'>Discard</Button>
 						</Link>
-					</Toolbar>
+						<Button type='submit' color='primary'>
+							Save
+						</Button>
+					</div>
 				</AppBar>
 			);
 		}
 	}
 );
+
+{
+	/* <ValidatorForm onSubmit={() => savePalette(newPaletteName)}>
+	<TextValidator
+		value={newPaletteName}
+		label='Palette Name'
+		name='newPaletteName'
+		onChange={this.handleTextFieldChange}
+		validators={[ 'required', 'uniquePaletteName' ]}
+		errorMessages={[ 'Palette Name is Required', 'Palette Name Already Taken' ]}
+	/>
+	<Button type='submit' color='primary'>
+		Save
+	</Button>
+</ValidatorForm>; */
+}
