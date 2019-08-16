@@ -21,8 +21,8 @@ export default withStyles(styles, { withTheme: true })(
 		};
 
 		state = {
-			open         : true,
-			colors       : this.props.palettes[0].colors
+			open   : true,
+			colors : this.props.palettes[0].colors
 		};
 
 		handleDrawerOpen = () => {
@@ -46,10 +46,7 @@ export default withStyles(styles, { withTheme: true })(
 
 		addColor = (newColor) => {
 			this.setState({
-				colors       : [
-					...this.state.colors,
-					newColor
-				],
+				colors : [ ...this.state.colors, newColor ]
 			});
 		};
 
@@ -72,14 +69,19 @@ export default withStyles(styles, { withTheme: true })(
 		};
 
 		render() {
-			const { classes, paletteMaxColors } = this.props;
+			const { classes, paletteMaxColors, palettes } = this.props;
 			const { open, colors } = this.state;
 			const paletteFull = colors.length >= paletteMaxColors;
 
 			return (
 				<div className={classes.root}>
 					<CssBaseline />
-					<NewPaletteNavbar open={open} savePalette={this.handleSavePalette} openDrawer={this.handleDrawerOpen} />
+					<NewPaletteNavbar
+						open={open}
+						savePalette={this.handleSavePalette}
+						openDrawer={this.handleDrawerOpen}
+						palettes={palettes}
+					/>
 					<Drawer
 						className={classes.drawer}
 						variant='persistent'
