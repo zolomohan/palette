@@ -21,7 +21,7 @@ export default withStyles(styles, { withTheme: true })(
 	class NewPaletteForm extends Component {
 		state = {
 			open           : true,
-			newColor       : randomHex(),
+			newColor       : '',
 			newColorName   : '',
 			newPaletteName : '',
 			colors         : this.props.palettes[0].colors
