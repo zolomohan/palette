@@ -14,7 +14,6 @@ import ChromePicker from 'react-color';
 import Button from '@material-ui/core/Button';
 import styles from './styles/NewPaletteFormStyles';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import randomHex from './helpers/randomColor';
 import DraggableColorList from './DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
 
