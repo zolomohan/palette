@@ -25,7 +25,7 @@ export default withStyles(styles, { withTheme: true })(
 			newColor       : randomHex(),
 			newColorName   : '',
 			newPaletteName : '',
-			colors         : []
+			colors         : this.props.palettes[0].colors
 		};
 
 		handleDrawerOpen = () => {
