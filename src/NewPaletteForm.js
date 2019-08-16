@@ -16,6 +16,7 @@ import styles from './styles/NewPaletteFormStyles';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import DraggableColorList from './DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
+import { isDarkColor } from './helpers/brightnessChecker';
 
 export default withStyles(styles, { withTheme: true })(
 	class NewPaletteForm extends Component {
@@ -182,8 +183,9 @@ export default withStyles(styles, { withTheme: true })(
 								variant='contained'
 								disabled={paletteFull}
 								style={{
-									backgroundColor: !paletteFull ? newColor : 'grey',
-									transition: 'none'
+									backgroundColor : !paletteFull ? newColor : 'grey',
+									color: isDarkColor(newColor),
+									transition      : '0.1s color linear'
 								}}
 							>
 								{!paletteFull ? 'Add Color' : 'Palette Full'}
