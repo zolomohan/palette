@@ -19,9 +19,13 @@ import { arrayMove } from 'react-sortable-hoc';
 
 export default withStyles(styles, { withTheme: true })(
 	class NewPaletteForm extends Component {
+		static defaultProps = {
+			paletteMaxColors : 20
+		};
+
 		state = {
 			open           : true,
-			newColor       : '',
+			newColor       : '#000',
 			newColorName   : '',
 			newPaletteName : '',
 			colors         : this.props.palettes[0].colors
@@ -98,8 +102,9 @@ export default withStyles(styles, { withTheme: true })(
 		}
 
 		render() {
-			const { classes } = this.props;
-			const { open, newColor, newColorName, newPaletteName } = this.state;
+			const { classes, paletteMaxColors } = this.props;
+			const { open, newColor, newColorName, newPaletteName, colors } = this.state;
+			const paletteFull = colors.length >= paletteMaxColors;
 
 			return (
 				<div className={classes.root}>
@@ -159,7 +164,7 @@ export default withStyles(styles, { withTheme: true })(
 							<Button color='secondary' onClick={this.clearPalette}>
 								Clear Palette
 							</Button>
-							<Button color='primary' onClick={this.randomColor}>
+							<Button color='primary' onClick={this.randomColor} disabled={colors.length >= paletteMaxColors}>
 								Random Color
 							</Button>
 						</div>
@@ -172,8 +177,16 @@ export default withStyles(styles, { withTheme: true })(
 								validators={[ 'required', 'uniqueColor', 'uniqueColorName' ]}
 								errorMessages={[ 'Color Name is Required', 'Color Already Used', 'Color Name Already Taken' ]}
 							/>
-							<Button type='submit' variant='contained' style={{ backgroundColor: newColor, transition: 'none' }}>
-								Add Color
+							<Button
+								type='submit'
+								variant='contained'
+								disabled={paletteFull}
+								style={{
+									backgroundColor: !paletteFull ? newColor : 'grey',
+									transition: 'none'
+								}}
+							>
+								{!paletteFull ? 'Add Color' : 'Palette Full'}
 							</Button>
 						</ValidatorForm>
 					</Drawer>
@@ -184,7 +197,7 @@ export default withStyles(styles, { withTheme: true })(
 					>
 						<div className={classes.drawerHeader} />
 						<DraggableColorList
-							colors={this.state.colors}
+							colors={colors}
 							deleteColor={this.deleteColor}
 							axis='xy'
 							onSortEnd={this.onSortEnd}
