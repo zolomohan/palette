@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
@@ -92,21 +91,22 @@ export default withStyles(styles, { withTheme: true })(
 						}}
 					>
 						<div className={classes.drawerHeader}>
-							<Typography variant='h5'>Pick a Color</Typography>
-							<IconButton onClick={this.handleDrawerClose}>
+						<Typography variant='h5'>Pick a Color</Typography>
+							<IconButton onClick={this.handleDrawerClose} className={classes.chevronLeftIcon}>
 								<ChevronLeftIcon />
 							</IconButton>
 						</div>
-						<Divider />
-						<div>
-							<Button color='secondary' onClick={this.clearPalette}>
-								Clear Palette
-							</Button>
-							<Button color='primary' onClick={this.randomColor} disabled={colors.length >= paletteMaxColors}>
-								Random Color
-							</Button>
+						<div className={classes.drawerContainer}>
+							<div className={classes.drawerButtons}>
+								<Button variant='outlined'color='primary' onClick={this.randomColor} disabled={colors.length >= paletteMaxColors} className={classes.drawerButton}>
+									Random
+								</Button>
+								<Button variant='outlined'color='secondary' onClick={this.clearPalette} className={classes.drawerButton}>
+									Clear Palette
+								</Button>
+							</div>
+							<ColorPickerForm paletteFull={paletteFull} addColor={this.addColor} colors={colors} />
 						</div>
-						<ColorPickerForm paletteFull={paletteFull} addColor={this.addColor} colors={colors} />
 					</Drawer>
 					<main
 						className={clsx(classes.content, {
