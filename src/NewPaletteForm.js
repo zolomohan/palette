@@ -73,8 +73,9 @@ export default withStyles(styles, { withTheme: true })(
 		};
 
 		randomColor = () => {
-			const randomColor = randomHex();
-			this.setState({ newColor: randomColor, newColorName: randomColor }, this.addColor);
+			const allColors = this.props.palettes.map((palette) => palette.colors).flat();
+			const randomIndex = Math.floor(Math.random() * allColors.length);
+			this.setState({ colors: [ ...this.state.colors, allColors[randomIndex] ] });
 		};
 
 		clearPalette = () => {
