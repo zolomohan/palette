@@ -3,12 +3,9 @@ import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChromePicker from 'react-color';
 import Button from '@material-ui/core/Button';
@@ -17,6 +14,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import DraggableColorList from './DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
 import { isDarkColor } from './helpers/brightnessChecker';
+import NewPaletteNavbar from './NewPaletteNavbar';
 
 export default withStyles(styles, { withTheme: true })(
 	class NewPaletteForm extends Component {
@@ -25,11 +23,10 @@ export default withStyles(styles, { withTheme: true })(
 		};
 
 		state = {
-			open           : true,
-			newColor       : '#000',
-			newColorName   : '',
-			newPaletteName : '',
-			colors         : this.props.palettes[0].colors
+			open         : true,
+			newColor     : '#000',
+			newColorName : '',
+			colors       : this.props.palettes[0].colors
 		};
 
 		handleDrawerOpen = () => {
@@ -48,10 +45,10 @@ export default withStyles(styles, { withTheme: true })(
 			this.setState({ [evt.target.name]: evt.target.value });
 		};
 
-		handleSavePalette = () => {
+		handleSavePalette = (newPaletteName) => {
 			const newPalette = {
-				paletteName : this.state.newPaletteName,
-				id          : this.state.newPaletteName.toLowerCase().replace(/ /g, '-'),
+				paletteName : newPaletteName,
+				id          : newPaletteName.toLowerCase().replace(/ /g, '-'),
 				emoji       : 'EN',
 				colors      : this.state.colors
 			};
@@ -110,41 +107,7 @@ export default withStyles(styles, { withTheme: true })(
 			return (
 				<div className={classes.root}>
 					<CssBaseline />
-					<AppBar
-						position='fixed'
-						color='default'
-						className={clsx(classes.appBar, {
-							[classes.appBarShift]: open
-						})}
-					>
-						<Toolbar disableGutters={!open}>
-							<IconButton
-								color='inherit'
-								aria-label='Open drawer'
-								onClick={this.handleDrawerOpen}
-								className={clsx(classes.menuButton, open && classes.hide)}
-							>
-								<MenuIcon />
-							</IconButton>
-							<Typography variant='h6' color='inherit' noWrap>
-								New Palette
-							</Typography>
-							<ValidatorForm onSubmit={this.handleSavePalette}>
-								<TextValidator
-									value={newPaletteName}
-									label='Palette Name'
-									name='newPaletteName'
-									onChange={this.handleTextFieldChange}
-									validators={[ 'required', 'uniquePaletteName' ]}
-									errorMessages={[ 'Palette Name is Required', 'Palette Name Already Taken' ]}
-								/>
-								<Button type='submit' color='primary'>
-									Save
-								</Button>
-							</ValidatorForm>
-							<Button color='secondary'>Discard</Button>
-						</Toolbar>
-					</AppBar>
+					<NewPaletteNavbar open={open} savePalette={this.handleSavePalette} openDrawer={this.handleDrawerOpen} />
 					<Drawer
 						className={classes.drawer}
 						variant='persistent'
@@ -184,7 +147,7 @@ export default withStyles(styles, { withTheme: true })(
 								disabled={paletteFull}
 								style={{
 									backgroundColor : !paletteFull ? newColor : 'grey',
-									color: isDarkColor(newColor),
+									color           : isDarkColor(newColor),
 									transition      : '0.1s color linear'
 								}}
 							>
