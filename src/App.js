@@ -23,6 +23,14 @@ export default class App extends Component {
 			window.localStorage.setItem('palettes', JSON.stringify(this.state.palettes))
 		);
 	};
+
+	deletePalette = (id) => {
+		this.setState(
+			(currentState) => ({ palettes: currentState.palettes.filter((palette) => palette.id !== id) }),
+			() => window.localStorage.setItem('palettes', JSON.stringify(this.state.palettes))
+		);
+	};
+
 	render() {
 		return (
 			<Switch>
@@ -33,7 +41,11 @@ export default class App extends Component {
 						<NewPaletteForm savePalette={this.savePalette} {...routeProps} palettes={this.state.palettes} />
 					)}
 				/>
-				<Route exact path='/' render={() => <PaletteList palettes={this.state.palettes} />} />
+				<Route
+					exact
+					path='/'
+					render={() => <PaletteList palettes={this.state.palettes} deletePalette={this.deletePalette} />}
+				/>
 				<Route
 					exact
 					path='/palette/:id'

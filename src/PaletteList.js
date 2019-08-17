@@ -7,7 +7,7 @@ import styles from './styles/PaletteListStyles';
 export default withStyles(styles)(
 	class PaletteList extends Component {
 		render() {
-			const { classes, palettes } = this.props;
+			const { classes, palettes, deletePalette } = this.props;
 			return (
 				<div className={classes.root}>
 					<div className={classes.container}>
@@ -16,7 +16,7 @@ export default withStyles(styles)(
 							<Link to='/palette/new'>Create Palette</Link>
 						</nav>
 						<div className={classes.palettes}>
-							{palettes.map((palette) => <MiniPalette {...palette} key={palette.id} />)}
+							{palettes.map((palette) => <MiniPalette {...palette} key={palette.id} deletePalette={deletePalette} />)}
 						</div>
 					</div>
 				</div>
