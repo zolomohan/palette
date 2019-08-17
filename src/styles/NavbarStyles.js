@@ -1,3 +1,5 @@
+import sizes from '../helpers/sizes';
+
 export default {
 	Navbar           : {
 		height  : '6%',
@@ -5,26 +7,35 @@ export default {
 	},
 
 	NavbarBrand      : {
-		display         : 'flex',
-		justifyContent  : 'center',
-		alignItems      : 'center',
-		height          : '100%',
-		minWidth        : '150px',
-		width           : '10%',
-		fontFamily      : 'Blinker, sans-serif',
-		fontSize        : '24px',
-		textTransform   : 'uppercase',
-		textAlign       : 'center',
-		letterSpacing   : '1px',
-		backgroundColor : '#e7e7e7',
-		color           : '#525252'
+		display            : 'flex',
+		justifyContent     : 'center',
+		alignItems         : 'center',
+		height             : '100%',
+		minWidth           : '150px',
+		width              : '10%',
+		fontFamily         : 'Blinker, sans-serif',
+		fontSize           : '24px',
+		textTransform      : 'uppercase',
+		textAlign          : 'center',
+		letterSpacing      : '1px',
+		backgroundColor    : '#e7e7e7',
+		color              : '#525252',
+		[sizes.down('xs')]: {
+			display : (props) => !props.singleColorPalette && 'none'
+		}
 	},
 
 	NavbarSlider     : {
-		minWidth   : '300px',
-		width      : '25%',
-		display    : 'flex',
-		alignItems : 'center'
+		width              : '450px',
+		display            : 'flex',
+		alignItems         : 'center',
+		transition: '0.15s width linear',
+		[sizes.down('sm')]: {
+			width : '350px'
+		},
+		[sizes.down('xs')]: {
+			width : '300px'
+		}
 	},
 
 	NavbarSliderText : {

@@ -33,7 +33,7 @@ export default withStyles(styles)(
 			const { classes } = this.props;
 			return (
 				<div className={classes.palette}>
-					<Navbar changeColorFormat={this.changeColorFormat} format={this.state.format} />
+					<Navbar changeColorFormat={this.changeColorFormat} format={this.state.format} singleColorPalette />
 					<div className={classes.paletteColors}>
 						{this._shades.map((color) => (
 							<ColorBox {...color} format={this.state.format} key={color.name} singleColorPalette />
