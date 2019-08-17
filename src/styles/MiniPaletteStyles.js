@@ -1,31 +1,33 @@
 export default {
 	root       : {
-		backgroundColor : 'white',
-		borderRadius    : '5px',
-		padding         : '0.5em',
-		position        : 'relative',
-		overflow        : 'hidden',
-		cursor          : 'pointer',
-		'&:hover $deleteIcon	':{
-			opacity: '1',
+		cursor                 : 'pointer',
+		position               : 'relative',
+		overflow               : 'hidden',
+		padding                : '0.5em',
+		backgroundColor        : 'white',
+		borderRadius           : '5px',
+		'&:hover $deleteIcon	' : {
+			opacity : '1'
 		}
 	},
 	colors     : {
-		backgroundColor : '#dae1e4',
+		overflow        : 'hidden',
 		height          : '150px',
 		width           : '100%',
 		borderRadius    : '5px',
-		overflow        : 'hidden'
+		backgroundColor : '#dae1e4'
 	},
 	title      : {
 		display        : 'flex',
 		justifyContent : 'space-between',
 		alignItems     : 'center',
+		fontFamily     : 'Blinker',
+		fontWeight     : '400',
+		fontSize       : '1.1rem',
+		color          : '#525252',
+		letterSpacing  : '0.5px',
 		margin         : '0',
-		color          : 'black',
-		fontSize       : '1rem',
 		paddingTop     : '0.5rem',
-		position       : 'relative'
 	},
 	emoji      : {
 		marginLeft : '0.5rem',
@@ -36,20 +38,24 @@ export default {
 		height       : '25%',
 		width        : '20%',
 		margin       : '0 auto',
-		marginBottom : '-4px',
-		position     : 'relative',
+		marginBottom : '-4px'
 	},
 	deleteIcon : {
-		position   : 'absolute',
-		top        : '0px',
-		right      : '0px',
-		height     : '20px',
-		width      : '20px',
-		background : '#ed3d30',
-		color      : 'white',
-		padding    : '10px',
-		zIndex     : '1',
-		opacity    : '0',
-		transition: '0.2s all linear' 
+		position               : 'absolute',
+		top                    : '0px',
+		right                  : '0px',
+		height                 : '20px',
+		width                  : '20px',
+		background             : '#ed3d30cc',
+		borderBottomLeftRadius : '10px',
+		color                  : 'white',
+		padding                : '10px',
+		zIndex                 : '1',
+		opacity                : '0',
+		transition             : '0.2s all linear',
+		'&:hover': {
+			backgroundColor: '#ed3d30'
+		}
+
 	}
 };
