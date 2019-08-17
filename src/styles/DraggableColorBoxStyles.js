@@ -1,18 +1,31 @@
-import {isLightColor} from '../helpers/brightnessChecker';
+import { isLightColor } from '../helpers/brightnessChecker';
+import sizes from '../helpers/sizes';
 
 export default {
 	root       : {
-		width           : '20%',
-		height          : '25%',
-		position        : 'relative',
-		margin          : '0 auto',
-		display         : 'inline-block',
-		marginBottom    : '-6px',
-		cursor          : 'pointer',
-		backgroundColor : (props) => props.color.color,
-		'&:hover': {
-			cursor: 'move'
-		}
+		width              : '20%',
+		height             : '25%',
+		position           : 'relative',
+		margin             : '0 auto',
+		display            : 'inline-block',
+		marginBottom       : '-6px',
+		cursor             : 'pointer',
+		backgroundColor    : (props) => props.color.color,
+		'&:hover'          : {
+			cursor : 'move'
+		},
+		[sizes.down('lg')]: {
+			height: '20%',
+			width: '25%'
+		},
+		[sizes.down('md')]: {
+			height: '10%',
+			width: '50%'
+		},
+		[sizes.down('sm')]: {
+			height: '5%',
+			width: '100%'
+		},
 	},
 	boxContent : {
 		position       : 'absolute',
