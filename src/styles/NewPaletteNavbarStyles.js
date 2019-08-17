@@ -1,37 +1,37 @@
-const drawerWidth = 300;
+import { DRAWER_WIDTH } from '../helpers/constants';
 
 export default (theme) => ({
-	root:{
+	root        : {
 		display : 'flex'
 	},
-	appBar       : {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		paddingRight: '1em',
-		transition : theme.transitions.create([ 'margin', 'width' ], {
+	appBar      : {
+		flexDirection  : 'row',
+		justifyContent : 'space-between',
+		alignItems     : 'center',
+		paddingRight   : '1em',
+		transition     : theme.transitions.create([ 'margin', 'width' ], {
 			easing   : theme.transitions.easing.sharp,
 			duration : theme.transitions.duration.leavingScreen
 		})
 	},
-	appBarShift  : {
-		width      : `calc(100% - ${drawerWidth}px)`,
-		marginLeft : drawerWidth,
+	appBarShift : {
+		width      : `calc(100% - ${DRAWER_WIDTH}px)`,
+		marginLeft : DRAWER_WIDTH,
 		transition : theme.transitions.create([ 'margin', 'width' ], {
 			easing   : theme.transitions.easing.easeOut,
 			duration : theme.transitions.duration.enteringScreen
 		})
 	},
-	menuButton   : {
+	menuButton  : {
 		marginLeft  : 12,
 		marginRight : 20
 	},
-	hide         : {
+	hide        : {
 		display : 'none'
 	},
-	navBtns:{
-		'& a':{
-			textDecoration: 'none'
+	navBtns     : {
+		'& a' : {
+			textDecoration : 'none'
 		}
 	}
 });
