@@ -1,35 +1,50 @@
-import {isLightColor, isDarkColor} from '../helpers/brightnessChecker';
+import { isLightColor, isDarkColor } from '../helpers/brightnessChecker';
 import sizes from '../helpers/sizes';
 
 export default {
 	ColorBox    : {
-		width             : '20%',
-		height            : (props) => (props.singleColorPalette ? '50%' : '25%'),
-		position          : 'relative',
-		margin            : '0 auto',
-		display           : 'inline-block',
-		marginBottom      : '-4px',
-		transition        : 'all 0.1s linear',
-		backgroundColor   : (props) => props[props.format],
-		'&:hover $button' : {
+		width              : '20%',
+		height             : (props) => (props.singleColorPalette ? '50%' : '25%'),
+		position           : 'relative',
+		margin             : '0 auto',
+		display            : 'inline-block',
+		marginBottom       : '-4px',
+		transition         : 'all 0.1s linear',
+		backgroundColor    : (props) => props[props.format],
+		'&:hover $button'  : {
 			opacity : '1'
 		},
-		'&.goBack'        : {
-			height          : '50%',
-			backgroundColor : '#000'
+		'&.goBack'         : {
+			height             : '50%',
+			backgroundColor    : '#222222',
+			'& $button':{
+				backgroundColor: 'transparent',
+			},
+			[sizes.down('lg')]: {
+				width  : '75%',
+				height : '33.333%'
+			},
+			[sizes.down('sm')]: {
+				width  : '50%',
+				height : '20%'
+			},
+			[sizes.down('xs')]: {
+				width  : '100%',
+				height : '10%'
+			}
 		},
-		[sizes.down('lg')]:{
-			width: '25%',
-			height            : (props) => (props.singleColorPalette ? '25%' : '20%'),
+		[sizes.down('lg')]: {
+			width  : '25%',
+			height : (props) => (props.singleColorPalette ? '33.3333%' : '20%')
 		},
-		[sizes.down('sm')]:{
-			width: '50%',
-			height            : (props) => (props.singleColorPalette ? '25%' : '10%'),
+		[sizes.down('sm')]: {
+			width  : '50%',
+			height : (props) => (props.singleColorPalette ? '20%' : '10%')
 		},
-		[sizes.down('xs')]:{
-			width: '100%',
-			height            : (props) => (props.singleColorPalette ? '10%' : '5%'),
-		},
+		[sizes.down('xs')]: {
+			width  : '100%',
+			height : (props) => (props.singleColorPalette ? '10%' : '5%')
+		}
 	},
 
 	copyOverlay : {
@@ -69,7 +84,10 @@ export default {
 			textTransform   : 'uppercase',
 			fontWeight      : '400',
 			width           : '100%',
-			textAlign       : 'center'
+			textAlign       : 'center',
+			[sizes.down('xs')]:{
+				fontSize: '6rem'
+			}
 		},
 		'& p'          : {
 			fontSize : '2rem'
