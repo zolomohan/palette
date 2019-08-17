@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import styles from './styles/NewPaletteNavbarStyles';
-import PaletteSaveDialog from './PaletteSaveDialog';
+import NewPaletteSaveDialog from './NewPaletteSaveDialog';
 
 export default withStyles(styles)(
 	class NewPaletteNav extends Component {
@@ -53,7 +53,7 @@ export default withStyles(styles)(
 						<Button onClick={this.saveDialogToggle} color='primary'>
 							Save
 						</Button>
-						<PaletteSaveDialog
+						<NewPaletteSaveDialog
 							open={saveDialogOpen}
 							toggle={this.saveDialogToggle}
 							savePalette={savePalette}
