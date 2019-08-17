@@ -32,11 +32,11 @@ export default withStyles(styles, { withTheme: true })(
 			this.setState({ open: false });
 		};
 
-		handleSavePalette = (newPaletteName) => {
+		handleSavePalette = (newPaletteName, emoji) => {
 			const newPalette = {
 				paletteName : newPaletteName,
 				id          : newPaletteName.toLowerCase().replace(/ /g, '-'),
-				emoji       : 'EN',
+				emoji       : emoji,
 				colors      : this.state.colors
 			};
 			this.props.savePalette(newPalette);
