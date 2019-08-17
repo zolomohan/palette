@@ -29,4 +29,9 @@ export default (theme) => ({
 	hide         : {
 		display : 'none'
 	},
+	navBtns:{
+		'& a':{
+			textDecoration: 'none'
+		}
+	}
 });

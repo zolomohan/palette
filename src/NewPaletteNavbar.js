@@ -9,27 +9,21 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import styles from './styles/NewPaletteNavbarStyles';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import PaletteSaveDialog from './PaletteSaveDialog';
 
 export default withStyles(styles)(
 	class NewPaletteNav extends Component {
 		state = {
-			newPaletteName : ''
+			saveDialogOpen : false
 		};
 
-		handleTextFieldChange = (evt) => {
-			this.setState({ [evt.target.name]: evt.target.value });
+		saveDialogToggle = () => {
+			this.setState({ saveDialogOpen: !this.state.saveDialogOpen });
 		};
-
-		componentDidMount() {
-			ValidatorForm.addValidationRule('uniquePaletteName', (value) =>
-				this.props.palettes.every(({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase())
-			);
-		}
 
 		render() {
-			const { classes, open, savePalette, openDrawer } = this.props;
-			const { newPaletteName } = this.state;
+			const { classes, open, openDrawer, savePalette, palettes } = this.props;
+			const { saveDialogOpen } = this.state;
 
 			return (
 				<AppBar
@@ -53,12 +47,18 @@ export default withStyles(styles)(
 						</Typography>
 					</Toolbar>
 					<div className={classes.navBtns}>
-						<Link to='/' style={{ textDecoration: 'none' }}>
+						<Link to='/'>
 							<Button color='secondary'>Discard</Button>
 						</Link>
-						<Button type='submit' color='primary'>
+						<Button onClick={this.saveDialogToggle} color='primary'>
 							Save
 						</Button>
+						<PaletteSaveDialog
+							open={saveDialogOpen}
+							toggle={this.saveDialogToggle}
+							savePalette={savePalette}
+							palettes={palettes}
+						/>
 					</div>
 				</AppBar>
 			);
@@ -67,17 +67,4 @@ export default withStyles(styles)(
 );
 
 {
-	/* <ValidatorForm onSubmit={() => savePalette(newPaletteName)}>
-	<TextValidator
-		value={newPaletteName}
-		label='Palette Name'
-		name='newPaletteName'
-		onChange={this.handleTextFieldChange}
-		validators={[ 'required', 'uniquePaletteName' ]}
-		errorMessages={[ 'Palette Name is Required', 'Palette Name Already Taken' ]}
-	/>
-	<Button type='submit' color='primary'>
-		Save
-	</Button>
-</ValidatorForm>; */
 }
