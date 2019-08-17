@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
+import DeleteIcon from '@material-ui/icons/Delete'
 import styles from './styles/MiniPaletteStyles';
 
 function MiniPalette(props) {
@@ -9,6 +10,9 @@ function MiniPalette(props) {
 	return (
 		<Link to={`palette/${id}`} style={{ textDecoration: 'none', color: '#525252' }}>
 			<div className={classes.root}>
+				<div className={classes.deleteIcon}>
+					<DeleteIcon />
+				</div>
 				<div className={classes.colors}>
 					{colors.map((color) => (
 						<div className={classes.miniBox} style={{ backgroundColor: color.color }} key={color.name} />
