@@ -10,16 +10,18 @@ import { generatePalette } from './helpers/colorHelper';
 export default class App extends Component {
 	constructor(props) {
 		super(props);
-
+		const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
 		this.state = {
-			palettes : seedColors
+			palettes : savedPalettes || seedColors
 		};
 	}
 
 	findPalette = (id) => this.state.palettes.find((palette) => palette.id === id);
 
 	savePalette = (newPalette) => {
-		this.setState({ palettes: [ ...this.state.palettes, newPalette ] });
+		this.setState({ palettes: [ ...this.state.palettes, newPalette ] }, () =>
+			window.localStorage.setItem('palettes', JSON.stringify(this.state.palettes))
+		);
 	};
 	render() {
 		return (
@@ -27,7 +29,9 @@ export default class App extends Component {
 				<Route
 					exact
 					path='/palette/new'
-					render={(routeProps) => <NewPaletteForm savePalette={this.savePalette} {...routeProps} palettes={this.state.palettes} />}
+					render={(routeProps) => (
+						<NewPaletteForm savePalette={this.savePalette} {...routeProps} palettes={this.state.palettes} />
+					)}
 				/>
 				<Route exact path='/' render={() => <PaletteList palettes={this.state.palettes} />} />
 				<Route
