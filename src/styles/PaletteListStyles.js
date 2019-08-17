@@ -1,10 +1,14 @@
+import background from './bg.svg'
 export default {
 	root      : {
-		backgroundColor : 'blue',
+		backgroundColor: '#3f3383',
+		backgroundImage: `url(${background})`,
+		backgroundSize: 'cover',
 		display         : 'flex',
 		justifyContent  : 'center',
 		alignItems      : 'flex-start',
-		height          : '100vh'
+		height          : '100vh',
+		overflowY: 'scroll',
 	},
 	container : {
 		width         : '60%',
