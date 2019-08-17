@@ -18,6 +18,18 @@ export default {
 			height          : '50%',
 			backgroundColor : '#000'
 		},
+		[sizes.down('lg')]:{
+			width: '25%',
+			height            : (props) => (props.singleColorPalette ? '25%' : '20%'),
+		},
+		[sizes.down('sm')]:{
+			width: '50%',
+			height            : (props) => (props.singleColorPalette ? '25%' : '10%'),
+		},
+		[sizes.down('xs')]:{
+			width: '100%',
+			height            : (props) => (props.singleColorPalette ? '10%' : '5%'),
+		},
 	},
 
 	copyOverlay : {
