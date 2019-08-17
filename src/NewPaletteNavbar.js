@@ -33,10 +33,11 @@ export default withStyles(styles)(
 			return (
 				<AppBar
 					position='fixed'
-					color='default'
+					color='white'
 					className={clsx(classes.appBar, {
 						[classes.appBarShift]: open
 					})}
+					elevation={0}
 				>
 					<Toolbar disableGutters={!open}>
 						<IconButton
@@ -47,13 +48,13 @@ export default withStyles(styles)(
 						>
 							<AddCircle />
 						</IconButton>
-						<Typography variant='h6' color='inherit' noWrap>
+						<Typography variant='h6' color='inherit' noWrap className={classes.title}>
 							New Palette
 						</Typography>
 					</Toolbar>
 					<div className={classes.navBtns}>
-							<Button color='secondary' onClick={this.discardDialogToggle}>Discard</Button>
-						<Button onClick={this.saveDialogToggle} color='primary'>
+						<Button className={classes.navBtn} color='secondary' onClick={this.discardDialogToggle}>Discard</Button>
+						<Button className={classes.navBtn} onClick={this.saveDialogToggle} color='primary'>
 							Save
 						</Button>
 						<NewPaletteSaveDialog

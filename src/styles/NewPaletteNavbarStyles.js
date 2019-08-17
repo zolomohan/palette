@@ -1,4 +1,5 @@
 import { DRAWER_WIDTH } from '../helpers/constants';
+import sizes from '../helpers/sizes';
 
 export default (theme) => ({
 	root        : {
@@ -24,14 +25,19 @@ export default (theme) => ({
 	},
 	menuButton  : {
 		marginLeft  : 12,
-		marginRight : 20
+		marginRight : 12
+	},
+	title:{
+		fontFamily: 'Blinker',
+		textTransform: 'uppercase',
+		letterSpacing: '1px',
 	},
 	hide        : {
 		display : 'none'
 	},
 	navBtns     : {
-		'& a' : {
+		'& a'       : {
 			textDecoration : 'none'
 		}
-	}
+	},
 });
