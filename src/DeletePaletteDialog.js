@@ -20,7 +20,7 @@ export default function AlertDialog(props) {
 				aria-labelledby='alert-dialog-title'
 				aria-describedby='Delete Palette Confirmation'
 			>
-				<DialogTitle id='alert-dialog-title'>Delete Palette?</DialogTitle>
+				<DialogTitle id='alert-dialog-title'>Are You Sure?</DialogTitle>
 				<DialogContent>
 					<DialogContentText id='alert-dialog-description'>
 						This action is irreversible. All Your Colors will be lost. Are you sure you want to Delete your palette?

@@ -17,7 +17,7 @@ export default function AlertDialog(props) {
 				aria-labelledby='alert-dialog-title'
 				aria-describedby='alert-dialog-description'
 			>
-				<DialogTitle id='alert-dialog-title'>Discard Palette?</DialogTitle>
+				<DialogTitle id='alert-dialog-title'>Are You Sure?</DialogTitle>
 				<DialogContent>
 					<DialogContentText id='alert-dialog-description'>
 						This action is irreversible. All Your Colors will be lost. Are you sure you want to Discard your palette?
