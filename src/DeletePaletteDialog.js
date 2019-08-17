@@ -11,7 +11,10 @@ export default function AlertDialog(props) {
 	function closeDialog() {
 		props.toggle(false);
 	}
-
+	function handleDelete() {
+		props.toggle(false);
+		deletePalette(id);
+	}
 	return (
 		<div>
 			<Dialog
@@ -30,7 +33,7 @@ export default function AlertDialog(props) {
 					<Button onClick={closeDialog} color='primary'>
 						Cancel
 					</Button>
-					<Button color='secondary' onClick={() => deletePalette(id)}>
+					<Button color='secondary' onClick={handleDelete}>
 						Yes, I'm Sure
 					</Button>
 				</DialogActions>
