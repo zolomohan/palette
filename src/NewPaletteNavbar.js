@@ -10,20 +10,26 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import styles from './styles/NewPaletteNavbarStyles';
 import NewPaletteSaveDialog from './NewPaletteSaveDialog';
+import NewPaletteDiscardDialog from './NewPaletteDiscardDialog';
 
 export default withStyles(styles)(
 	class NewPaletteNav extends Component {
 		state = {
-			saveDialogOpen : false
+			saveDialogOpen    : false,
+			discardDialogOpen : false
 		};
 
 		saveDialogToggle = () => {
 			this.setState({ saveDialogOpen: !this.state.saveDialogOpen });
 		};
 
+		discardDialogToggle = () => {
+			this.setState({ discardDialogOpen: !this.state.discardDialogOpen });
+		};
+
 		render() {
 			const { classes, open, openDrawer, savePalette, palettes } = this.props;
-			const { saveDialogOpen } = this.state;
+			const { saveDialogOpen, discardDialogOpen } = this.state;
 
 			return (
 				<AppBar
@@ -47,9 +53,7 @@ export default withStyles(styles)(
 						</Typography>
 					</Toolbar>
 					<div className={classes.navBtns}>
-						<Link to='/'>
-							<Button color='secondary'>Discard</Button>
-						</Link>
+							<Button color='secondary' onClick={this.discardDialogToggle}>Discard</Button>
 						<Button onClick={this.saveDialogToggle} color='primary'>
 							Save
 						</Button>
@@ -59,6 +63,7 @@ export default withStyles(styles)(
 							savePalette={savePalette}
 							palettes={palettes}
 						/>
+						<NewPaletteDiscardDialog open={discardDialogOpen} toggle={this.discardDialogToggle}/>
 					</div>
 				</AppBar>
 			);
