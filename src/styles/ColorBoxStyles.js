@@ -1,4 +1,5 @@
 import {isLightColor, isDarkColor} from '../helpers/brightnessChecker';
+import sizes from '../helpers/sizes';
 
 export default {
 	ColorBox    : {
@@ -16,7 +17,7 @@ export default {
 		'&.goBack'        : {
 			height          : '50%',
 			backgroundColor : '#000'
-		}
+		},
 	},
 
 	copyOverlay : {
