@@ -48,9 +48,9 @@ export default withStyles(styles)(
 
 					<div className={classes.NavbarSelect}>
 						<Select value={format} onChange={this.handleFormatChange}>
-							<MenuItem value='hex'>HEX - #abcdef</MenuItem>
-							<MenuItem value='rgb'>RGB - rgb(255, 255, 255)</MenuItem>
-							<MenuItem value='rgba'>RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
+							<MenuItem value='hex'>HEX</MenuItem>
+							<MenuItem value='rgb'>RGB</MenuItem>
+							<MenuItem value='rgba'>RGBA</MenuItem>
 						</Select>
 					</div>
 					<Snackbar
