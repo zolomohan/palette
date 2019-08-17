@@ -27,7 +27,11 @@ export default {
 		letterSpacing  : '1px',
 		textTransform  : 'uppercase',
 		'& a'          : {
-			color : 'white'
+			textDecoration: 'none',
+			color : 'white',
+			'&:hover':{
+				color: '#dddddd',
+			}
 		},
 		'& h1'         : {
 			fontWeight : '200'
