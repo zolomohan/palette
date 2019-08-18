@@ -8,7 +8,6 @@ import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
 import seedColors from './helpers/seedColors';
 import { generatePalette } from './helpers/colorHelper';
-import Route404 from './Route404';
 
 export default class App extends Component {
 	state = {
@@ -80,9 +79,7 @@ export default class App extends Component {
 
 								<Route 
 									render={() => (
-										<Page>
-											<Route404 />
-										</Page>
+										<Page variant='404' />
 									)}
 								/>
 
