@@ -60,68 +60,99 @@ export default withStyles(styles, { withTheme: true })(
 		onSortEnd = ({ oldIndex, newIndex }) => this.setState({ colors: arrayMove(this.state.colors, oldIndex, newIndex) });
 
 		render() {
-			const { classes, paletteMaxColors, palettes } = this.props;
-			const { open, colors } = this.state;
+			const {
+				handleDrawerOpen,
+				handleDrawerClose,
+				handleSavePalette,
+				addColor,
+				deleteColor,
+				randomColor,
+				clearPalette,
+				onSortEnd,
+				props,
+				state
+			} = this;
+			const { 
+				classes, 
+				paletteMaxColors, 
+				palettes 
+			} = props;
+			const {
+				open, 
+				colors 
+			} = state;
+			const {
+				root,
+				drawer,
+				drawerPaper,
+				drawerHeader,
+				drawerContainer,
+				drawerButtons,
+				drawerButton,
+				content,
+				contentShift,
+				chevronLeftIcon
+			} = classes;
 			const paletteFull = colors.length >= paletteMaxColors;
 
 			return (
-				<div className={classes.root}>
+				<div className={root}>
 					<CssBaseline />
 					<NewPaletteNavbar
 						open={open}
-						savePalette={this.handleSavePalette}
-						openDrawer={this.handleDrawerOpen}
+						savePalette={handleSavePalette}
+						openDrawer={handleDrawerOpen}
 						palettes={palettes}
 					/>
 					<Drawer
-						className={classes.drawer}
+						className={drawer}
 						variant='persistent'
 						anchor='left'
 						open={open}
 						classes={{
-							paper : classes.drawerPaper
+							paper : drawerPaper
 						}}
 					>
-						<div className={classes.drawerHeader}>
+						<div className={drawerHeader}>
 							<Typography variant='h5'>Pick a Color</Typography>
-							<IconButton onClick={this.handleDrawerClose} className={classes.chevronLeftIcon}>
+							<IconButton onClick={handleDrawerClose} className={chevronLeftIcon}>
 								<ChevronLeftIcon />
 							</IconButton>
 						</div>
-						<div className={classes.drawerContainer}>
-							<div className={classes.drawerButtons}>
+						<div className={drawerContainer}>
+							<div className={drawerButtons}>
 								<Button
 									variant='outlined'
 									color='primary'
-									onClick={this.randomColor}
+									onClick={randomColor}
 									disabled={colors.length >= paletteMaxColors}
-									className={classes.drawerButton}
+									className={drawerButton}
 								>
 									Random
 								</Button>
 								<Button
 									variant='outlined'
 									color='secondary'
-									onClick={this.clearPalette}
-									className={classes.drawerButton}
+									onClick={clearPalette}
+									className={drawerButton}
 								>
 									Clear Palette
 								</Button>
 							</div>
-							<ColorPickerForm paletteFull={paletteFull} addColor={this.addColor} colors={colors} />
+							<ColorPickerForm paletteFull={paletteFull} addColor={addColor} colors={colors} />
 						</div>
 					</Drawer>
 					<main
-						className={clsx(classes.content, {
-							[classes.contentShift]: open
+						className={clsx(content, {
+							[contentShift]: open
 						})}
 					>
-						<div className={classes.drawerHeader} />
+						<div className={drawerHeader} />
 						<DraggableColorList
 							colors={colors}
-							deleteColor={this.deleteColor}
+							deleteColor={deleteColor}
 							axis='xy'
-							onSortEnd={this.onSortEnd}
+							onSortEnd={onSortEnd}
 							lockToContainerEdges
 							distance={2}
 						/>

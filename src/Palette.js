@@ -17,25 +17,21 @@ export default withStyles(styles)(
 		changeColorFormat = (format) => this.setState({ format });
 
 		render() {
-			const { classes, colors, id, emoji, paletteName } = this.props;
-			const { level, format } = this.state;
+			const { changeColorFormat, changeLevel, props, state } = this;
+			const { classes, colors, id, emoji, paletteName } = props;
+			const { level, format } = state;
+			const { palette, paletteColors } = classes;
 			return (
-				<div className={classes.palette}>
+				<div className={palette}>
 					<Navbar
-						changeLevel={this.changeLevel}
-						changeColorFormat={this.changeColorFormat}
+						changeLevel={changeLevel}
+						changeColorFormat={changeColorFormat}
 						level={level}
 						format={format}
 					/>
-					<div className={classes.paletteColors}>
+					<div className={paletteColors}>
 						{colors[level].map((color) => (
-							<ColorBox
-								{...color}
-								format={format}
-								key={color.id}
-								paletteId={id}
-								singleColorPalette={false}
-							/>
+							<ColorBox {...color} format={format} key={color.id} paletteId={id} singleColorPalette={false} />
 						))}
 					</div>
 					<Footer paletteName={paletteName} emoji={emoji} />

@@ -28,21 +28,24 @@ export default withStyles({...stylesColorBox, ...stylesPalette})(
 		changeColorFormat = (format) => this.setState({ format });
 
 		render() {
-			const { classes } = this.props;
+			const { classes, paletteName, emoji, id } = this.props;
+			const { palette, paletteColors, button } = classes;
+			const { format } = this.state;
+			
 			return (
-				<div className={classes.palette}>
-					<Navbar changeColorFormat={this.changeColorFormat} format={this.state.format} singleColorPalette />
-					<div className={classes.paletteColors}>
+				<div className={palette}>
+					<Navbar changeColorFormat={this.changeColorFormat} format={format} singleColorPalette />
+					<div className={paletteColors}>
 						{this._shades.map((color) => (
-							<ColorBox {...color} format={this.state.format} key={color.name} singleColorPalette />
+							<ColorBox {...color} format={format} key={color.name} singleColorPalette />
 						))}
-						<Link to={`/palette/${this.props.id}`}>
+						<Link to={`/palette/${id}`}>
 							<div className={`${classes.ColorBox} goBack`}>
-								<button className={classes.button}>Go Back</button>
+								<button className={button}>Go Back</button>
 							</div>
 						</Link>
 					</div>
-					<Footer paletteName={this.props.paletteName} emoji={this.props.emoji} />
+					<Footer paletteName={paletteName} emoji={emoji} />
 				</div>
 			);
 		}

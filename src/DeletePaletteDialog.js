@@ -13,10 +13,12 @@ export default function AlertDialog(props) {
 	function closeDialog() {
 		props.toggle(false);
 	}
+	
 	function handleDelete() {
 		props.toggle(false);
 		deletePalette(id);
 	}
+
 	return (
 		<Dialog
 			open={open}

@@ -25,21 +25,23 @@ export default withStyles(styles)(
 		closeSnackbar = () => this.setState({ snackbarOpen: false });
 
 		render() {
-			const { classes, level, format } = this.props;
+			const { handleFormatChange, handleSliderChange, closeSnackbar, props, state } = this;
+			const { classes, level, format } = props;
+			const { Navbar, NavbarBrand, NavbarSlider, NavbarSliderText, NavbarSelect } = classes;
 			return (
-				<nav className={classes.Navbar}>
+				<nav className={Navbar}>
 					<Link to='/' style={{ textDecoration: 'none' }}>
-						<span className={classes.NavbarBrand}>palette</span>
+						<span className={NavbarBrand}>palette</span>
 					</Link>
 					{level && (
-						<div className={classes.NavbarSlider}>
-							<span className={classes.NavbarSliderText}>{level}</span>
-							<Slider defaultValue={level} step={100} min={100} max={900} onChange={this.handleSliderChange} />
+						<div className={NavbarSlider}>
+							<span className={NavbarSliderText}>{level}</span>
+							<Slider defaultValue={level} step={100} min={100} max={900} onChange={handleSliderChange} />
 						</div>
 					)}
 
-					<div className={classes.NavbarSelect}>
-						<Select value={format} onChange={this.handleFormatChange}>
+					<div className={NavbarSelect}>
+						<Select value={format} onChange={handleFormatChange}>
 							<MenuItem value='hex'>HEX</MenuItem>
 							<MenuItem value='rgb'>RGB</MenuItem>
 							<MenuItem value='rgba'>RGBA</MenuItem>
@@ -51,14 +53,14 @@ export default withStyles(styles)(
 							vertical   : 'bottom',
 							horizontal : 'left'
 						}}
-						open={this.state.snackbarOpen}
+						open={state.snackbarOpen}
 						autoHideDuration={3000}
 						ContentProps={{
 							'aria-describedby' : 'message-id'
 						}}
-						onClose={this.closeSnackbar}
+						onClose={closeSnackbar}
 						action={[
-							<IconButton onClick={this.closeSnackbar} color='inherit' key='Close Snackbar'>
+							<IconButton onClick={closeSnackbar} color='inherit' key='Close Snackbar'>
 								<CloseIcon />
 							</IconButton>
 						]}

@@ -16,22 +16,25 @@ export default withStyles(styles)(
 			});
 
 		render() {
-			const { classes, singleColorPalette, paletteId, id, name } = this.props;
+			const { singleColorPalette, paletteId, id, name } = this.props;
+			const { copying } = this.state;
+			const { ColorBox, copyOverlay, copyMessage, copyText, colorName, button, seeMore, showMessage, showOverlay } = this.props.classes;
 			const color = this.props[this.props.format];
+
 			return (
-				<div className={classes.ColorBox}>
-					<div className={`${classes.copyOverlay} ${this.state.copying && classes.showOverlay}`} />
-					<div className={`${classes.copyMessage} ${this.state.copying && classes.showMessage}`}>
-						<h1 className={classes.copyText}>copied!</h1>
-						<p className={classes.copyText}>{color}</p>
+				<div className={ColorBox}>
+					<div className={`${copyOverlay} ${copying && showOverlay}`} />
+					<div className={`${copyMessage} ${copying && showMessage}`}>
+						<h1 className={copyText}>copied!</h1>
+						<p className={copyText}>{color}</p>
 					</div>
-					<span className={classes.colorName}>{name}</span>
+					<span className={colorName}>{name}</span>
 					<CopyToClipboard text={color} onCopy={this.handleCopy}>
-						<button className={`${classes.button} copyButton`}>copy</button>
+						<button className={`${button} copyButton`}>copy</button>
 					</CopyToClipboard>
 					{!singleColorPalette && (
 						<Link to={`${paletteId}/${id}`}>
-							<span className={classes.seeMore}>more</span>
+							<span className={seeMore}>more</span>
 						</Link>
 					)}
 				</div>

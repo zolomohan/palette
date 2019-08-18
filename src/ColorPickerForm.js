@@ -33,21 +33,24 @@ export default withStyles(styles)(
 		}
 
 		render() {
-			const { newColor, newColorName } = this.state;
-			const { paletteFull, classes } = this.props;
+			const { handleAddColor, handleColorChange, handleTextFieldChange, state, props } = this;
+			const { newColor, newColorName } = state;
+			const { paletteFull, classes } = props;
+			const { picker, colorNameInput, addColorBtn } = classes;
+
 			return (
 				<div>
-					<ChromePicker color={newColor} onChange={this.handleColorChange} className={classes.picker} />
-					<ValidatorForm onSubmit={this.handleAddColor} instantValidate={false}>
+					<ChromePicker color={newColor} onChange={handleColorChange} className={picker} />
+					<ValidatorForm onSubmit={handleAddColor} instantValidate={false}>
 						<TextValidator
 							value={newColorName}
 							label='Color Name'
 							variant='outlined'
 							name='newColorName'
-							onChange={this.handleTextFieldChange}
+							onChange={handleTextFieldChange}
 							validators={[ 'required', 'uniqueColor', 'uniqueColorName' ]}
 							errorMessages={[ 'Color Name is Required', 'Color Already Used', 'Color Name Already Taken' ]}
-							className={classes.colorNameInput}
+							className={colorNameInput}
 							disabled={paletteFull}
 						/>
 						<Button
@@ -58,7 +61,7 @@ export default withStyles(styles)(
 								backgroundColor : !paletteFull ? newColor : 'grey',
 								color           : isDarkColor(newColor),
 							}}
-							className={classes.addColorBtn}
+							className={addColorBtn}
 						>
 							{!paletteFull ? 'Add Color' : 'Palette Full'}
 						</Button>

@@ -25,13 +25,14 @@ export default withStyles(styles)(
 		render() {
 			const { classes, open, openDrawer, savePalette, palettes } = this.props;
 			const { saveDialogOpen, discardDialogOpen } = this.state;
+			const { appBar, appBarShift, menuButton, hide, title, navBtns, navBtn } = classes;
 
 			return (
 				<AppBar
 					position='fixed'
 					color='inherit'
-					className={clsx(classes.appBar, {
-						[classes.appBarShift]: open
+					className={clsx(appBar, {
+						[appBarShift]: open
 					})}
 					elevation={0}
 				>
@@ -40,17 +41,17 @@ export default withStyles(styles)(
 							color='inherit'
 							aria-label='Open drawer'
 							onClick={openDrawer}
-							className={clsx(classes.menuButton, open && classes.hide)}
+							className={clsx(menuButton, open && hide)}
 						>
 							<AddCircle />
 						</IconButton>
-						<Typography variant='h6' color='inherit' noWrap className={classes.title}>
+						<Typography variant='h6' color='inherit' noWrap className={title}>
 							New Palette
 						</Typography>
 					</Toolbar>
-					<div className={classes.navBtns}>
-						<Button className={classes.navBtn} color='secondary' onClick={this.discardDialogToggle}>Discard</Button>
-						<Button className={classes.navBtn} onClick={this.saveDialogToggle} color='primary'>
+					<div className={navBtns}>
+						<Button className={navBtn} color='secondary' onClick={this.discardDialogToggle}>Discard</Button>
+						<Button className={navBtn} onClick={this.saveDialogToggle} color='primary'>
 							Save
 						</Button>
 						<NewPaletteSaveDialog

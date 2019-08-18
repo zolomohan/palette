@@ -16,16 +16,18 @@ export default withStyles(styles)(
 		render() {
 			const { classes, paletteName, emoji, id, colors, deletePalette } = this.props;
 			const { deleteModal } = this.state;
+			const { root, deleteIcon, miniBox, title} = classes;
+
 			return (
-				<div className={classes.root}>
-					<DeleteIcon className={classes.deleteIcon} onClick={() => this.setDeleteModal(true)} />
+				<div className={root}>
+					<DeleteIcon className={deleteIcon} onClick={() => this.setDeleteModal(true)} />
 					<Link to={`palette/${id}`} style={{ textDecoration: 'none' }}>
 						<div className={classes.colors}>
 							{colors.map((color) => 
-								<div className={classes.miniBox} style={{ backgroundColor: color.color }} key={color.name} />
+								<div className={miniBox} style={{ backgroundColor: color.color }} key={color.name} />
 							)}
 						</div>
-						<h5 className={classes.title}>
+						<h5 className={title}>
 							{paletteName} <span className={classes.emoji}>{emoji}</span>
 						</h5>
 					</Link>

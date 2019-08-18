@@ -6,15 +6,15 @@ import styles from './styles/DraggableColorBoxStyles';
 
 export default SortableElement(
 	withStyles(styles)(function DraggableColorBox(props) {
-		const { classes } = props;
+		const { root, boxContent, deleteIcon, colorName } = props.classes;
 		function handleDeleteColor() {
 			props.deleteColor(props.color);
 		}
 		return (
-			<div className={classes.root}>
-				<div className={classes.boxContent}>
-					<span className={classes.colorName}>{props.color.name}</span>
-					<DeleteIcon className={classes.deleteIcon} onClick={handleDeleteColor} />
+			<div className={root}>
+				<div className={boxContent}>
+					<span className={colorName}>{props.color.name}</span>
+					<DeleteIcon className={deleteIcon} onClick={handleDeleteColor} />
 				</div>
 			</div>
 		);

@@ -4,10 +4,11 @@ import styles from './styles/FooterStyles';
 
 function Footer(props) {
 	const { classes, paletteName, emoji } = props;
+	const { Footer, FooterPaletteName, FooterEmoji } = classes;
 	return (
-		<footer className={classes.Footer}>
-			<span className={classes.FooterPaletteName}>{paletteName}</span>
-			<span className={classes.FooterEmoji}>{emoji}</span>
+		<footer className={Footer}>
+			<span className={FooterPaletteName}>{paletteName}</span>
+			<span className={FooterEmoji}>{emoji}</span>
 		</footer>
 	);
 }

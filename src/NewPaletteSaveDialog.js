@@ -33,15 +33,16 @@ export default class FormDialog extends Component {
 	}
 
 	render() {
-		const { open, toggle } = this.props;
-		const { newPaletteName, stage } = this.state;
+		const { handleTextFieldChange, openEmojiDialog, selectEmoji, hideDialog, props, state } = this;
+		const { open, toggle } = props;
+		const { newPaletteName, stage } = state;
 		return (
 			<div>
-				<Dialog open={open && stage === 'emoji'} onClose={this.hideDialog}>
-					<Picker onSelect={this.selectEmoji} title='Pick an Emoji' />
+				<Dialog open={open && stage === 'emoji'} onClose={hideDialog}>
+					<Picker onSelect={selectEmoji} title='Pick an Emoji' />
 				</Dialog>
 				<Dialog open={open && stage === 'form'} onClose={toggle} aria-labelledby='form-dialog-title'>
-					<ValidatorForm onSubmit={this.openEmojiDialog}>
+					<ValidatorForm onSubmit={openEmojiDialog}>
 						<DialogTitle id='form-dialog-title'>Palette Name</DialogTitle>
 						<DialogContent>
 							<DialogContentText>
@@ -53,7 +54,7 @@ export default class FormDialog extends Component {
 								value={newPaletteName}
 								placeholder='Enter a Palette Name'
 								name='newPaletteName'
-								onChange={this.handleTextFieldChange}
+								onChange={handleTextFieldChange}
 								validators={[ 'required', 'uniquePaletteName' ]}
 								errorMessages={[ 'Palette Name is Required', 'Palette Name Already Taken' ]}
 							/>
