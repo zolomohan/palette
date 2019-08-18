@@ -6,9 +6,13 @@ export default {
 		padding                : '0.5em',
 		backgroundColor        : 'white',
 		borderRadius           : '5px',
+		transition: 'transform 0.1s ease-out',
 		color: '#525252',
 		'&:hover $deleteIcon	' : {
 			opacity : '1'
+		},
+		'&:hover':{
+			transform: 'translateY(-2px)'
 		}
 	},
 	colors     : {
