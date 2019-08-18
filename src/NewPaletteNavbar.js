@@ -33,7 +33,7 @@ export default withStyles(styles)(
 			return (
 				<AppBar
 					position='fixed'
-					color='white'
+					color='inherit'
 					className={clsx(classes.appBar, {
 						[classes.appBarShift]: open
 					})}
@@ -70,6 +70,3 @@ export default withStyles(styles)(
 		}
 	}
 );
-
-{
-}

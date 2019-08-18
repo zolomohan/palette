@@ -1,5 +1,4 @@
 import { DRAWER_WIDTH } from '../helpers/constants';
-import sizes from '../helpers/sizes';
 
 export default (theme) => ({
 	root        : {

@@ -22,7 +22,6 @@ export default withStyles(styles)(
 		};
 
 		handleAddColor = () => {
-			console.log('hello');
 			this.props.addColor({ name: this.state.newColorName, color: this.state.newColor });
 			this.setState({ newColorName: '' });
 		};
