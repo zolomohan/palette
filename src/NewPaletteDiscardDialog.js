@@ -27,7 +27,7 @@ export default function AlertDialog(props) {
 					<Button onClick={toggle} color='primary'>
 						Cancel
 					</Button>
-					<Link to='/' style={{textDecoration: 'none'}}>
+					<Link to='/' style={{textDecoration: 'none'}} onClick={toggle}>
 						<Button color='secondary' autoFocus>
 							Yes, I'm Sure
 						</Button>

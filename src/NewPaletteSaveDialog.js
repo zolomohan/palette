@@ -24,6 +24,7 @@ export default class FormDialog extends Component {
 	};
 
 	selectEmoji = (emoji) => {
+		this.setState({stage: ''})
 		this.props.savePalette(this.state.newPaletteName, emoji.native)
 	}
 
