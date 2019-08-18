@@ -27,3 +27,7 @@ code {
 	background-color: #c4c4c4;
 }
 
+::selection{
+	background: #3b085e;
+	color: white;
+}

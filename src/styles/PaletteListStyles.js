@@ -55,7 +55,8 @@ export default {
 			}
 		},
 		'& h1'         : {
-			fontWeight : '200'
+			fontWeight : '100',
+			fontSize: '1.5rem'
 		}
 	},
 	palettes  : {
