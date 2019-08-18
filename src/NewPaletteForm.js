@@ -12,7 +12,7 @@ import DraggableColorList from './DraggableColorList';
 import arrayMove from 'array-move';
 import NewPaletteNavbar from './NewPaletteNavbar';
 import ColorPickerForm from './ColorPickerForm';
-import seedColors from './helpers/seedColors'
+import seedColors from './helpers/seedColors';
 
 export default withStyles(styles, { withTheme: true })(
 	class NewPaletteForm extends Component {
@@ -45,11 +45,13 @@ export default withStyles(styles, { withTheme: true })(
 				colors : [ ...this.state.colors, newColor ]
 			});
 
-		deleteColor = (deleteColor) => this.setState({ colors: this.state.colors.filter((color) => color.color !== deleteColor.color) });
+		deleteColor = (deleteColor) =>
+			this.setState({ colors: this.state.colors.filter((color) => color.color !== deleteColor.color) });
 
 		randomColor = () => {
 			const allColors = this.props.palettes.map((palette) => palette.colors).flat();
 			const randomIndex = Math.floor(Math.random() * allColors.length);
+			if (this.state.colors.some((color) => color.name === allColors[randomIndex].name)) this.randomColor();
 			this.setState({ colors: [ ...this.state.colors, allColors[randomIndex] ] });
 		};
 
