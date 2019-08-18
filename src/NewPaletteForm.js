@@ -9,7 +9,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import styles from './styles/NewPaletteFormStyles';
 import DraggableColorList from './DraggableColorList';
-import { arrayMove } from 'react-sortable-hoc';
+import arrayMove from 'array-move';
 import NewPaletteNavbar from './NewPaletteNavbar';
 import ColorPickerForm from './ColorPickerForm';
 
@@ -91,17 +91,28 @@ export default withStyles(styles, { withTheme: true })(
 						}}
 					>
 						<div className={classes.drawerHeader}>
-						<Typography variant='h5'>Pick a Color</Typography>
+							<Typography variant='h5'>Pick a Color</Typography>
 							<IconButton onClick={this.handleDrawerClose} className={classes.chevronLeftIcon}>
 								<ChevronLeftIcon />
 							</IconButton>
 						</div>
 						<div className={classes.drawerContainer}>
 							<div className={classes.drawerButtons}>
-								<Button variant='outlined'color='primary' onClick={this.randomColor} disabled={colors.length >= paletteMaxColors} className={classes.drawerButton}>
+								<Button
+									variant='outlined'
+									color='primary'
+									onClick={this.randomColor}
+									disabled={colors.length >= paletteMaxColors}
+									className={classes.drawerButton}
+								>
 									Random
 								</Button>
-								<Button variant='outlined'color='secondary' onClick={this.clearPalette} className={classes.drawerButton}>
+								<Button
+									variant='outlined'
+									color='secondary'
+									onClick={this.clearPalette}
+									className={classes.drawerButton}
+								>
 									Clear Palette
 								</Button>
 							</div>
