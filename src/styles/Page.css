@@ -1,0 +1,12 @@
+.Page{
+	height: 100vh;
+	width: 100%;
+	position: fixed;
+}
+.fade-exit {
+	opacity: 1
+}
+.fade-exit-active {
+	opacity: 0;
+	transition: all 500ms linear;
+}
