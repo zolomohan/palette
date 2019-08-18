@@ -128,7 +128,7 @@ export default withStyles(styles, { withTheme: true })(
 									disabled={colors.length >= paletteMaxColors}
 									className={drawerButton}
 								>
-									Random
+									Random Color
 								</Button>
 								<Button
 									variant='outlined'
