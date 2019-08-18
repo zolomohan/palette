@@ -54,6 +54,7 @@ export default class FormDialog extends Component {
 							</DialogContentText>
 							<TextValidator
 								fullWidth
+								autoFocus
 								value={newPaletteName}
 								placeholder='Enter a Palette Name'
 								name='newPaletteName'
