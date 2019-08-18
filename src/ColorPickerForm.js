@@ -51,6 +51,7 @@ export default withStyles(styles)(
 							validators={[ 'required', 'uniqueColor', 'uniqueColorName' ]}
 							errorMessages={[ 'Color Name is Required', 'Color Already Used', 'Color Name Already Taken' ]}
 							className={classes.colorNameInput}
+							disabled={paletteFull}
 						/>
 						<Button
 							type='submit'
