@@ -38,7 +38,7 @@ export default withStyles(styles)(
 			return (
 				<div>
 					<ChromePicker color={newColor} onChange={this.handleColorChange} className={classes.picker} />
-					<ValidatorForm onSubmit={this.handleAddColor}>
+					<ValidatorForm onSubmit={this.handleAddColor} instantValidate={false}>
 						<TextValidator
 							value={newColorName}
 							label='Color Name'
