@@ -12,7 +12,7 @@ export default withStyles(styles)(
 		};
 
 		setDeleteModal = (boolean) => {
-			this.setState({deleteModal: boolean});
+			this.setState({ deleteModal: boolean });
 		};
 
 		render() {

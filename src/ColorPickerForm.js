@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import ChromePicker from 'react-color';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { isDarkColor } from './helpers/brightnessChecker';
-import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/ColorPickerFormStyles'
 
 export default withStyles(styles)(
