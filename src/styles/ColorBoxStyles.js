@@ -17,8 +17,8 @@ export default {
 		'&.goBack'         : {
 			height             : '50%',
 			backgroundColor    : '#222222',
-			'& $button':{
-				backgroundColor: 'transparent',
+			'& $button'        : {
+				backgroundColor : 'transparent'
 			},
 			[sizes.down('lg')]: {
 				width  : '75%',
@@ -79,14 +79,14 @@ export default {
 		transform      : 'scale(0.1)',
 		opacity        : '0',
 		'& h1'         : {
-			backgroundColor : 'rgba(255, 255, 255, 0.3)',
-			textShadow      : '1px 2px rgba(102, 102, 102, 0.603)',
-			textTransform   : 'uppercase',
-			fontWeight      : '400',
-			width           : '100%',
-			textAlign       : 'center',
-			[sizes.down('xs')]:{
-				fontSize: '6rem'
+			backgroundColor    : 'rgba(255, 255, 255, 0.3)',
+			textShadow         : '1px 2px rgba(102, 102, 102, 0.603)',
+			textTransform      : 'uppercase',
+			fontWeight         : '400',
+			width              : '100%',
+			textAlign          : 'center',
+			[sizes.down('xs')]: {
+				fontSize : '6rem'
 			}
 		},
 		'& p'          : {

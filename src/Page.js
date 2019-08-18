@@ -3,8 +3,8 @@ import './styles/Page.css'
 
 export default function Page(props) {
 	return (
-		<div className='Page'>
+		<section className='Page'>
 			{props.children}
-		</div>
+		</section>
 	)
 }

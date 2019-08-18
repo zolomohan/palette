@@ -15,22 +15,16 @@ export default class FormDialog extends Component {
 		stage: 'form'
 	};
 
-	handleTextFieldChange = (evt) => {
-		this.setState({ [evt.target.name]: evt.target.value });
-	};
-
-	openEmojiDialog = () => {
-		this.setState({ stage: 'emoji' });
-	};
-
+	handleTextFieldChange = (evt) => this.setState({ [evt.target.name]: evt.target.value });
+	
+	openEmojiDialog = () => this.setState({ stage: 'emoji' });
+	
 	selectEmoji = (emoji) => {
 		this.setState({stage: ''})
 		this.props.savePalette(this.state.newPaletteName, emoji.native)
 	}
 
-	hideDialog = () => {
-		this.setState({stage: 'form', newPaletteName: ''}, this.props.toggle)
-	}
+	hideDialog = () => this.setState({stage: 'form', newPaletteName: ''}, this.props.toggle)
 
 	componentDidMount() {
 		ValidatorForm.addValidationRule('uniquePaletteName', (value) =>

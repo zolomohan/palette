@@ -18,13 +18,9 @@ export default withStyles(styles)(
 			discardDialogOpen : false
 		};
 
-		saveDialogToggle = () => {
-			this.setState({ saveDialogOpen: !this.state.saveDialogOpen });
-		};
+		saveDialogToggle = () => this.setState({ saveDialogOpen: !this.state.saveDialogOpen });
 
-		discardDialogToggle = () => {
-			this.setState({ discardDialogOpen: !this.state.discardDialogOpen });
-		};
+		discardDialogToggle = () => this.setState({ discardDialogOpen: !this.state.discardDialogOpen });
 
 		render() {
 			const { classes, open, openDrawer, savePalette, palettes } = this.props;

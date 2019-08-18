@@ -11,26 +11,18 @@ import styles from './styles/NavbarStyles';
 
 export default withStyles(styles)(
 	class Navbar extends Component {
-		constructor(props) {
-			super(props);
-
-			this.state = {
-				snackbarOpen : false
-			};
-		}
-
-		handleSliderChange = (event, level) => {
-			this.props.changeLevel(level);
+		state = {
+			snackbarOpen : false
 		};
+
+		handleSliderChange = (event, level) => this.props.changeLevel(level);
 
 		handleFormatChange = (event) => {
 			this.props.changeColorFormat(event.target.value);
 			this.setState({ snackbarOpen: true });
 		};
 
-		closeSnackbar = () => {
-			this.setState({ snackbarOpen: false });
-		};
+		closeSnackbar = () => this.setState({ snackbarOpen: false });
 
 		render() {
 			const { classes, level, format } = this.props;

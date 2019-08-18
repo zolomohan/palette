@@ -8,18 +8,15 @@ import styles from './styles/ColorPickerFormStyles'
 
 export default withStyles(styles)(
 	class ColorPickerForm extends Component {
+		
 		state = {
 			newColor     : '#000',
 			newColorName : ''
 		};
 
-		handleColorChange = (newColor) => {
-			this.setState({ newColor: newColor.hex });
-		};
+		handleColorChange = (newColor) => this.setState({ newColor: newColor.hex });
 
-		handleTextFieldChange = (evt) => {
-			this.setState({ [evt.target.name]: evt.target.value });
-		};
+		handleTextFieldChange = (evt) => this.setState({ [evt.target.name]: evt.target.value });
 
 		handleAddColor = () => {
 			this.props.addColor({ name: this.state.newColorName, color: this.state.newColor });
@@ -60,7 +57,6 @@ export default withStyles(styles)(
 							style={{
 								backgroundColor : !paletteFull ? newColor : 'grey',
 								color           : isDarkColor(newColor),
-								transition      : '0.1s color linear'
 							}}
 							className={classes.addColorBtn}
 						>

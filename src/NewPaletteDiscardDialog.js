@@ -10,30 +10,28 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 export default function AlertDialog(props) {
 	const { open, toggle } = props;
 	return (
-		<div>
-			<Dialog
-				open={open}
-				onClose={toggle}
-				aria-labelledby='alert-dialog-title'
-				aria-describedby='alert-dialog-description'
-			>
-				<DialogTitle id='alert-dialog-title'>Are You Sure?</DialogTitle>
-				<DialogContent>
-					<DialogContentText id='alert-dialog-description'>
-						This action is irreversible. All Your Colors will be lost. Are you sure you want to Discard your palette?
-					</DialogContentText>
-				</DialogContent>
-				<DialogActions>
-					<Button onClick={toggle} color='primary'>
-						Cancel
+		<Dialog
+			open={open}
+			onClose={toggle}
+			aria-labelledby='alert-dialog-title'
+			aria-describedby='alert-dialog-description'
+		>
+			<DialogTitle>Are You Sure?</DialogTitle>
+			<DialogContent>
+				<DialogContentText>
+					This action is irreversible. All Your Colors will be lost. Are you sure you want to Discard your palette?
+				</DialogContentText>
+			</DialogContent>
+			<DialogActions>
+				<Button onClick={toggle} color='primary'>
+					Cancel
+				</Button>
+				<Link to='/' style={{ textDecoration: 'none' }} onClick={toggle}>
+					<Button color='secondary' autoFocus>
+						Yes, I'm Sure
 					</Button>
-					<Link to='/' style={{ textDecoration: 'none' }} onClick={toggle}>
-						<Button color='secondary' autoFocus>
-							Yes, I'm Sure
-						</Button>
-					</Link>
-				</DialogActions>
-			</Dialog>
-		</div>
+				</Link>
+			</DialogActions>
+		</Dialog>
 	);
 }

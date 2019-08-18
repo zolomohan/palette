@@ -15,17 +15,17 @@ export default {
 			cursor : 'move'
 		},
 		[sizes.down('lg')]: {
-			height: '20%',
-			width: '25%'
+			height : '20%',
+			width  : '25%'
 		},
 		[sizes.down('md')]: {
-			height: '10%',
-			width: '50%'
+			height : '10%',
+			width  : '50%'
 		},
 		[sizes.down('sm')]: {
-			height: '5%',
-			width: '100%'
-		},
+			height : '5%',
+			width  : '100%'
+		}
 	},
 	boxContent : {
 		position       : 'absolute',

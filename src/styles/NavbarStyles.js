@@ -29,7 +29,7 @@ export default {
 		width              : '450px',
 		display            : 'flex',
 		alignItems         : 'center',
-		transition: '0.15s width linear',
+		transition         : '0.15s width linear',
 		[sizes.down('sm')]: {
 			width : '350px'
 		},

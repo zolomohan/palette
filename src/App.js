@@ -10,10 +10,9 @@ import seedColors from './helpers/seedColors';
 import { generatePalette } from './helpers/colorHelper';
 
 export default class App extends Component {
-
 	state = {
 		palettes : JSON.parse(window.localStorage.getItem('palettes')) || seedColors
-	}
+	};
 
 	findPalette = (id) => this.state.palettes.find((palette) => palette.id === id);
 
@@ -35,7 +34,6 @@ export default class App extends Component {
 					<TransitionGroup>
 						<CSSTransition key={location.key} classNames='page' timeout={100}>
 							<Switch location={location}>
-								
 								<Route
 									exact
 									path='/palette/new'
@@ -78,7 +76,6 @@ export default class App extends Component {
 										</Page>
 									)}
 								/>
-
 							</Switch>
 						</CSSTransition>
 					</TransitionGroup>

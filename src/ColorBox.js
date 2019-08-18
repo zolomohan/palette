@@ -6,18 +6,14 @@ import styles from './styles/ColorBoxStyles';
 
 export default withStyles(styles)(
 	class ColorBox extends Component {
-		constructor(props) {
-			super(props);
-			this.state = {
-				copying : false
-			};
-		}
+		state = {
+			copying : false
+		};
 
-		handleCopy = () => {
+		handleCopy = () =>
 			this.setState({ copying: true }, () => {
 				setTimeout(() => this.setState({ copying: false }), 1500);
 			});
-		};
 
 		render() {
 			const { classes, singleColorPalette, paletteId, id, name } = this.props;

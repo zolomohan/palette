@@ -26,17 +26,17 @@ export default (theme) => ({
 		marginLeft  : 12,
 		marginRight : 12
 	},
-	title:{
-		fontFamily: 'Blinker',
-		textTransform: 'uppercase',
-		letterSpacing: '1px',
+	title       : {
+		fontFamily    : 'Blinker',
+		textTransform : 'uppercase',
+		letterSpacing : '1px'
 	},
 	hide        : {
 		display : 'none'
 	},
 	navBtns     : {
-		'& a'       : {
+		'& a' : {
 			textDecoration : 'none'
 		}
-	},
+	}
 });

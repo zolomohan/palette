@@ -6,6 +6,7 @@ export default {
 		padding                : '0.5em',
 		backgroundColor        : 'white',
 		borderRadius           : '5px',
+		color: '#525252',
 		'&:hover $deleteIcon	' : {
 			opacity : '1'
 		}
@@ -27,7 +28,7 @@ export default {
 		color          : '#525252',
 		letterSpacing  : '0.5px',
 		margin         : '0',
-		paddingTop     : '0.5rem',
+		paddingTop     : '0.5rem'
 	},
 	emoji      : {
 		marginLeft : '0.5rem',
@@ -53,9 +54,8 @@ export default {
 		zIndex                 : '1',
 		opacity                : '0',
 		transition             : '0.2s all linear',
-		'&:hover': {
-			backgroundColor: '#ed3d30'
+		'&:hover'              : {
+			backgroundColor : '#ed3d30'
 		}
-
 	}
 };

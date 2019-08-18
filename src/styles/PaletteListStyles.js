@@ -2,13 +2,13 @@ import background from './bg.svg';
 import sizes from '../helpers/sizes';
 
 export default {
-	'@global':{
-		'.fade-exit': {
-			opacity: 1
+	'@global' : {
+		'.fade-exit'        : {
+			opacity : 1
 		},
-		'.fade-exit-active': {
-			opacity: 0,
-			transition: 'all 500ms linear'
+		'.fade-exit-active' : {
+			opacity    : 0,
+			transition : 'all 500ms linear'
 		}
 	},
 	root      : {
@@ -64,7 +64,7 @@ export default {
 		gridTemplateColumns : 'repeat(3, 30%)',
 		gridGap             : '3rem',
 		width               : '100%',
-		paddingBottom: '5%',
+		paddingBottom       : '5%',
 		[sizes.down('md')]: {
 			gridTemplateColumns : 'repeat(2, 50%)'
 		},
@@ -76,7 +76,7 @@ export default {
 			gridTemplateColumns : 'repeat(1, 100%)',
 			gridGap             : '1.5rem',
 			padding             : '10%',
-			paddingTop: '2%'
+			paddingTop          : '2%'
 		}
 	}
 };

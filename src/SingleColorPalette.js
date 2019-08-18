@@ -7,9 +7,7 @@ import Footer from './Footer';
 import stylesPalette from './styles/PaletteStyles';
 import stylesColorBox from './styles/ColorBoxStyles';
 
-const styles = { ...stylesColorBox, ...stylesPalette };
-
-export default withStyles(styles)(
+export default withStyles({...stylesColorBox, ...stylesPalette})(
 	class SingleColorPalette extends Component {
 		constructor(props) {
 			super(props);

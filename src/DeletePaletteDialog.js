@@ -7,7 +7,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default function AlertDialog(props) {
+
 	const { open, deletePalette, id } = props;
+	
 	function closeDialog() {
 		props.toggle(false);
 	}
@@ -16,28 +18,26 @@ export default function AlertDialog(props) {
 		deletePalette(id);
 	}
 	return (
-		<div>
-			<Dialog
-				open={open}
-				onClose={closeDialog}
-				aria-labelledby='alert-dialog-title'
-				aria-describedby='Delete Palette Confirmation'
-			>
-				<DialogTitle id='alert-dialog-title'>Are You Sure?</DialogTitle>
-				<DialogContent>
-					<DialogContentText id='alert-dialog-description'>
-						This action is irreversible. All Your Colors will be lost. Are you sure you want to Delete your palette?
-					</DialogContentText>
-				</DialogContent>
-				<DialogActions>
-					<Button onClick={closeDialog} color='primary'>
-						Cancel
-					</Button>
-					<Button color='secondary' onClick={handleDelete}>
-						Yes, I'm Sure
-					</Button>
-				</DialogActions>
-			</Dialog>
-		</div>
+		<Dialog
+			open={open}
+			onClose={closeDialog}
+			aria-labelledby='alert-dialog-title'
+			aria-describedby='Delete Palette Confirmation'
+		>
+			<DialogTitle>Are You Sure?</DialogTitle>
+			<DialogContent>
+				<DialogContentText>
+					This action is irreversible. All Your Colors will be lost. Are you sure you want to Delete your palette?
+				</DialogContentText>
+			</DialogContent>
+			<DialogActions>
+				<Button onClick={closeDialog} color='primary'>
+					Cancel
+				</Button>
+				<Button color='secondary' onClick={handleDelete}>
+					Yes, I'm Sure
+				</Button>
+			</DialogActions>
+		</Dialog>
 	);
 }

@@ -11,22 +11,19 @@ export default withStyles(styles)(
 			deleteModal : false
 		};
 
-		setDeleteModal = (boolean) => {
-			this.setState({ deleteModal: boolean });
-		};
+		setDeleteModal = (boolean) => this.setState({ deleteModal: boolean });
 
 		render() {
 			const { classes, paletteName, emoji, id, colors, deletePalette } = this.props;
 			const { deleteModal } = this.state;
-			console.log('Rendering ' + paletteName);
 			return (
 				<div className={classes.root}>
 					<DeleteIcon className={classes.deleteIcon} onClick={() => this.setDeleteModal(true)} />
-					<Link to={`palette/${id}`} style={{ textDecoration: 'none', color: '#525252' }}>
+					<Link to={`palette/${id}`} style={{ textDecoration: 'none' }}>
 						<div className={classes.colors}>
-							{colors.map((color) => (
+							{colors.map((color) => 
 								<div className={classes.miniBox} style={{ backgroundColor: color.color }} key={color.name} />
-							))}
+							)}
 						</div>
 						<h5 className={classes.title}>
 							{paletteName} <span className={classes.emoji}>{emoji}</span>

@@ -24,13 +24,9 @@ export default withStyles(styles, { withTheme: true })(
 			colors : this.props.palettes[0].colors
 		};
 
-		handleDrawerOpen = () => {
-			this.setState({ open: true });
-		};
+		handleDrawerOpen = () => this.setState({ open: true });
 
-		handleDrawerClose = () => {
-			this.setState({ open: false });
-		};
+		handleDrawerClose = () => this.setState({ open: false });
 
 		handleSavePalette = (newPaletteName, emoji) => {
 			const newPalette = {
@@ -43,15 +39,12 @@ export default withStyles(styles, { withTheme: true })(
 			this.props.history.push('/');
 		};
 
-		addColor = (newColor) => {
+		addColor = (newColor) =>
 			this.setState({
 				colors : [ ...this.state.colors, newColor ]
 			});
-		};
 
-		deleteColor = (deleteColor) => {
-			this.setState({ colors: this.state.colors.filter((color) => color.color !== deleteColor.color) });
-		};
+		deleteColor = (deleteColor) => this.setState({ colors: this.state.colors.filter((color) => color.color !== deleteColor.color) });
 
 		randomColor = () => {
 			const allColors = this.props.palettes.map((palette) => palette.colors).flat();
@@ -59,13 +52,9 @@ export default withStyles(styles, { withTheme: true })(
 			this.setState({ colors: [ ...this.state.colors, allColors[randomIndex] ] });
 		};
 
-		clearPalette = () => {
-			this.setState({ colors: [] });
-		};
+		clearPalette = () => this.setState({ colors: [] });
 
-		onSortEnd = ({ oldIndex, newIndex }) => {
-			this.setState({ colors: arrayMove(this.state.colors, oldIndex, newIndex) });
-		};
+		onSortEnd = ({ oldIndex, newIndex }) => this.setState({ colors: arrayMove(this.state.colors, oldIndex, newIndex) });
 
 		render() {
 			const { classes, paletteMaxColors, palettes } = this.props;
