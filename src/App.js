@@ -10,28 +10,23 @@ import seedColors from './helpers/seedColors';
 import { generatePalette } from './helpers/colorHelper';
 
 export default class App extends Component {
-	constructor(props) {
-		super(props);
-		const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
-		this.state = {
-			palettes : savedPalettes || seedColors
-		};
+
+	state = {
+		palettes : JSON.parse(window.localStorage.getItem('palettes')) || seedColors
 	}
 
 	findPalette = (id) => this.state.palettes.find((palette) => palette.id === id);
 
-	savePalette = (newPalette) => {
-		this.setState({ palettes: [ ...this.state.palettes, newPalette ] }, () =>
-			window.localStorage.setItem('palettes', JSON.stringify(this.state.palettes))
-		);
-	};
+	savePalette = (newPalette) =>
+		this.setState({ palettes: [ ...this.state.palettes, newPalette ] }, this.syncLocalStorage);
 
-	deletePalette = (id) => {
+	deletePalette = (id) =>
 		this.setState(
 			(currentState) => ({ palettes: currentState.palettes.filter((palette) => palette.id !== id) }),
-			() => window.localStorage.setItem('palettes', JSON.stringify(this.state.palettes))
+			this.syncLocalStorage
 		);
-	};
+
+	syncLocalStorage = () => window.localStorage.setItem('palettes', JSON.stringify(this.state.palettes));
 
 	render() {
 		return (
@@ -40,6 +35,7 @@ export default class App extends Component {
 					<TransitionGroup>
 						<CSSTransition key={location.key} classNames='page' timeout={100}>
 							<Switch location={location}>
+								
 								<Route
 									exact
 									path='/palette/new'
@@ -59,6 +55,7 @@ export default class App extends Component {
 										</Page>
 									)}
 								/>
+
 								<Route
 									exact
 									path='/palette/:id'
@@ -68,6 +65,7 @@ export default class App extends Component {
 										</Page>
 									)}
 								/>
+
 								<Route
 									exact
 									path='/palette/:paletteId/:colorId'
@@ -80,6 +78,7 @@ export default class App extends Component {
 										</Page>
 									)}
 								/>
+
 							</Switch>
 						</CSSTransition>
 					</TransitionGroup>
