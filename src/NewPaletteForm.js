@@ -12,6 +12,7 @@ import DraggableColorList from './DraggableColorList';
 import arrayMove from 'array-move';
 import NewPaletteNavbar from './NewPaletteNavbar';
 import ColorPickerForm from './ColorPickerForm';
+import seedColors from './helpers/seedColors'
 
 export default withStyles(styles, { withTheme: true })(
 	class NewPaletteForm extends Component {
@@ -21,7 +22,7 @@ export default withStyles(styles, { withTheme: true })(
 
 		state = {
 			open   : true,
-			colors : this.props.palettes[0].colors
+			colors : seedColors[0].colors
 		};
 
 		handleDrawerOpen = () => this.setState({ open: true });
