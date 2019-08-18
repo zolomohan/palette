@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Page from './Page';
 import Palette from './Palette';
@@ -8,6 +8,7 @@ import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
 import seedColors from './helpers/seedColors';
 import { generatePalette } from './helpers/colorHelper';
+import Route404 from './Route404';
 
 export default class App extends Component {
 	state = {
@@ -76,6 +77,15 @@ export default class App extends Component {
 										</Page>
 									)}
 								/>
+
+								<Route 
+									render={() => (
+										<Page>
+											<Route404 />
+										</Page>
+									)}
+								/>
+
 							</Switch>
 						</CSSTransition>
 					</TransitionGroup>
