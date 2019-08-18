@@ -6,7 +6,7 @@ export default SortableContainer(function DraggableColorList({ colors, deleteCol
 	return (
 		<div style={{ height: '100%' }}>
 			{colors.map((color, index) => (
-				<DraggableColorBox color={color} deleteColor={deleteColor} key={index} index={index} />
+				<DraggableColorBox color={color} deleteColor={deleteColor} key={color.name} index={index} />
 			))}
 		</div>
 	);

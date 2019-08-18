@@ -10,7 +10,6 @@ export default {
 		display            : 'inline-block',
 		marginBottom       : '-6px',
 		cursor             : 'pointer',
-		transition         : 'all 0.1s linear',
 		backgroundColor    : (props) => props.color.color,
 		'&:hover'          : {
 			cursor : 'move'
