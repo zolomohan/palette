@@ -39,7 +39,7 @@ export default withStyles({...stylesColorBox, ...stylesPalette})(
 						{this._shades.map((color) => (
 							<ColorBox {...color} format={format} key={color.name} singleColorPalette />
 						))}
-						<Link to={`/palette/${id}`}>
+						<Link to={`${process.env.PUBLIC_URL}/palette/${id}`}>
 							<div className={`${classes.ColorBox} goBack`}>
 								<button className={button}>Go Back</button>
 							</div>
