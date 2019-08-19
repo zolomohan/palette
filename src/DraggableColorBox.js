@@ -13,7 +13,6 @@ export default SortableElement(
 
 			render() {
 				const { root, boxContent, deleteIcon, colorName } = this.props.classes;
-				console.log('Rendering');
 				return (
 					<div className={root}>
 						<div className={boxContent}>
