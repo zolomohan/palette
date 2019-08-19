@@ -15,7 +15,7 @@ export default withStyles(styles)(
 					<div className={container}>
 						<nav className={nav}>
 							<h1>Palette</h1>
-							<Link to='/palette/new'>Create Palette</Link>
+							<Link to={`${process.env.PUBLIC_URL}/palette/new`}>Create Palette</Link>
 						</nav>
 						<TransitionGroup className={classes.palettes}>
 							{palettes.map((palette) => (

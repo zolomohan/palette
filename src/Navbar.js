@@ -30,7 +30,7 @@ export default withStyles(styles)(
 			const { Navbar, NavbarBrand, NavbarSlider, NavbarSliderText, NavbarSelect } = classes;
 			return (
 				<nav className={Navbar}>
-					<Link to='/' style={{ textDecoration: 'none' }}>
+					<Link to={`${process.env.PUBLIC_URL}/`} style={{ textDecoration: 'none' }}>
 						<span className={NavbarBrand}>palette</span>
 					</Link>
 					{level && (
