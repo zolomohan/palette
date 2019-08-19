@@ -26,7 +26,7 @@ export default function AlertDialog(props) {
 				<Button onClick={toggle} color='primary'>
 					Cancel
 				</Button>
-				<Link to='/' style={{ textDecoration: 'none' }} onClick={toggle}>
+				<Link to={`${process.env.PUBLIC_URL}/`} style={{ textDecoration: 'none' }} onClick={toggle}>
 					<Button color='secondary' autoFocus>
 						Yes, I'm Sure
 					</Button>
