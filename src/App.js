@@ -34,22 +34,24 @@ export default class App extends Component {
 					<TransitionGroup>
 						<CSSTransition key={location.key} classNames='page' timeout={100}>
 							<Switch location={location}>
+								<Route exact path='/' render={() => <Redirect to='/palette' />} />
+
 								<Route
 									exact
-									path='/palette/new'
-									render={(routeProps) => (
+									path='/palette'
+									render={() => (
 										<Page>
-											<NewPaletteForm savePalette={this.savePalette} {...routeProps} palettes={this.state.palettes} />
+											<PaletteList palettes={this.state.palettes} deletePalette={this.deletePalette} />
 										</Page>
 									)}
 								/>
 
 								<Route
 									exact
-									path='/'
-									render={() => (
+									path='/palette/new'
+									render={(routeProps) => (
 										<Page>
-											<PaletteList palettes={this.state.palettes} deletePalette={this.deletePalette} />
+											<NewPaletteForm savePalette={this.savePalette} {...routeProps} palettes={this.state.palettes} />
 										</Page>
 									)}
 								/>
@@ -77,12 +79,7 @@ export default class App extends Component {
 									)}
 								/>
 
-								<Route 
-									render={() => (
-										<Page variant='404' />
-									)}
-								/>
-
+								<Route render={() => <Page variant='404' />} />
 							</Switch>
 						</CSSTransition>
 					</TransitionGroup>
