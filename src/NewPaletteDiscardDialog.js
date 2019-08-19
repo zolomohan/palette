@@ -15,6 +15,7 @@ export default function AlertDialog(props) {
 			onClose={toggle}
 			aria-labelledby='alert-dialog-title'
 			aria-describedby='alert-dialog-description'
+			fontFamily='Blinker'
 		>
 			<DialogTitle>Are You Sure?</DialogTitle>
 			<DialogContent>

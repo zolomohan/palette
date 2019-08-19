@@ -2,7 +2,8 @@ import { DRAWER_WIDTH } from '../helpers/constants';
 
 export default (theme) => ({
 	root            : {
-		display : 'flex'
+		display : 'flex',
+		fontFamily: 'Blinker'
 	},
 	drawer          : {
 		width      : DRAWER_WIDTH,

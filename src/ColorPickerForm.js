@@ -40,7 +40,7 @@ export default withStyles(styles)(
 
 			return (
 				<div>
-					<ChromePicker color={newColor} onChange={handleColorChange} className={picker} />
+					<ChromePicker color={newColor} onChange={handleColorChange} className={picker} disabled={paletteFull} />
 					<ValidatorForm onSubmit={handleAddColor} instantValidate={false}>
 						<TextValidator
 							value={newColorName}
