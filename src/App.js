@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Page from './Page';
 import Palette from './Palette';
@@ -34,11 +34,10 @@ export default class App extends Component {
 					<TransitionGroup>
 						<CSSTransition key={location.key} classNames='page' timeout={100}>
 							<Switch location={location}>
-								<Route exact path='/' render={() => <Redirect to='/palette' />} />
 
 								<Route
 									exact
-									path='/palette'
+									path={`${process.env.PUBLIC_URL}/`}
 									render={() => (
 										<Page>
 											<PaletteList palettes={this.state.palettes} deletePalette={this.deletePalette} />
@@ -48,7 +47,7 @@ export default class App extends Component {
 
 								<Route
 									exact
-									path='/palette/new'
+									path={`${process.env.PUBLIC_URL}/palette/new`}
 									render={(routeProps) => (
 										<Page>
 											<NewPaletteForm savePalette={this.savePalette} {...routeProps} palettes={this.state.palettes} />
@@ -58,7 +57,7 @@ export default class App extends Component {
 
 								<Route
 									exact
-									path='/palette/:id'
+									path={`${process.env.PUBLIC_URL}/palette/:id`}
 									render={(routeProps) => (
 										<Page>
 											<Palette {...generatePalette(this.findPalette(routeProps.match.params.id))} />
@@ -68,7 +67,7 @@ export default class App extends Component {
 
 								<Route
 									exact
-									path='/palette/:paletteId/:colorId'
+									path={`${process.env.PUBLIC_URL}/palette/:paletteId/:colorId`}
 									render={(routeProps) => (
 										<Page>
 											<SingleColorPalette
