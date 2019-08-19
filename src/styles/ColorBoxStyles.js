@@ -79,7 +79,7 @@ export default {
 		transform      : 'scale(0.1)',
 		opacity        : '0',
 		'& h1'         : {
-			backgroundColor    : 'rgba(255, 255, 255, 0.3)',
+			backgroundColor : (props) => isDarkColor(props[props.format]) === '#000' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)' ,
 			textShadow         : '1px 2px rgba(102, 102, 102, 0.603)',
 			textTransform      : 'uppercase',
 			fontWeight         : '400',
@@ -103,6 +103,7 @@ export default {
 	},
 
 	button      : {
+		fontFamily      : 'Blinker',
 		cursor          : 'pointer',
 		width           : '100px',
 		height          : '30px',
@@ -114,13 +115,11 @@ export default {
 		marginTop       : '-15px',
 		textAlign       : 'center',
 		textTransform   : 'uppercase',
-		background      : 'none',
 		border          : 'none',
-		backgroundColor : 'rgba(255, 255, 255, 0.3)',
 		outline         : 'none',
-		fontSize        : '1rem',
-		lineHeight      : '30px',
+		fontSize        : '1.1rem',
 		transition      : '0.1s opacity linear',
+		backgroundColor : (props) => isDarkColor(props[props.format]) === '#000' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)' ,
 		color           : (props) => isDarkColor(props[props.format]),
 		'&.copyButton'  : {
 			opacity : 0
