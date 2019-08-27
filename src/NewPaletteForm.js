@@ -37,7 +37,7 @@ export default withStyles(styles, { withTheme: true })(
 				colors      : this.state.colors
 			};
 			this.props.savePalette(newPalette);
-			this.props.history.push('/');
+			this.props.history.push(`${process.env.PUBLIC_URL}/`);
 		};
 
 		addColor = (newColor) =>
