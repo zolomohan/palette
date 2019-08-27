@@ -10,8 +10,8 @@ export default function Page(props) {
 				<h1>404</h1>
 				<h2>There's Nothing Here</h2>
 				<div className='Links'>
-					<Link to='/palette/new'>Create Palette</Link>
-					<Link to='/'>All Palettes</Link>
+					<Link to={`${process.env.PUBLIC_URL}/palette/new`}>Create Palette</Link>
+					<Link to={`${process.env.PUBLIC_URL}/`}>All Palettes</Link>
 				</div>
 			</div>
 		);
