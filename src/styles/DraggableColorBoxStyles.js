@@ -1,4 +1,4 @@
-import { isLightColor } from '../helpers/brightnessChecker';
+import chromaContrast from '../helpers/chromaContrast';
 import sizes from '../helpers/sizes';
 
 export default {
@@ -36,7 +36,7 @@ export default {
 		textTransform  : 'uppercase',
 		fontSize       : '12px',
 		padding        : '10px',
-		color          : (props) => isLightColor(props.color.color),
+		color          : (props) => chromaContrast(props.color.color),
 		display        : 'flex',
 		justifyContent : 'space-between',
 		alignItems     : 'flex-end'

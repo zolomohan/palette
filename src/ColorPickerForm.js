@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import ChromePicker from 'react-color';
 import Button from '@material-ui/core/Button';
-import { isDarkColor } from './helpers/brightnessChecker';
+import chromaContrast from './helpers/chromaContrast';
 import styles from './styles/ColorPickerFormStyles'
 
 export default withStyles(styles)(
@@ -59,7 +59,7 @@ export default withStyles(styles)(
 							disabled={paletteFull}
 							style={{
 								backgroundColor : !paletteFull ? newColor : 'grey',
-								color           : isDarkColor(newColor),
+								color           : chromaContrast(newColor),
 							}}
 							className={addColorBtn}
 						>

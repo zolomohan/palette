@@ -1,4 +1,4 @@
-import { isLightColor, isDarkColor } from '../helpers/brightnessChecker';
+import chromaContrast from '../helpers/chromaContrast';
 import sizes from '../helpers/sizes';
 
 export default {
@@ -79,7 +79,8 @@ export default {
 		transform      : 'scale(0.1)',
 		opacity        : '0',
 		'& h1'         : {
-			backgroundColor : (props) => isDarkColor(props[props.format]) === '#000' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)' ,
+			backgroundColor    : (props) =>
+				chromaContrast(props[props.format]) === '#000' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)',
 			textShadow         : '1px 2px rgba(102, 102, 102, 0.603)',
 			textTransform      : 'uppercase',
 			fontWeight         : '400',
@@ -119,8 +120,9 @@ export default {
 		outline         : 'none',
 		fontSize        : '1.1rem',
 		transition      : '0.1s opacity linear',
-		backgroundColor : (props) => isDarkColor(props[props.format]) === '#000' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)' ,
-		color           : (props) => isDarkColor(props[props.format]),
+		backgroundColor : (props) =>
+			chromaContrast(props[props.format]) === '#000' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)',
+		color           : (props) => chromaContrast(props[props.format]),
 		'&.copyButton'  : {
 			opacity : 0
 		}
@@ -134,7 +136,7 @@ export default {
 		textTransform : 'uppercase',
 		fontSize      : '12px',
 		padding       : '10px',
-		color         : (props) => isLightColor(props[props.format])
+		color         : (props) => chromaContrast(props[props.format])
 	},
 
 	seeMore     : {
@@ -148,10 +150,10 @@ export default {
 		padding         : '0 8px',
 		height          : '30px',
 		border          : 'none',
-		color           : (props) => isDarkColor(props[props.format])
+		color           : (props) => chromaContrast(props[props.format])
 	},
 
 	copyText    : {
-		color : (props) => isDarkColor(props[props.format])
+		color : (props) => chromaContrast(props[props.format])
 	}
 };
