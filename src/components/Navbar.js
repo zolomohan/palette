@@ -38,7 +38,7 @@ export default withStyles(styles)(
 
 		discardDialogToggle = () => this.setState({ discardDialogOpen: !this.state.discardDialogOpen });
 
-		newPaletteNavbar() {
+		createPaletteNavbar() {
 			const { classes, open, openDrawer, savePalette, palettes } = this.props;
 			const { saveDialogOpen, discardDialogOpen } = this.state;
 			const { appBar, appBarShift, menuButton, hide, title, navBtns, navBtn } = classes;
@@ -130,7 +130,7 @@ export default withStyles(styles)(
 		}
 
 		render() {
-			return this.props.variant === 'new' ? this.newPaletteNavbar() : this.paletteNavbar();
+			return this.props.variant === 'new' ? this.createPaletteNavbar() : this.paletteNavbar();
 		}
 	}
 );
