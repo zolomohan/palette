@@ -1,4 +1,4 @@
-import sizes from '../helpers/sizes';
+import media from '../helpers/mediaQuery';
 
 export default {
 	Navbar           : {
@@ -20,7 +20,7 @@ export default {
 		letterSpacing      : '1px',
 		backgroundColor    : '#e7e7e7',
 		color              : '#525252',
-		[sizes.down('xs')]: {
+		[media.down('xs')]: {
 			display : (props) => !props.singleColorPalette && 'none'
 		}
 	},
@@ -30,10 +30,10 @@ export default {
 		display            : 'flex',
 		alignItems         : 'center',
 		transition         : '0.15s width linear',
-		[sizes.down('sm')]: {
+		[media.down('sm')]: {
 			width : '350px'
 		},
-		[sizes.down('xs')]: {
+		[media.down('xs')]: {
 			width : '300px'
 		}
 	},

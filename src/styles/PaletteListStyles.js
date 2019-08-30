@@ -1,5 +1,5 @@
 import background from './bg.svg';
-import sizes from '../helpers/sizes';
+import media from '../helpers/mediaQuery';
 
 export default {
 	'@global' : {
@@ -29,13 +29,13 @@ export default {
 		flexWrap           : 'wrap',
 		color              : 'white',
 		transition         : '0.2s width linear',
-		[sizes.down('lg')]: {
+		[media.down('lg')]: {
 			width : '80%'
 		},
-		[sizes.down('md')]: {
+		[media.down('md')]: {
 			width : '70%'
 		},
-		[sizes.down('sm')]: {
+		[media.down('sm')]: {
 			width : '80%'
 		}
 	},
@@ -66,14 +66,14 @@ export default {
 		gridGap             : '3rem',
 		width               : '100%',
 		paddingBottom       : '5%',
-		[sizes.down('md')]: {
+		[media.down('md')]: {
 			gridTemplateColumns : 'repeat(2, 50%)'
 		},
-		[sizes.down('sm')]: {
+		[media.down('sm')]: {
 			gridTemplateColumns : 'repeat(2, 50%)',
 			gridGap             : '2rem'
 		},
-		[sizes.down('xs')]: {
+		[media.down('xs')]: {
 			gridTemplateColumns : 'repeat(1, 100%)',
 			gridGap             : '1.5rem',
 			padding             : '10%',

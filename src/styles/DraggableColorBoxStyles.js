@@ -1,5 +1,5 @@
 import chromaContrast from '../helpers/chromaContrast';
-import sizes from '../helpers/sizes';
+import media from '../helpers/mediaQuery';
 
 export default {
 	root       : {
@@ -14,15 +14,15 @@ export default {
 		'&:hover'          : {
 			cursor : 'move'
 		},
-		[sizes.down('lg')]: {
+		[media.down('lg')]: {
 			height : '20%',
 			width  : '25%'
 		},
-		[sizes.down('md')]: {
+		[media.down('md')]: {
 			height : '10%',
 			width  : '50%'
 		},
-		[sizes.down('sm')]: {
+		[media.down('sm')]: {
 			height : '5%',
 			width  : '100%'
 		}

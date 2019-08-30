@@ -1,5 +1,5 @@
 import chromaContrast from '../helpers/chromaContrast';
-import sizes from '../helpers/sizes';
+import media from '../helpers/mediaQuery';
 
 export default {
 	ColorBox    : {
@@ -20,28 +20,28 @@ export default {
 			'& $button'        : {
 				backgroundColor : 'transparent'
 			},
-			[sizes.down('lg')]: {
+			[media.down('lg')]: {
 				width  : '75%',
 				height : '33.333%'
 			},
-			[sizes.down('sm')]: {
+			[media.down('sm')]: {
 				width  : '50%',
 				height : '20%'
 			},
-			[sizes.down('xs')]: {
+			[media.down('xs')]: {
 				width  : '100%',
 				height : '10%'
 			}
 		},
-		[sizes.down('lg')]: {
+		[media.down('lg')]: {
 			width  : '25%',
 			height : (props) => (props.singleColorPalette ? '33.3333%' : '20%')
 		},
-		[sizes.down('sm')]: {
+		[media.down('sm')]: {
 			width  : '50%',
 			height : (props) => (props.singleColorPalette ? '20%' : '10%')
 		},
-		[sizes.down('xs')]: {
+		[media.down('xs')]: {
 			width  : '100%',
 			height : (props) => (props.singleColorPalette ? '10%' : '5%')
 		}
@@ -86,7 +86,7 @@ export default {
 			fontWeight         : '400',
 			width              : '100%',
 			textAlign          : 'center',
-			[sizes.down('xs')]: {
+			[media.down('xs')]: {
 				fontSize : '6rem'
 			}
 		},
