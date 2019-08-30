@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import styles from '../styles/NewPaletteFormStyles';
 import DraggableColorList from './DraggableColorList';
 import arrayMove from 'array-move';
-import NewPaletteNavbar from './NewPaletteNavbar';
+import Navbar from './Navbar';
 import ColorPickerForm from './ColorPickerForm';
 import seedColors from '../helpers/seedColors';
 
@@ -91,11 +91,12 @@ export default withStyles(styles, { withTheme: true })(
 			return (
 				<div className={root}>
 					<CssBaseline />
-					<NewPaletteNavbar
+					<Navbar
 						open={open}
 						savePalette={handleSavePalette}
 						openDrawer={handleDrawerOpen}
 						palettes={palettes}
+						variant='new'
 					/>
 					<Drawer
 						className={drawer}
