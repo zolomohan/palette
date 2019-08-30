@@ -7,7 +7,7 @@ import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
 import CreatePalette from './CreatePalette';
 import seedColors from '../helpers/seedColors';
-import { generatePalette } from '../helpers/colorHelper';
+import { generatePalette } from '../helpers/generateShades';
 
 export default class App extends Component {
 	state = {
