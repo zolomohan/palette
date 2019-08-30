@@ -18,6 +18,7 @@ export default {
 			height             : '50%',
 			backgroundColor    : '#222222',
 			'& $button'        : {
+				color: '#fff',
 				backgroundColor : 'transparent'
 			},
 			[media.down('lg')]: {
