@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { SortableElement } from 'react-sortable-hoc';
 import DeleteIcon from '@material-ui/icons/Delete';
-import styles from './styles/DraggableColorBoxStyles';
+import styles from '../styles/DraggableColorBoxStyles';
 
 export default SortableElement(
 	withStyles(styles)(

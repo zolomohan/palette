@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/styles';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import styles from './styles/PaletteStyles';
+import styles from '../styles/PaletteStyles';
 
 export default withStyles(styles)(
 	class Palette extends Component {
@@ -23,12 +23,7 @@ export default withStyles(styles)(
 			const { palette, paletteColors } = classes;
 			return (
 				<div className={palette}>
-					<Navbar
-						changeLevel={changeLevel}
-						changeColorFormat={changeColorFormat}
-						level={level}
-						format={format}
-					/>
+					<Navbar changeLevel={changeLevel} changeColorFormat={changeColorFormat} level={level} format={format} />
 					<div className={paletteColors}>
 						{colors[level].map((color) => (
 							<ColorBox {...color} format={format} key={color.id} paletteId={id} singleColorPalette={false} />

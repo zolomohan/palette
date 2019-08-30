@@ -7,12 +7,12 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
-import styles from './styles/NewPaletteFormStyles';
+import styles from '../styles/NewPaletteFormStyles';
 import DraggableColorList from './DraggableColorList';
 import arrayMove from 'array-move';
 import NewPaletteNavbar from './NewPaletteNavbar';
 import ColorPickerForm from './ColorPickerForm';
-import seedColors from './helpers/seedColors';
+import seedColors from '../helpers/seedColors';
 
 export default withStyles(styles, { withTheme: true })(
 	class NewPaletteForm extends Component {
@@ -72,15 +72,8 @@ export default withStyles(styles, { withTheme: true })(
 				props,
 				state
 			} = this;
-			const { 
-				classes, 
-				paletteMaxColors, 
-				palettes 
-			} = props;
-			const {
-				open, 
-				colors 
-			} = state;
+			const { classes, paletteMaxColors, palettes } = props;
+			const { open, colors } = state;
 			const {
 				root,
 				drawer,
@@ -130,12 +123,7 @@ export default withStyles(styles, { withTheme: true })(
 								>
 									Random Color
 								</Button>
-								<Button
-									variant='outlined'
-									color='secondary'
-									onClick={clearPalette}
-									className={drawerButton}
-								>
+								<Button variant='outlined' color='secondary' onClick={clearPalette} className={drawerButton}>
 									Clear Palette
 								</Button>
 							</div>
@@ -144,7 +132,7 @@ export default withStyles(styles, { withTheme: true })(
 					</Drawer>
 					<main
 						className={clsx(content, {
-							[contentShift]: open
+							[contentShift] : open
 						})}
 					>
 						<div className={drawerHeader} />

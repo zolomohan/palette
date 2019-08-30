@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './styles/Page.css';
+import '../styles/Page.css';
 
 export default function Page(props) {
 	if (props.variant === '404')

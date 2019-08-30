@@ -6,8 +6,8 @@ import Palette from './Palette';
 import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
-import seedColors from './helpers/seedColors';
-import { generatePalette } from './helpers/colorHelper';
+import seedColors from '../helpers/seedColors';
+import { generatePalette } from '../helpers/colorHelper';
 
 export default class App extends Component {
 	state = {
@@ -34,7 +34,6 @@ export default class App extends Component {
 					<TransitionGroup>
 						<CSSTransition key={location.key} classNames='page' timeout={100}>
 							<Switch location={location}>
-
 								<Route
 									exact
 									path={`${process.env.PUBLIC_URL}/`}

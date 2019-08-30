@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import styles from './styles/ColorBoxStyles';
+import styles from '../styles/ColorBoxStyles';
 
 export default withStyles(styles)(
 	class ColorBox extends Component {
@@ -18,7 +18,17 @@ export default withStyles(styles)(
 		render() {
 			const { singleColorPalette, paletteId, id, name } = this.props;
 			const { copying } = this.state;
-			const { ColorBox, copyOverlay, copyMessage, copyText, colorName, button, seeMore, showMessage, showOverlay } = this.props.classes;
+			const {
+				ColorBox,
+				copyOverlay,
+				copyMessage,
+				copyText,
+				colorName,
+				button,
+				seeMore,
+				showMessage,
+				showOverlay
+			} = this.props.classes;
 			const color = this.props[this.props.format];
 
 			return (

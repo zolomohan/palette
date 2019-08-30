@@ -12,19 +12,19 @@ import 'emoji-mart/css/emoji-mart.css';
 export default class FormDialog extends Component {
 	state = {
 		newPaletteName : '',
-		stage: 'form'
+		stage          : 'form'
 	};
 
 	handleTextFieldChange = (evt) => this.setState({ [evt.target.name]: evt.target.value });
-	
-	openEmojiDialog = () => this.setState({ stage: 'emoji' });
-	
-	selectEmoji = (emoji) => {
-		this.setState({stage: ''})
-		this.props.savePalette(this.state.newPaletteName, emoji.native)
-	}
 
-	hideDialog = () => this.setState({stage: 'form', newPaletteName: ''}, this.props.toggle)
+	openEmojiDialog = () => this.setState({ stage: 'emoji' });
+
+	selectEmoji = (emoji) => {
+		this.setState({ stage: '' });
+		this.props.savePalette(this.state.newPaletteName, emoji.native);
+	};
+
+	hideDialog = () => this.setState({ stage: 'form', newPaletteName: '' }, this.props.toggle);
 
 	componentDidMount() {
 		ValidatorForm.addValidationRule('uniquePaletteName', (value) =>
