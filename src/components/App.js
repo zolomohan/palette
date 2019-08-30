@@ -5,7 +5,7 @@ import Page from './Page';
 import Palette from './Palette';
 import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
-import NewPaletteForm from './NewPaletteForm';
+import CreatePalette from './CreatePalette';
 import seedColors from '../helpers/seedColors';
 import { generatePalette } from '../helpers/colorHelper';
 
@@ -49,7 +49,7 @@ export default class App extends Component {
 									path={`${process.env.PUBLIC_URL}/palette/new`}
 									render={(routeProps) => (
 										<Page>
-											<NewPaletteForm savePalette={this.savePalette} {...routeProps} palettes={this.state.palettes} />
+											<CreatePalette savePalette={this.savePalette} {...routeProps} palettes={this.state.palettes} />
 										</Page>
 									)}
 								/>

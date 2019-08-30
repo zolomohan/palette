@@ -11,9 +11,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import NewPaletteSaveDialog from './NewPaletteSaveDialog';
+import CreatePaletteSaveDialog from './CreatePaletteSaveDialog';
 import CloseIcon from '@material-ui/icons/Close';
-import NewPaletteDiscardDialog from './NewPaletteDiscardDialog';
+import CreatePaletteDiscardDialog from './CreatePaletteDiscardDialog';
 import AddCircle from '@material-ui/icons/AddCircle';
 import styles from '../styles/NavbarStyles';
 
@@ -72,13 +72,13 @@ export default withStyles(styles)(
 						<Button className={navBtn} onClick={this.saveDialogToggle} color='primary'>
 							Save
 						</Button>
-						<NewPaletteSaveDialog
+						<CreatePaletteSaveDialog
 							open={saveDialogOpen}
 							toggle={this.saveDialogToggle}
 							savePalette={savePalette}
 							palettes={palettes}
 						/>
-						<NewPaletteDiscardDialog open={discardDialogOpen} toggle={this.discardDialogToggle} />
+						<CreatePaletteDiscardDialog open={discardDialogOpen} toggle={this.discardDialogToggle} />
 					</div>
 				</AppBar>
 			);
