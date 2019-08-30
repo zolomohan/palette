@@ -50,9 +50,10 @@ export default withStyles(styles, { withTheme: true })(
 
 		randomColor = () => {
 			const allColors = this.props.palettes.map((palette) => palette.colors).flat();
-			const randomIndex = Math.floor(Math.random() * allColors.length);
-			if (this.state.colors.some((color) => color.name === allColors[randomIndex].name)) this.randomColor();
-			this.setState({ colors: [ ...this.state.colors, allColors[randomIndex] ] });
+			const randomColor = allColors[Math.floor(Math.random() * allColors.length)];
+			this.state.colors.some((color) => color.name === randomColor.name)
+				? this.randomColor()
+				: this.setState({ colors: [ ...this.state.colors, randomColor ] });
 		};
 
 		clearPalette = () => this.setState({ colors: [] });
