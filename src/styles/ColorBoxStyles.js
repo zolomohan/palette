@@ -55,7 +55,10 @@ export default {
 		width           : '100%',
 		transition      : '0.7s transform linear',
 		transform       : 'scale(0.1)',
-		backgroundColor : (props) => props[props.format]
+		backgroundColor : (props) => props[props.format],
+		[media.down('sm')]: {
+			transition      : '0.2s transform linear',
+		},
 	},
 
 	showOverlay : {
