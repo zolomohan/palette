@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { memo } from 'react';
 import useToggleState from '../hooks/useToggleState';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import styles from '../styles/ColorBoxStyles';
 
-export default withStyles(styles)(
-	function ColorBox(props) {
-		const [ copying, toggleCopying, setCopying] = useToggleState();
+export default memo(
+	withStyles(styles)(function ColorBox(props) {
+		console.log('Render');
+		const [ copying, toggleCopying, setCopying ] = useToggleState();
 		const handleCopy = () => {
 			toggleCopying();
-			setTimeout(() => {setCopying(false)}, 1500)
-		}
+			setTimeout(() => {
+				setCopying(false);
+			}, 1500);
+		};
 		const { classes, singleColorPalette, paletteId, id, name, format } = props;
 		const {
 			ColorBox,
@@ -44,5 +47,5 @@ export default withStyles(styles)(
 				)}
 			</div>
 		);
-	}
+	})
 );
