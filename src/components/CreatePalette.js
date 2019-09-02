@@ -13,7 +13,7 @@ import ColorPickerForm from './ColorPickerForm';
 import DraggableColorList from './DraggableColorList';
 import seedColors from '../helpers/seedColors';
 import arrayMove from 'array-move';
-import styles from '../styles/NewPaletteFormStyles';
+import styles from '../styles/CreatePaletteStyles';
 
 export default withStyles(styles, { withTheme: true })(
 	function CreatePalette({ classes, paletteMaxColors = 20, palettes, savePalette, history }) {
