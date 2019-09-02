@@ -32,7 +32,7 @@ export default function FormDialog({ open, toggleDialog, savePalette, palettes }
 	}, []);
 
 	return (
-		<div>
+		<>
 			<Dialog open={open && stage === 'emoji'} onClose={hideDialog}>
 				<Picker onSelect={selectEmoji} title='Pick an Emoji' />
 			</Dialog>
@@ -64,6 +64,6 @@ export default function FormDialog({ open, toggleDialog, savePalette, palettes }
 					</DialogContent>
 				</ValidatorForm>
 			</Dialog>
-		</div>
+		</>
 	);
 }
