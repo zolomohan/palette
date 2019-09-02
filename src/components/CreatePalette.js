@@ -15,98 +15,105 @@ import seedColors from '../helpers/seedColors';
 import arrayMove from 'array-move';
 import styles from '../styles/CreatePaletteStyles';
 
-export default withStyles(styles, { withTheme: true })(
-	function CreatePalette({ classes, paletteMaxColors = 20, palettes, savePalette, history }) {
-		const [ drawerOpen, toggleOpen ] = useToggleState(true);
-		const [ colors, setColors ] = useState(seedColors[0].colors);
+export default withStyles(styles, { withTheme: true })(function CreatePalette({
+	classes,
+	paletteMaxColors = 20,
+	palettes,
+	savePalette,
+	history
+}) {
+	const [ drawerOpen, toggleOpen ] = useToggleState(true);
+	const [ colors, setColors ] = useState(seedColors[0].colors);
+	const clearPalette = () => setColors([]);
+	const addColor = (newColor) => setColors([ ...colors, newColor ]);
+	const deleteColor = (deleteColor) => setColors(colors.filter((color) => color.color !== deleteColor.color));
+	const onSortEnd = ({ oldIndex, newIndex }) => setColors(arrayMove(colors, oldIndex, newIndex));
+	const randomColor = () => {
+		const allColors = palettes.map((palette) => palette.colors).flat();
+		const randomClr = allColors[Math.floor(Math.random() * allColors.length)];
+		colors.some((color) => color.name === randomClr.name) ? randomColor() : addColor(randomClr);
+	};
+	const handleSavePalette = (newPaletteName, emoji) => {
+		savePalette({
+			paletteName : newPaletteName,
+			id          : newPaletteName.toLowerCase().replace(/ /g, '-'),
+			emoji       : emoji,
+			colors      : colors
+		});
+		history.push(`${process.env.PUBLIC_URL}/`);
+	};
+	const {
+		root,
+		drawer,
+		drawerPaper,
+		drawerHeader,
+		drawerContainer,
+		drawerButtons,
+		drawerButton,
+		content,
+		contentShift,
+		chevronLeftIcon
+	} = classes;
+	const paletteFull = colors.length >= paletteMaxColors;
 
-		const functions = {
-			clearPalette: () => setColors([]),
-			addColor: (newColor) => setColors([ ...colors, newColor ]),
-			deleteColor: (deleteColor) => setColors(colors.filter((color) => color.color !== deleteColor.color)),
-			onSortEnd: ({ oldIndex, newIndex }) => setColors(arrayMove(colors, oldIndex, newIndex)),
-			randomColor: () => {
-				const allColors = palettes.map((palette) => palette.colors).flat();
-				const randomColor = allColors[Math.floor(Math.random() * allColors.length)];
-				colors.some((color) => color.name === randomColor.name) ? randomColor() : addColor(randomColor);
-			},
-			handleSavePalette: (newPaletteName, emoji) => {
-				savePalette({
-					paletteName: newPaletteName,
-					id: newPaletteName.toLowerCase().replace(/ /g, '-'),
-					emoji: emoji,
-					colors: colors
-				});
-				history.push(`${process.env.PUBLIC_URL}/`);
-			}
-		};
-		const { addColor, deleteColor, randomColor, clearPalette, onSortEnd, handleSavePalette } = functions;
-		const {
-			root,
-			drawer,
-			drawerPaper,
-			drawerHeader,
-			drawerContainer,
-			drawerButtons,
-			drawerButton,
-			content,
-			contentShift,
-			chevronLeftIcon
-		} = classes;
-		const paletteFull = colors.length >= paletteMaxColors;
-
-		return (
-			<div className={root}>
-				<CssBaseline />
-				<Navbar open={drawerOpen} savePalette={handleSavePalette} openDrawer={toggleOpen} palettes={palettes} variant='new' />
-				<Drawer
-					className={drawer}
-					variant='persistent'
-					anchor='left'
-					open={drawerOpen}
-					classes={{
-						paper: drawerPaper
-					}}
-				>
-					<div className={drawerHeader}>
-						<Typography variant='h5'>Pick a Color</Typography>
-						<IconButton onClick={toggleOpen} className={chevronLeftIcon}>
-							<ChevronLeftIcon />
-						</IconButton>
+	return (
+		<div className={root}>
+			<CssBaseline />
+			<Navbar
+				open={drawerOpen}
+				savePalette={handleSavePalette}
+				openDrawer={toggleOpen}
+				palettes={palettes}
+				variant='new'
+			/>
+			<Drawer
+				className={drawer}
+				variant='persistent'
+				anchor='left'
+				open={drawerOpen}
+				classes={{
+					paper : drawerPaper
+				}}
+			>
+				<div className={drawerHeader}>
+					<Typography variant='h5'>Pick a Color</Typography>
+					<IconButton onClick={toggleOpen} className={chevronLeftIcon}>
+						<ChevronLeftIcon />
+					</IconButton>
+				</div>
+				<div className={drawerContainer}>
+					<div className={drawerButtons}>
+						<Button
+							variant='outlined'
+							color='primary'
+							onClick={randomColor}
+							disabled={colors.length >= paletteMaxColors}
+							className={drawerButton}
+						>
+							Random Color
+						</Button>
+						<Button variant='outlined' color='secondary' onClick={clearPalette} className={drawerButton}>
+							Clear Palette
+						</Button>
 					</div>
-					<div className={drawerContainer}>
-						<div className={drawerButtons}>
-							<Button
-								variant='outlined'
-								color='primary'
-								onClick={randomColor}
-								disabled={colors.length >= paletteMaxColors}
-								className={drawerButton}
-							>
-								Random Color
-							</Button>
-							<Button variant='outlined' color='secondary' onClick={clearPalette} className={drawerButton}>
-								Clear Palette
-							</Button>
-						</div>
-						<ColorPickerForm paletteFull={paletteFull} addColor={addColor} colors={colors} />
-					</div>
-				</Drawer>
-				<main
-					className={clsx(content, {
-						[contentShift]: drawerOpen
-					})}
-				>
-					<div className={drawerHeader} />
-					<DraggableColorList
-						colors={colors}
-						deleteColor={deleteColor}
-						axis='xy'
-						onSortEnd={onSortEnd}
-						lockToContainerEdges
-						distance={2}
-					/>
-				</main>
-			</div>
-		);
+					<ColorPickerForm paletteFull={paletteFull} addColor={addColor} colors={colors} />
+				</div>
+			</Drawer>
+			<main
+				className={clsx(content, {
+					[contentShift] : drawerOpen
+				})}
+			>
+				<div className={drawerHeader} />
+				<DraggableColorList
+					colors={colors}
+					deleteColor={deleteColor}
+					axis='xy'
+					onSortEnd={onSortEnd}
+					lockToContainerEdges
+					distance={2}
+				/>
+			</main>
+		</div>
+	);
 });
