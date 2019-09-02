@@ -74,7 +74,7 @@ export default withStyles(styles)(
 						</Button>
 						<CreatePaletteSaveDialog
 							open={saveDialogOpen}
-							toggle={this.saveDialogToggle}
+							toggleDialog={this.saveDialogToggle}
 							savePalette={savePalette}
 							palettes={palettes}
 						/>
