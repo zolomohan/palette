@@ -7,14 +7,7 @@ import styles from '../styles/ColorBoxStyles';
 
 export default memo(
 	withStyles(styles)(function ColorBox(props) {
-		console.log('Render');
 		const [ copying, toggleCopying, setCopying ] = useToggleState();
-		const handleCopy = () => {
-			toggleCopying();
-			setTimeout(() => {
-				setCopying(false);
-			}, 1500);
-		};
 		const { classes, singleColorPalette, paletteId, id, name, format } = props;
 		const {
 			ColorBox,
@@ -28,7 +21,6 @@ export default memo(
 			showOverlay
 		} = classes;
 		const color = props[format];
-
 		return (
 			<div className={ColorBox}>
 				<div className={`${copyOverlay} ${copying && showOverlay}`} />
@@ -37,7 +29,13 @@ export default memo(
 					<p className={copyText}>{color}</p>
 				</div>
 				<span className={colorName}>{name}</span>
-				<CopyToClipboard text={color} onCopy={handleCopy}>
+				<CopyToClipboard
+					text={color}
+					onCopy={() => {
+						toggleCopying();
+						setTimeout(() => setCopying(false), 1500);
+					}}
+				>
 					<button className={`${button} copyButton`}>copy</button>
 				</CopyToClipboard>
 				{!singleColorPalette && (
