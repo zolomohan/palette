@@ -6,22 +6,16 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function AlertDialog(props) {
-	const { open, deletePalette, id } = props;
-
-	function closeDialog() {
-		props.toggle(false);
-	}
-
-	function handleDelete() {
-		props.toggle(false);
+export default function AlertDialog({ open, deletePalette, id, toggleDeleteModal }) {
+	const handleDelete = () => {
+		toggleDeleteModal();
 		deletePalette(id);
-	}
+	};
 
 	return (
 		<Dialog
 			open={open}
-			onClose={closeDialog}
+			onClose={toggleDeleteModal}
 			aria-labelledby='alert-dialog-title'
 			aria-describedby='Delete Palette Confirmation'
 		>
@@ -32,7 +26,7 @@ export default function AlertDialog(props) {
 				</DialogContentText>
 			</DialogContent>
 			<DialogActions>
-				<Button onClick={closeDialog} color='primary'>
+				<Button onClick={toggleDeleteModal} color='primary'>
 					Cancel
 				</Button>
 				<Button color='secondary' onClick={handleDelete}>
