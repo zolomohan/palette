@@ -28,14 +28,20 @@ export default withStyles(styles)(function Navbar({
 	changeColorFormat,
 	changeLevel,
 	level,
-	format
+	format,
+	enableSave
 }) {
-	const [ snackbar, toggleSnackbar ] = useToggleState();
+	const [ formatSnackbar, toggleFormatSnackbar ] = useToggleState();
+	const [ emptyPaletteSnackbar, toggleEmptyPaletteSnackbar ] = useToggleState();
 	const [ saveDialog, toggleSaveDialog ] = useToggleState();
 	const [ discardDialog, toggleDiscardDialog ] = useToggleState();
 
 	function createPaletteNavbar() {
 		const { appBar, appBarShift, menuButton, hide, title, navBtns, navBtn } = classes;
+		const handleSavePalette = () => {
+			if (enableSave) toggleSaveDialog();
+			else toggleEmptyPaletteSnackbar();
+		};
 		return (
 			<AppBar
 				position='fixed'
@@ -62,9 +68,27 @@ export default withStyles(styles)(function Navbar({
 					<Button className={navBtn} color='secondary' onClick={toggleDiscardDialog}>
 						Discard
 					</Button>
-					<Button className={navBtn} onClick={toggleSaveDialog} color='primary'>
+					<Button className={navBtn} onClick={handleSavePalette} color='primary'>
 						Save
 					</Button>
+					<Snackbar
+						message={<span id='message-id'>Palette is Empty! Add Some Colors</span>}
+						anchorOrigin={{
+							vertical   : 'bottom',
+							horizontal : 'right'
+						}}
+						open={emptyPaletteSnackbar}
+						autoHideDuration={3000}
+						ContentProps={{
+							'aria-describedby' : 'message-id'
+						}}
+						onClose={toggleEmptyPaletteSnackbar}
+						action={[
+							<IconButton onClick={toggleEmptyPaletteSnackbar} color='inherit' key='Close Snackbar'>
+								<CloseIcon />
+							</IconButton>
+						]}
+					/>
 					<CreatePaletteSaveDialog
 						open={saveDialog}
 						toggleDialog={toggleSaveDialog}
@@ -102,7 +126,7 @@ export default withStyles(styles)(function Navbar({
 						value={format}
 						onChange={(event) => {
 							changeColorFormat(event.target.value);
-							toggleSnackbar();
+							toggleFormatSnackbar();
 						}}
 					>
 						<MenuItem value='hex'>HEX</MenuItem>
@@ -116,14 +140,14 @@ export default withStyles(styles)(function Navbar({
 						vertical   : 'bottom',
 						horizontal : 'left'
 					}}
-					open={snackbar}
+					open={formatSnackbar}
 					autoHideDuration={3000}
 					ContentProps={{
 						'aria-describedby' : 'message-id'
 					}}
-					onClose={toggleSnackbar}
+					onClose={toggleFormatSnackbar}
 					action={[
-						<IconButton onClick={toggleSnackbar} color='inherit' key='Close Snackbar'>
+						<IconButton onClick={toggleFormatSnackbar} color='inherit' key='Close Snackbar'>
 							<CloseIcon />
 						</IconButton>
 					]}

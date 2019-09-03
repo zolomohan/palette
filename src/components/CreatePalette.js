@@ -68,6 +68,7 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 				openDrawer={toggleOpen}
 				palettes={palettes}
 				variant='new'
+				enableSave={colors.length > 0}
 			/>
 			<Drawer
 				className={drawer}
