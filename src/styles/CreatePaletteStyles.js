@@ -68,5 +68,6 @@ export default (theme) => ({
 		opacity: '0.2',
 		fontFamily: 'Blinker',
 		fontWeight: '200',
+		userSelect: 'none'
 	}
 });
