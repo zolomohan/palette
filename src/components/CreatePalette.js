@@ -26,7 +26,8 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 	const [ colors, setColors ] = useState(seedColors[0].colors);
 	const clearPalette = () => setColors([]);
 	const addColor = (newColor) => setColors([ ...colors, newColor ]);
-	const deleteColor = (deleteColor) => setColors(colors.filter((color) => color.color !== deleteColor.color));
+	const deleteColor = (deleteColor) =>
+		setColors(colors.filter((color) => color.color !== deleteColor.color));
 	const onSortEnd = ({ oldIndex, newIndex }) => setColors(arrayMove(colors, oldIndex, newIndex));
 	const randomColor = () => {
 		const allColors = palettes.map((palette) => palette.colors).flat();
@@ -52,7 +53,9 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 		drawerButton,
 		content,
 		contentShift,
-		chevronLeftIcon
+		chevronLeftIcon,
+		emptyPalettePlaceholder,
+		emptyPalettePlaceholderContainer
 	} = classes;
 	const paletteFull = colors.length >= paletteMaxColors;
 
@@ -92,7 +95,12 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 						>
 							Random Color
 						</Button>
-						<Button variant='outlined' color='secondary' onClick={clearPalette} className={drawerButton}>
+						<Button
+							variant='outlined'
+							color='secondary'
+							onClick={clearPalette}
+							className={drawerButton}
+						>
 							Clear Palette
 						</Button>
 					</div>
@@ -105,14 +113,20 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 				})}
 			>
 				<div className={drawerHeader} />
-				<DraggableColorList
-					colors={colors}
-					deleteColor={deleteColor}
-					axis='xy'
-					onSortEnd={onSortEnd}
-					lockToContainerEdges
-					distance={2}
-				/>
+				{colors.length > 0 ? (
+					<DraggableColorList
+						colors={colors}
+						deleteColor={deleteColor}
+						axis='xy'
+						onSortEnd={onSortEnd}
+						lockToContainerEdges
+						distance={2}
+					/>
+				) : (
+					<div className={emptyPalettePlaceholderContainer}>
+						<Typography className={emptyPalettePlaceholder}>Add Colors +</Typography>
+					</div>
+				)}
 			</main>
 		</div>
 	);
