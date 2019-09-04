@@ -1,6 +1,7 @@
 import clsx from 'clsx';
-import React, { useState } from 'react';
+import React from 'react';
 import useToggleState from '../hooks/useToggleState';
+import useColorState from '../hooks/useColorsState';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,7 +13,6 @@ import Navbar from './Navbar';
 import ColorPickerForm from './ColorPickerForm';
 import DraggableColorList from './DraggableColorList';
 import seedColors from '../helpers/seedColors';
-import arrayMove from 'array-move';
 import styles from '../styles/CreatePaletteStyles';
 
 export default withStyles(styles, { withTheme: true })(function CreatePalette({
@@ -23,17 +23,10 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 	history
 }) {
 	const [ drawerOpen, toggleOpen ] = useToggleState(true);
-	const [ colors, setColors ] = useState(seedColors[0].colors);
-	const clearPalette = () => setColors([]);
-	const addColor = (newColor) => setColors([ ...colors, newColor ]);
-	const deleteColor = (deleteColor) =>
-		setColors(colors.filter((color) => color.color !== deleteColor.color));
-	const onSortEnd = ({ oldIndex, newIndex }) => setColors(arrayMove(colors, oldIndex, newIndex));
-	const randomColor = () => {
-		const allColors = palettes.map((palette) => palette.colors).flat();
-		const randomClr = allColors[Math.floor(Math.random() * allColors.length)];
-		colors.some((color) => color.name === randomClr.name) ? randomColor() : addColor(randomClr);
-	};
+	const [ colors, addColor, deleteColor, randomColor, clearPalette, sortColors ] = useColorState(
+		seedColors[0].colors,
+		palettes
+	);
 	const handleSavePalette = (newPaletteName, emoji) => {
 		savePalette({
 			paletteName : newPaletteName,
@@ -119,7 +112,7 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 						colors={colors}
 						deleteColor={deleteColor}
 						axis='xy'
-						onSortEnd={onSortEnd}
+						onSortEnd={sortColors}
 						lockToContainerEdges
 						distance={2}
 					/>
