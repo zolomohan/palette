@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 import useToggleState from '../hooks/useToggleState';
-import useColorState from '../hooks/useColorsState';
+import useColorState from '../hooks/useColorState';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
