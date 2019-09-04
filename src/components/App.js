@@ -8,7 +8,7 @@ import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
 import CreatePalette from './CreatePalette';
 import seedColors from '../helpers/seedColors';
-import { generatePalette } from '../helpers/generateShades';
+import generateShades from '../helpers/generateShades';
 
 export default function App() {
 	const [ palettes, findPalette, savePalette, deletePalette ] = usePaletteState(seedColors);
@@ -41,7 +41,7 @@ export default function App() {
 								path={`${process.env.PUBLIC_URL}/palette/:id`}
 								render={(routeProps) => (
 									<Page>
-										<Palette {...generatePalette(findPalette(routeProps.match.params.id))} />
+										<Palette {...generateShades(findPalette(routeProps.match.params.id))} />
 									</Page>
 								)}
 							/>
@@ -52,7 +52,7 @@ export default function App() {
 									<Page>
 										<SingleColorPalette
 											colorId={routeProps.match.params.colorId}
-											{...generatePalette(findPalette(routeProps.match.params.paletteId))}
+											{...generateShades(findPalette(routeProps.match.params.paletteId))}
 										/>
 									</Page>
 								)}
