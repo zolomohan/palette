@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import chromaContrast from '../helpers/chromaContrast';
 import styles from '../styles/ColorPickerFormStyles';
 
-export default withStyles(styles)(function ColorPickerForm({ paletteFull, classes, colors, addColor }) {
+export default withStyles(styles)(function ColorPickerForm({ paletteFull, classes, colors, dispatch }) {
 	const [ newColor, setNewColor ] = useState('#000');
 	const [ newColorName, setNewColorName, resetNewColorName ] = useInputState();
 
@@ -16,7 +16,7 @@ export default withStyles(styles)(function ColorPickerForm({ paletteFull, classe
 	}
 
 	function handleAddColor() {
-		addColor({ name: newColorName, color: newColor });
+		dispatch({type: 'ADD', color: { name: newColorName, color: newColor }})
 		resetNewColorName();
 	}
 

@@ -1,7 +1,6 @@
 import clsx from 'clsx';
-import React from 'react';
+import React, { useReducer } from 'react';
 import useToggleState from '../hooks/useToggleState';
-import useColorState from '../hooks/useColorState';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +12,7 @@ import Navbar from './Navbar';
 import ColorPickerForm from './ColorPickerForm';
 import DraggableColorList from './DraggableColorList';
 import seedColors from '../helpers/seedColors';
+import colorReducer from '../reducers/colors.reducer';
 import styles from '../styles/CreatePaletteStyles';
 
 export default withStyles(styles, { withTheme: true })(function CreatePalette({
@@ -22,11 +22,20 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 	savePalette,
 	history
 }) {
+	const [ colors, dispatch ] = useReducer(colorReducer, seedColors[0].colors);
 	const [ drawerOpen, toggleOpen ] = useToggleState(true);
-	const [ colors, addColor, deleteColor, randomColor, clearPalette, sortColors ] = useColorState(
-		seedColors[0].colors,
-		palettes
-	);
+
+	const randomColor = () => {
+		const allColors = palettes.map((palette) => palette.colors).flat();
+		const random = allColors[Math.floor(Math.random() * allColors.length)];
+		colors.some((color) => color.name === random.name)
+			? randomColor()
+			: dispatch({ type: 'ADD', color: random });
+	};
+
+	const handleSortColors = ({ oldIndex, newIndex }) =>
+		dispatch({ type: 'SORT', oldIndex, newIndex });
+
 	const handleSavePalette = (newPaletteName, emoji) => {
 		savePalette({
 			paletteName : newPaletteName,
@@ -36,6 +45,7 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 		});
 		history.push(`${process.env.PUBLIC_URL}/`);
 	};
+
 	const {
 		root,
 		drawer,
@@ -92,13 +102,13 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 						<Button
 							variant='outlined'
 							color='secondary'
-							onClick={clearPalette}
+							onClick={() => dispatch({ type: 'CLEAR' })}
 							className={drawerButton}
 						>
 							Clear Palette
 						</Button>
 					</div>
-					<ColorPickerForm paletteFull={paletteFull} addColor={addColor} colors={colors} />
+					<ColorPickerForm paletteFull={paletteFull} dispatch={dispatch} colors={colors} />
 				</div>
 			</Drawer>
 			<main
@@ -110,9 +120,9 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 				{colors.length > 0 ? (
 					<DraggableColorList
 						colors={colors}
-						deleteColor={deleteColor}
+						dispatch={dispatch}
 						axis='xy'
-						onSortEnd={sortColors}
+						onSortEnd={handleSortColors}
 						lockToContainerEdges
 						distance={2}
 					/>
