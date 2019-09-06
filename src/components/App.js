@@ -32,10 +32,10 @@ export default function App() {
 							<Route
 								exact
 								path={`${process.env.PUBLIC_URL}/palette/new`}
-								render={(routeProps) => (
+								render={({ history }) => (
 									<Page>
 										<ColorProvider>
-											<CreatePalette {...routeProps} />
+											<CreatePalette history={history} />
 										</ColorProvider>
 									</Page>
 								)}
