@@ -5,7 +5,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import MiniPalette from './MiniPalette';
 import styles from '../styles/PaletteListStyles';
 
-export default withStyles(styles)(function PaletteList({ classes, palettes, deletePalette }) {
+export default withStyles(styles)(function PaletteList({ classes, palettes, dispatch }) {
 	return (
 		<div className={classes.root}>
 			<div className={classes.container}>
@@ -16,7 +16,7 @@ export default withStyles(styles)(function PaletteList({ classes, palettes, dele
 				<TransitionGroup className={classes.palettes}>
 					{palettes.map((palette) => (
 						<CSSTransition key={palette.id} classNames='fade' timeout={500}>
-							<MiniPalette {...palette} key={palette.id} deletePalette={deletePalette} />
+							<MiniPalette {...palette} key={palette.id} dispatch={dispatch} />
 						</CSSTransition>
 					))}
 				</TransitionGroup>

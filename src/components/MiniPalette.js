@@ -7,7 +7,7 @@ import DeletePaletteDialog from './DeletePaletteDialog';
 import styles from '../styles/MiniPaletteStyles';
 
 export default memo(
-	withStyles(styles)(function MiniPalette({ classes, paletteName, emoji, id, colors, deletePalette }) {
+	withStyles(styles)(function MiniPalette({ classes, paletteName, emoji, id, colors, dispatch }) {
 		const [ deleteModal, toggleDeleteModal ] = useToggleState();
 		const { root, deleteIcon, miniBox, title } = classes;
 		return (
@@ -26,7 +26,7 @@ export default memo(
 				<DeletePaletteDialog
 					open={deleteModal}
 					toggleDeleteModal={toggleDeleteModal}
-					deletePalette={deletePalette}
+					dispatch={dispatch}
 					id={id}
 				/>
 			</div>

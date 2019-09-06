@@ -19,10 +19,10 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 	classes,
 	paletteMaxColors = 20,
 	palettes,
-	savePalette,
-	history
+	history,
+	dispatch
 }) {
-	const [ colors, dispatch ] = useReducer(colorReducer, seedColors[0].colors);
+	const [ colors, colorsDispatch ] = useReducer(colorReducer, seedColors[0].colors);
 	const [ drawerOpen, toggleOpen ] = useToggleState(true);
 
 	const randomColor = () => {
@@ -30,19 +30,19 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 		const random = allColors[Math.floor(Math.random() * allColors.length)];
 		colors.some((color) => color.name === random.name)
 			? randomColor()
-			: dispatch({ type: 'ADD', color: random });
+			: colorsDispatch({ type: 'ADD', color: random });
 	};
 
 	const handleSortColors = ({ oldIndex, newIndex }) =>
-		dispatch({ type: 'SORT', oldIndex, newIndex });
+		colorsDispatch({ type: 'SORT', oldIndex, newIndex });
 
 	const handleSavePalette = (newPaletteName, emoji) => {
-		savePalette({
+		dispatch({type: 'ADD', palette: {
 			paletteName : newPaletteName,
 			id          : newPaletteName.toLowerCase().replace(/ /g, '-'),
 			emoji       : emoji,
 			colors      : colors
-		});
+		}});
 		history.push(`${process.env.PUBLIC_URL}/`);
 	};
 
@@ -102,13 +102,13 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 						<Button
 							variant='outlined'
 							color='secondary'
-							onClick={() => dispatch({ type: 'CLEAR' })}
+							onClick={() => colorsDispatch({ type: 'CLEAR' })}
 							className={drawerButton}
 						>
 							Clear Palette
 						</Button>
 					</div>
-					<ColorPickerForm paletteFull={paletteFull} dispatch={dispatch} colors={colors} />
+					<ColorPickerForm paletteFull={paletteFull} dispatch={colorsDispatch} colors={colors} />
 				</div>
 			</Drawer>
 			<main
@@ -120,7 +120,7 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 				{colors.length > 0 ? (
 					<DraggableColorList
 						colors={colors}
-						dispatch={dispatch}
+						dispatch={colorsDispatch}
 						axis='xy'
 						onSortEnd={handleSortColors}
 						lockToContainerEdges
