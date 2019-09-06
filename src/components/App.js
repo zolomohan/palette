@@ -7,7 +7,8 @@ import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
 import CreatePalette from './CreatePalette';
 import generateShades from '../helpers/generateShades';
-import PaletteProvider, { PaletteContext } from '../contexts/palette.context';
+import ColorProvider from '../contexts/color.context';
+import { PaletteContext } from '../contexts/palette.context';
 
 export default function App() {
 	const palettes = useContext(PaletteContext);
@@ -33,7 +34,9 @@ export default function App() {
 								path={`${process.env.PUBLIC_URL}/palette/new`}
 								render={(routeProps) => (
 									<Page>
-										<CreatePalette {...routeProps} />
+										<ColorProvider>
+											<CreatePalette {...routeProps} />
+										</ColorProvider>
 									</Page>
 								)}
 							/>

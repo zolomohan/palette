@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useReducer, useContext } from 'react';
+import React, { useContext } from 'react';
 import useToggleState from '../hooks/useToggleState';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -11,12 +11,13 @@ import Button from '@material-ui/core/Button';
 import Navbar from './Navbar';
 import ColorPickerForm from './ColorPickerForm';
 import DraggableColorList from './DraggableColorList';
-import seedColors from '../helpers/seedColors';
-import colorReducer from '../reducers/colors.reducer';
 import styles from '../styles/CreatePaletteStyles';
-import { PaletteContext, DispatchContext } from '../contexts/palette.context';
+import { PaletteContext, PaletteDispatchContext } from '../contexts/palette.context';
+import { ColorContext, ColorDispatchContext } from '../contexts/color.context';
 
 export default withStyles(styles, { withTheme: true })(function CreatePalette({
+	history,
+	paletteMaxColors = 20,
 	classes          : {
 		root,
 		drawer,
@@ -30,16 +31,14 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 		chevronLeftIcon,
 		emptyPalettePlaceholder,
 		emptyPalettePlaceholderContainer
-	},
-	paletteMaxColors = 20,
-	history
+	}
 }) {
-	const [ colors, colorsDispatch ] = useReducer(colorReducer, seedColors[0].colors);
-	const [ drawerOpen, toggleOpen ] = useToggleState(true);
-
-	const paletteDispatch = useContext(DispatchContext);
+	const colors = useContext(ColorContext);
 	const palettes = useContext(PaletteContext);
-
+	const colorsDispatch = useContext(ColorDispatchContext);
+	const paletteDispatch = useContext(PaletteDispatchContext);
+	const [ drawerOpen, toggleOpen ] = useToggleState(true);
+	
 	const randomColor = () => {
 		const allColors = palettes.map((palette) => palette.colors).flat();
 		const random = allColors[Math.floor(Math.random() * allColors.length)];
@@ -113,8 +112,6 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 					</div>
 					<ColorPickerForm
 						paletteFull={paletteFull}
-						dispatch={colorsDispatch}
-						colors={colors}
 					/>
 				</div>
 			</Drawer>
@@ -126,8 +123,6 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 				<div className={drawerHeader} />
 				{colors.length > 0 ? (
 					<DraggableColorList
-						colors={colors}
-						dispatch={colorsDispatch}
 						axis='xy'
 						onSortEnd={handleSortColors}
 						lockToContainerEdges

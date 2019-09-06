@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import useInputState from '../hooks/useInputState';
 import { withStyles } from '@material-ui/core/styles';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
@@ -6,13 +6,14 @@ import ChromePicker from 'react-color';
 import Button from '@material-ui/core/Button';
 import chromaContrast from '../helpers/chromaContrast';
 import styles from '../styles/ColorPickerFormStyles';
+import { ColorContext, ColorDispatchContext } from '../contexts/color.context';
 
 export default withStyles(styles)(function ColorPickerForm({
 	paletteFull,
-	classes     : { picker, colorNameInput, addColorBtn },
-	colors,
-	dispatch
+	classes     : { picker, colorNameInput, addColorBtn }
 }) {
+	const colors = useContext(ColorContext);
+	const colorsDispatch = useContext(ColorDispatchContext);
 	const [ newColor, setNewColor ] = useState('#000');
 	const [ newColorName, setNewColorName, resetNewColorName ] = useInputState();
 
@@ -21,7 +22,7 @@ export default withStyles(styles)(function ColorPickerForm({
 	}
 
 	function handleAddColor() {
-		dispatch({ type: 'ADD', color: { name: newColorName, color: newColor } });
+		colorsDispatch({ type: 'ADD', color: { name: newColorName, color: newColor } });
 		resetNewColorName();
 	}
 
