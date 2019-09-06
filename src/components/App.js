@@ -1,6 +1,6 @@
 import React from 'react';
-import useLocalStorageState from '../hooks/useLocalStorageState';
 import { Switch, Route } from 'react-router-dom';
+import useLocalStorageState from '../hooks/useLocalStorageState';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Page from './Page';
 import Palette from './Palette';
@@ -13,7 +13,8 @@ import paletteReducer from '../reducers/palettes.reducer.js';
 
 export default function App() {
 	const [ palettes, dispatch ] = useLocalStorageState(paletteReducer, 'palettes', seedColors[0].colors);
-	const findPalette = (id) => palettes.find((palette) => palette.id === id);
+	const palette = (id) => generateShades(palettes.find((palette) => palette.id === id));
+
 	return (
 		<Route
 			render={({ location }) => (
@@ -43,7 +44,7 @@ export default function App() {
 								path={`${process.env.PUBLIC_URL}/palette/:id`}
 								render={(routeProps) => (
 									<Page>
-										<Palette {...generateShades(findPalette(routeProps.match.params.id))} />
+										<Palette {...palette(routeProps.match.params.id)} />
 									</Page>
 								)}
 							/>
@@ -54,7 +55,7 @@ export default function App() {
 									<Page>
 										<SingleColorPalette
 											colorId={routeProps.match.params.colorId}
-											{...generateShades(findPalette(routeProps.match.params.paletteId))}
+											{...palette(routeProps.match.params.paletteId)}
 										/>
 									</Page>
 								)}
