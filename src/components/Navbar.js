@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import React,{useContext} from 'react';
 import useToggleState from '../hooks/useToggleState';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core';
@@ -17,6 +17,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import CreatePaletteDiscardDialog from './CreatePaletteDiscardDialog';
 import AddCircle from '@material-ui/icons/AddCircle';
 import styles from '../styles/NavbarStyles';
+import { PaletteContext } from '../contexts/palette.context';
 
 export default withStyles(styles)(function Navbar({
 	variant,
@@ -24,13 +25,14 @@ export default withStyles(styles)(function Navbar({
 	open,
 	openDrawer,
 	savePalette,
-	palettes,
 	changeColorFormat,
 	changeLevel,
 	level,
 	format,
 	enableSave
 }) {
+	const palettes = useContext(PaletteContext);
+
 	const [ formatSnackbar, toggleFormatSnackbar ] = useToggleState();
 	const [ emptyPaletteSnackbar, toggleEmptyPaletteSnackbar ] = useToggleState();
 	const [ saveDialog, toggleSaveDialog ] = useToggleState();

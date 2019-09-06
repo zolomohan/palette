@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React, { useReducer } from 'react';
+import React, { useReducer, useContext } from 'react';
 import useToggleState from '../hooks/useToggleState';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -14,17 +14,19 @@ import DraggableColorList from './DraggableColorList';
 import seedColors from '../helpers/seedColors';
 import colorReducer from '../reducers/colors.reducer';
 import styles from '../styles/CreatePaletteStyles';
+import { PaletteContext, DispatchContext } from '../contexts/palette.context';
 
 export default withStyles(styles, { withTheme: true })(function CreatePalette({
 	classes,
 	paletteMaxColors = 20,
-	palettes,
-	history,
-	dispatch
+	history
 }) {
 	const [ colors, colorsDispatch ] = useReducer(colorReducer, seedColors[0].colors);
 	const [ drawerOpen, toggleOpen ] = useToggleState(true);
 
+	const paletteDispatch = useContext(DispatchContext);
+	const palettes = useContext(PaletteContext);
+	
 	const randomColor = () => {
 		const allColors = palettes.map((palette) => palette.colors).flat();
 		const random = allColors[Math.floor(Math.random() * allColors.length)];
@@ -37,7 +39,7 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 		colorsDispatch({ type: 'SORT', oldIndex, newIndex });
 
 	const handleSavePalette = (newPaletteName, emoji) => {
-		dispatch({type: 'ADD', palette: {
+		paletteDispatch({type: 'ADD', palette: {
 			paletteName : newPaletteName,
 			id          : newPaletteName.toLowerCase().replace(/ /g, '-'),
 			emoji       : emoji,
@@ -69,7 +71,6 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 				open={drawerOpen}
 				savePalette={handleSavePalette}
 				openDrawer={toggleOpen}
-				palettes={palettes}
 				variant='new'
 				enableSave={colors.length > 0}
 			/>
