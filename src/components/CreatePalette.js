@@ -17,38 +17,7 @@ import styles from '../styles/CreatePaletteStyles';
 import { PaletteContext, DispatchContext } from '../contexts/palette.context';
 
 export default withStyles(styles, { withTheme: true })(function CreatePalette({
-	classes,
-	paletteMaxColors = 20,
-	history
-}) {
-	const [ colors, colorsDispatch ] = useReducer(colorReducer, seedColors[0].colors);
-	const [ drawerOpen, toggleOpen ] = useToggleState(true);
-
-	const paletteDispatch = useContext(DispatchContext);
-	const palettes = useContext(PaletteContext);
-	
-	const randomColor = () => {
-		const allColors = palettes.map((palette) => palette.colors).flat();
-		const random = allColors[Math.floor(Math.random() * allColors.length)];
-		colors.some((color) => color.name === random.name)
-			? randomColor()
-			: colorsDispatch({ type: 'ADD', color: random });
-	};
-
-	const handleSortColors = ({ oldIndex, newIndex }) =>
-		colorsDispatch({ type: 'SORT', oldIndex, newIndex });
-
-	const handleSavePalette = (newPaletteName, emoji) => {
-		paletteDispatch({type: 'ADD', palette: {
-			paletteName : newPaletteName,
-			id          : newPaletteName.toLowerCase().replace(/ /g, '-'),
-			emoji       : emoji,
-			colors      : colors
-		}});
-		history.push(`${process.env.PUBLIC_URL}/`);
-	};
-
-	const {
+	classes          : {
 		root,
 		drawer,
 		drawerPaper,
@@ -61,7 +30,40 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 		chevronLeftIcon,
 		emptyPalettePlaceholder,
 		emptyPalettePlaceholderContainer
-	} = classes;
+	},
+	paletteMaxColors = 20,
+	history
+}) {
+	const [ colors, colorsDispatch ] = useReducer(colorReducer, seedColors[0].colors);
+	const [ drawerOpen, toggleOpen ] = useToggleState(true);
+
+	const paletteDispatch = useContext(DispatchContext);
+	const palettes = useContext(PaletteContext);
+
+	const randomColor = () => {
+		const allColors = palettes.map((palette) => palette.colors).flat();
+		const random = allColors[Math.floor(Math.random() * allColors.length)];
+		colors.some((color) => color.name === random.name)
+			? randomColor()
+			: colorsDispatch({ type: 'ADD', color: random });
+	};
+
+	const handleSortColors = ({ oldIndex, newIndex }) =>
+		colorsDispatch({ type: 'SORT', oldIndex, newIndex });
+
+	const handleSavePalette = (newPaletteName, emoji) => {
+		paletteDispatch({
+			type    : 'ADD',
+			palette : {
+				paletteName : newPaletteName,
+				id          : newPaletteName.toLowerCase().replace(/ /g, '-'),
+				emoji       : emoji,
+				colors      : colors
+			}
+		});
+		history.push(`${process.env.PUBLIC_URL}/`);
+	};
+
 	const paletteFull = colors.length >= paletteMaxColors;
 
 	return (
@@ -109,7 +111,11 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 							Clear Palette
 						</Button>
 					</div>
-					<ColorPickerForm paletteFull={paletteFull} dispatch={colorsDispatch} colors={colors} />
+					<ColorPickerForm
+						paletteFull={paletteFull}
+						dispatch={colorsDispatch}
+						colors={colors}
+					/>
 				</div>
 			</Drawer>
 			<main

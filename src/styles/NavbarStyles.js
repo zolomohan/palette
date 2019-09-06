@@ -2,10 +2,10 @@ import media from '../helpers/mediaQuery';
 import { DRAWER_WIDTH } from '../helpers/constants';
 
 export default (theme) => ({
-	root        : {
+	root             : {
 		display : 'flex'
 	},
-	appBar      : {
+	appBar           : {
 		flexDirection  : 'row',
 		justifyContent : 'space-between',
 		alignItems     : 'center',
@@ -15,7 +15,7 @@ export default (theme) => ({
 			duration : theme.transitions.duration.leavingScreen
 		})
 	},
-	appBarShift : {
+	appBarShift      : {
 		width      : `calc(100% - ${DRAWER_WIDTH}px)`,
 		marginLeft : DRAWER_WIDTH,
 		transition : theme.transitions.create([ 'margin', 'width' ], {
@@ -23,19 +23,19 @@ export default (theme) => ({
 			duration : theme.transitions.duration.enteringScreen
 		})
 	},
-	menuButton  : {
+	menuButton       : {
 		marginLeft  : 12,
 		marginRight : 12
 	},
-	title       : {
+	title            : {
 		fontFamily    : 'Blinker',
 		textTransform : 'uppercase',
 		letterSpacing : '1px'
 	},
-	hide        : {
+	hide             : {
 		display : 'none'
 	},
-	navBtns     : {
+	navBtns          : {
 		'& a' : {
 			textDecoration : 'none'
 		}

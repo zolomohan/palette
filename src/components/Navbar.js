@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React,{useContext} from 'react';
+import React, { useContext } from 'react';
 import useToggleState from '../hooks/useToggleState';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core';
@@ -20,30 +20,42 @@ import styles from '../styles/NavbarStyles';
 import { PaletteContext } from '../contexts/palette.context';
 
 export default withStyles(styles)(function Navbar({
-	variant,
-	classes,
 	open,
-	openDrawer,
-	savePalette,
-	changeColorFormat,
-	changeLevel,
 	level,
 	format,
-	enableSave
+	variant,
+	openDrawer,
+	enableSave,
+	savePalette,
+	changeLevel,
+	changeColorFormat,
+	classes           : {
+		appBar,
+		appBarShift,
+		menuButton,
+		hide,
+		title,
+		navBtns,
+		navBtn,
+		Navbar,
+		NavbarBrand,
+		NavbarSlider,
+		NavbarSliderText,
+		NavbarSelect
+	}
 }) {
 	const palettes = useContext(PaletteContext);
-
 	const [ formatSnackbar, toggleFormatSnackbar ] = useToggleState();
 	const [ emptyPaletteSnackbar, toggleEmptyPaletteSnackbar ] = useToggleState();
 	const [ saveDialog, toggleSaveDialog ] = useToggleState();
 	const [ discardDialog, toggleDiscardDialog ] = useToggleState();
 
 	function createPaletteNavbar() {
-		const { appBar, appBarShift, menuButton, hide, title, navBtns, navBtn } = classes;
 		const handleSavePalette = () => {
 			if (enableSave) toggleSaveDialog();
 			else toggleEmptyPaletteSnackbar();
 		};
+		
 		return (
 			<AppBar
 				position='fixed'
@@ -86,7 +98,11 @@ export default withStyles(styles)(function Navbar({
 						}}
 						onClose={toggleEmptyPaletteSnackbar}
 						action={[
-							<IconButton onClick={toggleEmptyPaletteSnackbar} color='inherit' key='Close Snackbar'>
+							<IconButton
+								onClick={toggleEmptyPaletteSnackbar}
+								color='inherit'
+								key='Close Snackbar'
+							>
 								<CloseIcon />
 							</IconButton>
 						]}
@@ -104,7 +120,6 @@ export default withStyles(styles)(function Navbar({
 	}
 
 	function paletteNavbar() {
-		const { Navbar, NavbarBrand, NavbarSlider, NavbarSliderText, NavbarSelect } = classes;
 		return (
 			<nav className={Navbar}>
 				<Link to={`${process.env.PUBLIC_URL}/`} style={{ textDecoration: 'none' }}>
@@ -149,7 +164,11 @@ export default withStyles(styles)(function Navbar({
 					}}
 					onClose={toggleFormatSnackbar}
 					action={[
-						<IconButton onClick={toggleFormatSnackbar} color='inherit' key='Close Snackbar'>
+						<IconButton
+							onClick={toggleFormatSnackbar}
+							color='inherit'
+							key='Close Snackbar'
+						>
 							<CloseIcon />
 						</IconButton>
 					]}

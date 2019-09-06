@@ -16,12 +16,12 @@
 .page-exit-active {
 	opacity: 0;
 }
-.Route404{
+.Route404 {
 	height: 100vh;
 	width: 100%;
-	background-color : '#3f3383';
-	background-image : url('./bg.svg');
-	background-size  : cover;
+	background-color: '#3f3383';
+	background-image: url('./bg.svg');
+	background-size: cover;
 	display: flex;
 	justify-content: center;
 	align-content: center;
@@ -29,7 +29,7 @@
 	text-align: center;
 }
 
-.Route404 h1{
+.Route404 h1 {
 	flex-direction: row;
 	margin: 0;
 	color: white;
@@ -38,7 +38,7 @@
 	font-weight: 400;
 }
 
-.Route404 h2{
+.Route404 h2 {
 	flex-direction: row;
 	margin: 0;
 	color: white;
@@ -47,14 +47,14 @@
 	font-weight: 100;
 }
 
-.Route404 .Links{
+.Route404 .Links {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	margin-top: 50px;
 }
 
-.Route404 a{
+.Route404 a {
 	color: white;
 	margin: 30px;
 	text-decoration: none;
@@ -63,6 +63,6 @@
 	letter-spacing: 1px;
 }
 
-.Route404 a:hover{
+.Route404 a:hover {
 	color: #ddd;
 }

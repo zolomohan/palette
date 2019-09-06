@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import useInputState from '../hooks/useInputState';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -13,35 +13,42 @@ import 'emoji-mart/css/emoji-mart.css';
 export default function FormDialog({ open, toggleDialog, savePalette, palettes }) {
 	const [ stage, setStage ] = useState('form');
 	const [ newPaletteName, setNewPaletteName, resetNewPaletteName ] = useInputState();
-	
+
 	function selectEmoji(emoji) {
 		setStage('');
 		savePalette(newPaletteName, emoji.native);
-	};
+	}
 
 	function hideDialog() {
 		setStage('form');
 		resetNewPaletteName();
 		toggleDialog();
-	};
+	}
 
 	useEffect(() => {
 		ValidatorForm.addValidationRule('uniquePaletteName', (value) =>
-			palettes.every(({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase())
+			palettes.every(
+				({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
+			)
 		);
 	}, []);
 
 	return (
-		<>
+		<Fragment>
 			<Dialog open={open && stage === 'emoji'} onClose={hideDialog}>
 				<Picker onSelect={selectEmoji} title='Pick an Emoji' />
 			</Dialog>
-			<Dialog open={open && stage === 'form'} onClose={toggleDialog} aria-labelledby='form-dialog-title'>
+			<Dialog
+				open={open && stage === 'form'}
+				onClose={toggleDialog}
+				aria-labelledby='form-dialog-title'
+			>
 				<ValidatorForm onSubmit={() => setStage('emoji')}>
 					<DialogTitle id='form-dialog-title'>Palette Name</DialogTitle>
 					<DialogContent>
 						<DialogContentText>
-							Please enter a name for your amazing palette and make sure it's unique from the rest.
+							Please enter a name for your amazing palette and make sure it's unique from
+							the rest.
 						</DialogContentText>
 						<TextValidator
 							fullWidth
@@ -64,6 +71,6 @@ export default function FormDialog({ open, toggleDialog, savePalette, palettes }
 					</DialogContent>
 				</ValidatorForm>
 			</Dialog>
-		</>
+		</Fragment>
 	);
 }

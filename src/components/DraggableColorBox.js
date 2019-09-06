@@ -6,13 +6,19 @@ import styles from '../styles/DraggableColorBoxStyles';
 
 export default SortableElement(
 	memo(
-		withStyles(styles)(function DraggableColorBox({ dispatch, classes, color }) {
-			const { root, boxContent, deleteIcon, colorName } = classes;
+		withStyles(styles)(function DraggableColorBox({
+			classes  : { root, boxContent, deleteIcon, colorName },
+			color    : { name, color },
+			dispatch
+		}) {
 			return (
 				<div className={root}>
 					<div className={boxContent}>
-						<span className={colorName}>{color.name}</span>
-						<DeleteIcon className={deleteIcon} onClick={() => dispatch({type: 'DELETE', color: color.color})} />
+						<span className={colorName}>{name}</span>
+						<DeleteIcon
+							className={deleteIcon}
+							onClick={() => dispatch({ type: 'DELETE', color })}
+						/>
 					</div>
 				</div>
 			);

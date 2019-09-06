@@ -2,7 +2,7 @@ import chromaContrast from '../helpers/chromaContrast';
 import media from '../helpers/mediaQuery';
 
 export default {
-	ColorBox    : {
+	colorBox    : {
 		width              : '20%',
 		height             : (props) => (props.singleColorPalette ? '50%' : '25%'),
 		position           : 'relative',
@@ -18,7 +18,7 @@ export default {
 			height             : '50%',
 			backgroundColor    : '#222222',
 			'& $button'        : {
-				color: '#fff',
+				color           : '#fff',
 				backgroundColor : 'transparent'
 			},
 			[media.down('lg')]: {
@@ -49,16 +49,16 @@ export default {
 	},
 
 	copyOverlay : {
-		opacity         : '0',
-		zIndex          : '0',
-		height          : '100%',
-		width           : '100%',
-		transition      : '0.7s transform linear',
-		transform       : 'scale(0.1)',
-		backgroundColor : (props) => props[props.format],
+		opacity            : '0',
+		zIndex             : '0',
+		height             : '100%',
+		width              : '100%',
+		transition         : '0.7s transform linear',
+		transform          : 'scale(0.1)',
+		backgroundColor    : (props) => props[props.format],
 		[media.down('sm')]: {
-			transition      : '0.2s transform linear',
-		},
+			transition : '0.2s transform linear'
+		}
 	},
 
 	showOverlay : {
@@ -84,7 +84,9 @@ export default {
 		opacity        : '0',
 		'& h1'         : {
 			backgroundColor    : (props) =>
-				chromaContrast(props[props.format]) === '#000' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)',
+				chromaContrast(props[props.format]) === '#000'
+					? 'rgba(0,0,0,0.1)'
+					: 'rgba(255,255,255,0.2)',
 			textShadow         : '1px 2px rgba(102, 102, 102, 0.603)',
 			textTransform      : 'uppercase',
 			fontWeight         : '400',
@@ -125,7 +127,9 @@ export default {
 		fontSize        : '1.1rem',
 		transition      : '0.1s opacity linear',
 		backgroundColor : (props) =>
-			chromaContrast(props[props.format]) === '#000' ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.2)',
+			chromaContrast(props[props.format]) === '#000'
+				? 'rgba(0,0,0,0.1)'
+				: 'rgba(255,255,255,0.2)',
 		color           : (props) => chromaContrast(props[props.format]),
 		'&.copyButton'  : {
 			opacity : 0

@@ -16,7 +16,11 @@ export default memo(
 				<Link to={`palette/${id}`} style={{ textDecoration: 'none' }}>
 					<div className={classes.colors}>
 						{colors.map((color) => (
-							<div className={miniBox} style={{ backgroundColor: color.color }} key={color.name} />
+							<div
+								className={miniBox}
+								style={{ backgroundColor: color.color }}
+								key={color.name}
+							/>
 						))}
 					</div>
 					<h5 className={title}>

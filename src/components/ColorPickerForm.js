@@ -7,7 +7,12 @@ import Button from '@material-ui/core/Button';
 import chromaContrast from '../helpers/chromaContrast';
 import styles from '../styles/ColorPickerFormStyles';
 
-export default withStyles(styles)(function ColorPickerForm({ paletteFull, classes, colors, dispatch }) {
+export default withStyles(styles)(function ColorPickerForm({
+	paletteFull,
+	classes     : { picker, colorNameInput, addColorBtn },
+	colors,
+	dispatch
+}) {
 	const [ newColor, setNewColor ] = useState('#000');
 	const [ newColorName, setNewColorName, resetNewColorName ] = useInputState();
 
@@ -16,21 +21,27 @@ export default withStyles(styles)(function ColorPickerForm({ paletteFull, classe
 	}
 
 	function handleAddColor() {
-		dispatch({type: 'ADD', color: { name: newColorName, color: newColor }})
+		dispatch({ type: 'ADD', color: { name: newColorName, color: newColor } });
 		resetNewColorName();
 	}
 
 	useEffect(() => {
-		ValidatorForm.addValidationRule('uniqueColor', () => colors.every(({ color }) => color !== newColor));
+		ValidatorForm.addValidationRule('uniqueColor', () =>
+			colors.every(({ color }) => color !== newColor)
+		);
 		ValidatorForm.addValidationRule('uniqueColorName', (value) =>
 			colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
 		);
 	});
 
-	const { picker, colorNameInput, addColorBtn } = classes;
 	return (
 		<div>
-			<ChromePicker color={newColor} onChange={handleColorChange} className={picker} disableAlpha />
+			<ChromePicker
+				color={newColor}
+				onChange={handleColorChange}
+				className={picker}
+				disableAlpha
+			/>
 			<ValidatorForm onSubmit={handleAddColor} instantValidate={false}>
 				<TextValidator
 					value={newColorName}
@@ -39,7 +50,11 @@ export default withStyles(styles)(function ColorPickerForm({ paletteFull, classe
 					name='newColorName'
 					onChange={setNewColorName}
 					validators={[ 'required', 'uniqueColor', 'uniqueColorName' ]}
-					errorMessages={[ 'Color Name is Required', 'Color Already Used', 'Color Name Already Taken' ]}
+					errorMessages={[
+						'Color Name is Required',
+						'Color Already Used',
+						'Color Name Already Taken'
+					]}
 					className={colorNameInput}
 					disabled={paletteFull}
 				/>

@@ -10,7 +10,7 @@ export default memo(
 		const [ copying, toggleCopying, setCopying ] = useToggleState();
 		const { classes, singleColorPalette, paletteId, id, name, format } = props;
 		const {
-			ColorBox,
+			colorBox,
 			copyOverlay,
 			copyMessage,
 			copyText,
@@ -22,7 +22,7 @@ export default memo(
 		} = classes;
 		const color = props[format];
 		return (
-			<div className={ColorBox}>
+			<div className={colorBox}>
 				<div className={`${copyOverlay} ${copying && showOverlay}`} />
 				<div className={`${copyMessage} ${copying && showMessage}`}>
 					<h1 className={copyText}>copied!</h1>

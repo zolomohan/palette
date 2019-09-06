@@ -25,8 +25,8 @@ export default function AlertDialog({ open, id, toggleDeleteModal }) {
 			<DialogTitle>Are You Sure?</DialogTitle>
 			<DialogContent>
 				<DialogContentText>
-					This action is irreversible. All Your Colors will be lost. Are you sure you want to Delete
-					your palette?
+					This action is irreversible. All Your Colors will be lost. Are you sure you want
+					to Delete your palette?
 				</DialogContentText>
 			</DialogContent>
 			<DialogActions>
