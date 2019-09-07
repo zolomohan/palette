@@ -147,7 +147,7 @@ export default {
 		color         : (props) => chromaContrast(props[props.format])
 	},
 
-	seeMore     : {
+	seeMore     : { 
 		position        : 'absolute',
 		bottom          : '0px',
 		right           : '0px',
@@ -162,6 +162,6 @@ export default {
 	},
 
 	copyText    : {
-		color : (props) => chromaContrast(props[props.format])
+		color : (props) => chromaContrast(props[props.format])   === '#000' ? '#232323	' : '#fff',
 	}
 };
