@@ -25,7 +25,7 @@ export default {
 				width  : '75%',
 				height : '33.333%'
 			},
-			[media.down('sm')]: {
+			[media.down('md')]: {
 				width  : '50%',
 				height : '20%'
 			},
@@ -38,7 +38,7 @@ export default {
 			width  : '25%',
 			height : (props) => (props.singleColorPalette ? '33.3333%' : '20%')
 		},
-		[media.down('sm')]: {
+		[media.down('md')]: {
 			width  : '50%',
 			height : (props) => (props.singleColorPalette ? '20%' : '10%')
 		},
