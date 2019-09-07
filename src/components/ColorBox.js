@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import styles from '../styles/ColorBoxStyles';
+import { COPY_PHRASES } from '../helpers/constants';
 
 export default memo(
 	withStyles(styles)(function ColorBox(props) {
@@ -21,11 +22,12 @@ export default memo(
 			showOverlay
 		} = classes;
 		const color = props[format];
+		const copyPhrase = COPY_PHRASES[Math.floor(Math.random() * COPY_PHRASES.length)];
 		return (
 			<div className={colorBox}>
 				<div className={`${copyOverlay} ${copying && showOverlay}`} />
 				<div className={`${copyMessage} ${copying && showMessage}`}>
-					<h1 className={copyText}>copied!</h1>
+					<h1 className={copyText}>{`${copyPhrase.toUpperCase()}!`}</h1>
 					<p className={copyText}>{color}</p>
 				</div>
 				<span className={colorName}>{name}</span>
