@@ -14,8 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import AddCircle from '@material-ui/icons/AddCircle';
-import CreatePaletteSaveDialog from 'components/create-palette/dialogs/SaveDialog';
-import CreatePaletteDiscardDialog from 'components/create-palette/dialogs/DiscardDialog';
+import CreatePaletteSaveDialog from 'components/create-palette/dialogs/SavePalette';
+import CreatePaletteDiscardDialog from 'components/create-palette/dialogs/DiscardPalette';
 import styles from 'styles/NavbarStyles';
 import { PaletteContext } from 'contexts/palette.context';
 

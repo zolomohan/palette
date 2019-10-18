@@ -3,7 +3,7 @@ import useToggleState from 'hooks/useToggleState';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
-import DeletePaletteDialog from 'components/create-palette/dialogs/DiscardDialog';
+import DeletePaletteDialog from 'components/palette-list/dialogs/DeletePalette';
 import styles from 'styles/MiniPaletteStyles';
 
 export default memo(
