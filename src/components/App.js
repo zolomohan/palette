@@ -45,18 +45,23 @@ export default function App() {
 								path={`${process.env.PUBLIC_URL}/palette/:id`}
 								render={(routeProps) => (
 									<Page>
-										<Palette {...palette(routeProps.match.params.id)} />
+										<Palette
+											{...palette(routeProps.match.params.id)}
+										/>
 									</Page>
 								)}
 							/>
 							<Route
 								exact
-								path={`${process.env.PUBLIC_URL}/palette/:paletteId/:colorId`}
+								path={`${process.env
+									.PUBLIC_URL}/palette/:paletteId/:colorId`}
 								render={(routeProps) => (
 									<Page>
 										<SingleColorPalette
 											colorId={routeProps.match.params.colorId}
-											{...palette(routeProps.match.params.paletteId)}
+											{...palette(
+												routeProps.match.params.paletteId
+											)}
 										/>
 									</Page>
 								)}

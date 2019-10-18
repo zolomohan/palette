@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core';
 import ColorBox from 'components/palette/ColorBox';
-import Navbar from 'components/Navbar';
+import Navbar from 'components/palette/Navbar';
 import Footer from 'components/palette/Footer';
 import stylesPalette from 'styles/PaletteStyles';
 import stylesColorBox from 'styles/ColorBoxStyles';
@@ -16,7 +16,7 @@ export default withStyles({
 	colors,
 	colorId,
 	paletteName,
-	classes     : { palette, paletteColors, button, colorBox },
+	classes: { palette, paletteColors, button, colorBox }
 }) {
 	let shades = [];
 	for (let shade in colors)
@@ -28,7 +28,12 @@ export default withStyles({
 			<Navbar changeColorFormat={setFormat} format={format} singleColorPalette />
 			<div className={paletteColors}>
 				{shades.map((color) => (
-					<ColorBox {...color} format={format} key={color.name} singleColorPalette />
+					<ColorBox
+						{...color}
+						format={format}
+						key={color.name}
+						singleColorPalette
+					/>
 				))}
 				<Link to={`${process.env.PUBLIC_URL}/palette/${id}`}>
 					<div className={`${colorBox} goBack`}>

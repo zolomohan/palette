@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
-import Navbar from 'components/Navbar';
+import Navbar from 'components/create-palette/Navbar';
 import ColorPickerForm from 'components/create-palette/ColorPickerForm';
 import DraggableColorList from 'components/create-palette/DraggableColorList';
 import styles from 'styles/CreatePaletteStyles';
@@ -18,7 +18,7 @@ import { ColorContext, ColorDispatchContext } from 'contexts/color.context';
 export default withStyles(styles, { withTheme: true })(function CreatePalette({
 	history,
 	paletteMaxColors = 20,
-	classes          : {
+	classes: {
 		root,
 		drawer,
 		drawerPaper,
@@ -38,7 +38,7 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 	const colorsDispatch = useContext(ColorDispatchContext);
 	const paletteDispatch = useContext(PaletteDispatchContext);
 	const [ drawerOpen, toggleOpen ] = useToggleState(true);
-	
+
 	const randomColor = () => {
 		const allColors = palettes.map((palette) => palette.colors).flat();
 		const random = allColors[Math.floor(Math.random() * allColors.length)];
@@ -52,12 +52,12 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 
 	const handleSavePalette = (newPaletteName, emoji) => {
 		paletteDispatch({
-			type    : 'ADD',
-			palette : {
-				paletteName : newPaletteName,
-				id          : newPaletteName.toLowerCase().replace(/ /g, '-'),
-				emoji       : emoji,
-				colors      : colors
+			type: 'ADD',
+			palette: {
+				paletteName: newPaletteName,
+				id: newPaletteName.toLowerCase().replace(/ /g, '-'),
+				emoji: emoji,
+				colors: colors
 			}
 		});
 		history.push(`${process.env.PUBLIC_URL}/`);
@@ -72,7 +72,6 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 				open={drawerOpen}
 				savePalette={handleSavePalette}
 				openDrawer={toggleOpen}
-				variant='new'
 				enableSave={colors.length > 0}
 			/>
 			<Drawer
@@ -81,7 +80,7 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 				anchor='left'
 				open={drawerOpen}
 				classes={{
-					paper : drawerPaper
+					paper: drawerPaper
 				}}
 			>
 				<div className={drawerHeader}>
@@ -110,14 +109,12 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 							Clear Palette
 						</Button>
 					</div>
-					<ColorPickerForm
-						paletteFull={paletteFull}
-					/>
+					<ColorPickerForm paletteFull={paletteFull} />
 				</div>
 			</Drawer>
 			<main
 				className={clsx(content, {
-					[contentShift] : drawerOpen
+					[contentShift]: drawerOpen
 				})}
 			>
 				<div className={drawerHeader} />
@@ -130,7 +127,9 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 					/>
 				) : (
 					<div className={emptyPalettePlaceholderContainer}>
-						<Typography className={emptyPalettePlaceholder}>Add Colors +</Typography>
+						<Typography className={emptyPalettePlaceholder}>
+							Add Colors +
+						</Typography>
 					</div>
 				)}
 			</main>

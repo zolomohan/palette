@@ -7,7 +7,7 @@ import styles from 'styles/PaletteListStyles';
 import { PaletteContext } from 'contexts/palette.context';
 
 export default withStyles(styles)(function PaletteList({
-	classes : { root, container, nav, palettes }
+	classes: { root, container, nav, palettes }
 }) {
 	const paletteList = useContext(PaletteContext);
 
@@ -16,7 +16,9 @@ export default withStyles(styles)(function PaletteList({
 			<div className={container}>
 				<nav className={nav}>
 					<h1>Palette</h1>
-					<Link to={`${process.env.PUBLIC_URL}/palette/new`}>Create Palette</Link>
+					<Link to={`${process.env.PUBLIC_URL}/palette/new`}>
+						Create Palette
+					</Link>
 				</nav>
 				<TransitionGroup className={palettes}>
 					{paletteList.map((palette) => (

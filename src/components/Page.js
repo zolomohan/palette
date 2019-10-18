@@ -9,7 +9,9 @@ export default function Page({ variant, children }) {
 				<h1>404</h1>
 				<h2>There's Nothing Here</h2>
 				<div className='Links'>
-					<Link to={`${process.env.PUBLIC_URL}/palette/new`}>Create Palette</Link>
+					<Link to={`${process.env.PUBLIC_URL}/palette/new`}>
+						Create Palette
+					</Link>
 					<Link to={`${process.env.PUBLIC_URL}/`}>All Palettes</Link>
 				</div>
 			</div>

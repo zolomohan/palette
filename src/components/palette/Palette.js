@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { withStyles } from '@material-ui/styles';
 import ColorBox from './ColorBox';
-import Navbar from 'components/Navbar';
+import Navbar from 'components/palette/Navbar';
 import Footer from 'components/palette/Footer';
 import styles from 'styles/PaletteStyles';
 
@@ -10,7 +10,7 @@ export default withStyles(styles)(function Palette({
 	emoji,
 	colors,
 	paletteName,
-	classes     : { palette, paletteColors }
+	classes: { palette, paletteColors }
 }) {
 	const [ level, setLevel ] = useState(400);
 	const [ format, setFormat ] = useState('hex');

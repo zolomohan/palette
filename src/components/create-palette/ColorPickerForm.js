@@ -10,7 +10,7 @@ import { ColorContext, ColorDispatchContext } from 'contexts/color.context';
 
 export default withStyles(styles)(function ColorPickerForm({
 	paletteFull,
-	classes     : { picker, colorNameInput, addColorBtn }
+	classes: { picker, colorNameInput, addColorBtn }
 }) {
 	const colors = useContext(ColorContext);
 	const colorsDispatch = useContext(ColorDispatchContext);
@@ -64,8 +64,8 @@ export default withStyles(styles)(function ColorPickerForm({
 					variant='contained'
 					disabled={paletteFull}
 					style={{
-						backgroundColor : !paletteFull ? newColor : 'grey',
-						color           : chromaContrast(newColor)
+						backgroundColor: !paletteFull ? newColor : 'grey',
+						color: chromaContrast(newColor)
 					}}
 					className={addColorBtn}
 				>
