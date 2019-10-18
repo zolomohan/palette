@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core';
-import ColorBox from './ColorBox';
-import Navbar from './Navbar';
-import Footer from './Footer';
-import stylesPalette from '../styles/PaletteStyles';
-import stylesColorBox from '../styles/ColorBoxStyles';
+import ColorBox from 'components/palette/ColorBox';
+import Navbar from 'components/Navbar';
+import Footer from 'components/palette/Footer';
+import stylesPalette from 'styles/PaletteStyles';
+import stylesColorBox from 'styles/ColorBoxStyles';
 
 export default withStyles({
 	...stylesColorBox,

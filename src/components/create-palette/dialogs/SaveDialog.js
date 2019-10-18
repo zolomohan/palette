@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import useInputState from '../hooks/useInputState';
+import useInputState from 'hooks/useInputState';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -10,7 +10,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 
-export default function FormDialog({ open, toggleDialog, savePalette, palettes }) {
+export default function SaveDialog({ open, toggleDialog, savePalette, palettes }) {
 	const [ stage, setStage ] = useState('form');
 	const [ newPaletteName, setNewPaletteName, resetNewPaletteName ] = useInputState();
 

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React, { useContext } from 'react';
-import useToggleState from '../hooks/useToggleState';
+import useToggleState from 'hooks/useToggleState';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,12 +8,12 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
-import Navbar from './Navbar';
-import ColorPickerForm from './ColorPickerForm';
-import DraggableColorList from './DraggableColorList';
-import styles from '../styles/CreatePaletteStyles';
-import { PaletteContext, PaletteDispatchContext } from '../contexts/palette.context';
-import { ColorContext, ColorDispatchContext } from '../contexts/color.context';
+import Navbar from 'components/Navbar';
+import ColorPickerForm from 'components/create-palette/ColorPickerForm';
+import DraggableColorList from 'components/create-palette/DraggableColorList';
+import styles from 'styles/CreatePaletteStyles';
+import { PaletteContext, PaletteDispatchContext } from 'contexts/palette.context';
+import { ColorContext, ColorDispatchContext } from 'contexts/color.context';
 
 export default withStyles(styles, { withTheme: true })(function CreatePalette({
 	history,

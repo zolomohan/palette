@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React, { useContext } from 'react';
-import useToggleState from '../hooks/useToggleState';
+import useToggleState from 'hooks/useToggleState';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core';
 import Slider from '@material-ui/core/Slider';
@@ -12,12 +12,12 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import CreatePaletteSaveDialog from './CreatePaletteSaveDialog';
 import CloseIcon from '@material-ui/icons/Close';
-import CreatePaletteDiscardDialog from './CreatePaletteDiscardDialog';
 import AddCircle from '@material-ui/icons/AddCircle';
-import styles from '../styles/NavbarStyles';
-import { PaletteContext } from '../contexts/palette.context';
+import CreatePaletteSaveDialog from 'components/create-palette/dialogs/SaveDialog';
+import CreatePaletteDiscardDialog from 'components/create-palette/dialogs/DiscardDialog';
+import styles from 'styles/NavbarStyles';
+import { PaletteContext } from 'contexts/palette.context';
 
 export default withStyles(styles)(function Navbar({
 	open,

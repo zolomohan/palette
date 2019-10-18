@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { withStyles } from '@material-ui/styles';
 import ColorBox from './ColorBox';
-import Navbar from './Navbar';
-import Footer from './Footer';
-import styles from '../styles/PaletteStyles';
+import Navbar from 'components/Navbar';
+import Footer from 'components/palette/Footer';
+import styles from 'styles/PaletteStyles';
 
 export default withStyles(styles)(function Palette({
 	id,

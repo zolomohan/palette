@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
-import useToggleState from '../hooks/useToggleState';
+import useToggleState from 'hooks/useToggleState';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
-import DeletePaletteDialog from './DeletePaletteDialog';
-import styles from '../styles/MiniPaletteStyles';
+import DeletePaletteDialog from 'components/create-palette/dialogs/DiscardDialog';
+import styles from 'styles/MiniPaletteStyles';
 
 export default memo(
 	withStyles(styles)(function MiniPalette({ classes, paletteName, emoji, id, colors }) {

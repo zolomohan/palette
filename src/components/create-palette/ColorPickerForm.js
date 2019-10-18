@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
-import useInputState from '../hooks/useInputState';
+import useInputState from 'hooks/useInputState';
 import { withStyles } from '@material-ui/core/styles';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import ChromePicker from 'react-color';
 import Button from '@material-ui/core/Button';
-import chromaContrast from '../helpers/chromaContrast';
-import styles from '../styles/ColorPickerFormStyles';
-import { ColorContext, ColorDispatchContext } from '../contexts/color.context';
+import chromaContrast from 'helpers/chromaContrast';
+import styles from 'styles/ColorPickerFormStyles';
+import { ColorContext, ColorDispatchContext } from 'contexts/color.context';
 
 export default withStyles(styles)(function ColorPickerForm({
 	paletteFull,

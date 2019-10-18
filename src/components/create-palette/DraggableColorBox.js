@@ -2,8 +2,8 @@ import React, { memo, useContext } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { SortableElement } from 'react-sortable-hoc';
 import DeleteIcon from '@material-ui/icons/Delete';
-import styles from '../styles/DraggableColorBoxStyles';
-import { ColorDispatchContext } from '../contexts/color.context';
+import styles from 'styles/DraggableColorBoxStyles';
+import { ColorDispatchContext } from 'contexts/color.context';
 
 export default SortableElement(
 	memo(

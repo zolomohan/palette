@@ -5,9 +5,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { PaletteDispatchContext } from '../contexts/palette.context';
+import { PaletteDispatchContext } from 'contexts/palette.context';
 
-export default function AlertDialog({ open, id, toggleDeleteModal }) {
+export default function ConfirmDialog({ open, id, toggleDeleteModal }) {
 	const paletteDispatch = useContext(PaletteDispatchContext);
 
 	const handleDelete = () => {

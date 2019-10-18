@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import MiniPalette from './MiniPalette';
-import styles from '../styles/PaletteListStyles';
-import { PaletteContext } from '../contexts/palette.context';
+import MiniPalette from 'components/palette-list/MiniPalette';
+import styles from 'styles/PaletteListStyles';
+import { PaletteContext } from 'contexts/palette.context';
 
 export default withStyles(styles)(function PaletteList({
 	classes : { root, container, nav, palettes }

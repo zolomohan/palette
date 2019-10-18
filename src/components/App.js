@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import Page from './Page';
-import Palette from './Palette';
-import PaletteList from './PaletteList';
-import SingleColorPalette from './SingleColorPalette';
-import CreatePalette from './CreatePalette';
-import generateShades from '../helpers/generateShades';
-import ColorProvider from '../contexts/color.context';
-import { PaletteContext } from '../contexts/palette.context';
+import Page from 'components/Page';
+import Palette from 'components/palette/Palette';
+import PaletteList from 'components/palette-list/PaletteList';
+import SingleColorPalette from 'components/palette/SingleColorPalette';
+import CreatePalette from 'components/create-palette/CreatePalette';
+import generateShades from 'helpers/generateShades';
+import ColorProvider from 'contexts/color.context';
+import { PaletteContext } from 'contexts/palette.context';
 
 export default function App() {
 	const palettes = useContext(PaletteContext);
