@@ -3,7 +3,7 @@ import useToggleState from 'hooks/useToggleState';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import styles from 'styles/ColorBoxStyles';
+import styles from 'styles/ColorBox';
 import { COPY_PHRASES } from 'helpers/constants';
 
 export default memo(

@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 import Navbar from 'components/create-palette/Navbar';
 import ColorPickerForm from 'components/create-palette/ColorPickerForm';
 import DraggableColorList from 'components/create-palette/DraggableColorList';
-import styles from 'styles/CreatePaletteStyles';
+import styles from 'styles/CreatePalette';
 import { PaletteContext, PaletteDispatchContext } from 'contexts/palette.context';
 import { ColorContext, ColorDispatchContext } from 'contexts/color.context';
 

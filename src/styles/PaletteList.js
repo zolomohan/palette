@@ -1,5 +1,5 @@
-import background from './bg.svg';
-import media from '../helpers/mediaQuery';
+import background from 'assets/bg.svg';
+import media from 'helpers/mediaQuery';
 
 export default {
 	'@global' : {

@@ -1,5 +1,5 @@
-import chromaContrast from '../helpers/chromaContrast';
-import media from '../helpers/mediaQuery';
+import chromaContrast from 'helpers/chromaContrast';
+import media from 'helpers/mediaQuery';
 
 export default {
 	root       : {

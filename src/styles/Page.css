@@ -16,11 +16,12 @@
 .page-exit-active {
 	opacity: 0;
 }
+
 .Route404 {
 	height: 100vh;
 	width: 100%;
 	background-color: '#3f3383';
-	background-image: url('./bg.svg');
+	background-image: url('../assets/bg.svg');
 	background-size: cover;
 	display: flex;
 	justify-content: center;
@@ -29,20 +30,18 @@
 	text-align: center;
 }
 
-.Route404 h1 {
+.Route404 h1, .Route404 h2{
 	flex-direction: row;
 	margin: 0;
 	color: white;
-	font-family: 'Blinker', sans-serif;
+}
+
+.Route404 h1 {
 	font-size: 150px;
 	font-weight: 400;
 }
 
 .Route404 h2 {
-	flex-direction: row;
-	margin: 0;
-	color: white;
-	font-family: 'Blinker', sans-serif;
 	font-size: 50px;
 	font-weight: 100;
 }
@@ -58,7 +57,6 @@
 	color: white;
 	margin: 30px;
 	text-decoration: none;
-	font-family: 'Blinker';
 	font-size: 20px;
 	letter-spacing: 1px;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
-import styles from 'styles/FooterStyles';
+import styles from 'styles/Footer';
 
 export default withStyles(styles)(function Footer({
 	classes     : { Footer, FooterPaletteName, FooterEmoji },

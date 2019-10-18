@@ -4,8 +4,8 @@ import { withStyles } from '@material-ui/core';
 import ColorBox from 'components/palette/ColorBox';
 import Navbar from 'components/palette/Navbar';
 import Footer from 'components/palette/Footer';
-import stylesPalette from 'styles/PaletteStyles';
-import stylesColorBox from 'styles/ColorBoxStyles';
+import stylesPalette from 'styles/Palette';
+import stylesColorBox from 'styles/ColorBox';
 
 export default withStyles({
 	...stylesColorBox,

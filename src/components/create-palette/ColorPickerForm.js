@@ -5,7 +5,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import ChromePicker from 'react-color';
 import Button from '@material-ui/core/Button';
 import chromaContrast from 'helpers/chromaContrast';
-import styles from 'styles/ColorPickerFormStyles';
+import styles from 'styles/ColorPickerForm';
 import { ColorContext, ColorDispatchContext } from 'contexts/color.context';
 
 export default withStyles(styles)(function ColorPickerForm({

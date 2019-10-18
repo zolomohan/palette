@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import MiniPalette from 'components/palette-list/MiniPalette';
-import styles from 'styles/PaletteListStyles';
+import styles from 'styles/PaletteList';
 import { PaletteContext } from 'contexts/palette.context';
 
 export default withStyles(styles)(function PaletteList({
