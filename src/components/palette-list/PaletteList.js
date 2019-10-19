@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { PaletteContext } from 'contexts/palette.context';
-import { Link } from 'react-router-dom';
-import { withStyles } from '@material-ui/styles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Link from 'react-router-dom/Link';
 import MiniPalette from 'components/palette-list/MiniPalette';
+import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/PaletteList';
 import 'styles/animations/MiniPaletteFade.css';
 

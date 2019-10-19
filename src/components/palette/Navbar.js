@@ -1,11 +1,11 @@
 import React from 'react';
 import useToggleState from 'hooks/useToggleState';
-import { Link } from 'react-router-dom';
-import { withStyles } from '@material-ui/core';
+import Link from 'react-router-dom/Link';
 import Slider from '@material-ui/core/Slider';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import SnackBar from 'components/ui/Snackbar';
+import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/navbar/Palette';
 
 function Navbar(props) {

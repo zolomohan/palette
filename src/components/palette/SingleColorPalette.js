@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { withStyles } from '@material-ui/core';
-import ColorBox from 'components/palette/ColorBox';
+import Link from 'react-router-dom/Link';
 import Navbar from 'components/palette/Navbar';
 import Footer from 'components/palette/Footer';
+import ColorBox from 'components/palette/ColorBox';
+import withStyles from '@material-ui/core/styles/withStyles';
 import stylesPalette from 'styles/Palette';
 import stylesColorBox from 'styles/ColorBox';
 

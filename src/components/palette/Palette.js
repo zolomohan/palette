@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { withStyles } from '@material-ui/styles';
-import ColorBox from './ColorBox';
 import Navbar from 'components/palette/Navbar';
 import Footer from 'components/palette/Footer';
+import ColorBox from 'components/palette/ColorBox';
+import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/Palette';
 
 function Palette(props) {

@@ -7,7 +7,7 @@ import Navbar from 'components/create-palette/Navbar';
 import DraggableColorList from 'components/create-palette/DraggableColorList';
 import AddColorDrawer from 'components/create-palette/AddColorDrawer';
 
-function CreatePalette(props) {
+export default function CreatePalette(props) {
 	const colors = useContext(ColorContext);
 	const palettes = useContext(PaletteContext);
 	const colorsDispatch = useContext(ColorDispatchContext);
@@ -67,5 +67,3 @@ function CreatePalette(props) {
 		</div>
 	);
 }
-
-export default CreatePalette;

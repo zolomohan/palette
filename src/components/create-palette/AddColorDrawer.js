@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import ColorPickerForm from 'components/create-palette/ColorPickerForm';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/AddColorDrawer';
 
 function AddColorDrawer(props) {

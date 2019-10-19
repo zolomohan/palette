@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import React, { memo } from 'react';
 import useToggleState from 'hooks/useToggleState';
-import { Link } from 'react-router-dom';
-import { withStyles } from '@material-ui/styles';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import Link from 'react-router-dom/Link';
+import { CopyToClipboard } from 'react-copy-to-clipboard/';
 import { COPY_PHRASES } from 'helpers/constants';
+import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/ColorBox';
 
 function ColorBox(props) {

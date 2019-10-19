@@ -2,10 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import useInputState from 'hooks/useInputState';
 import { ColorContext, ColorDispatchContext } from 'contexts/color.context';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import ChromePicker from 'react-color';
 import Button from '@material-ui/core/Button';
+import ChromePicker from 'react-color';
 import chromaContrast from 'helpers/chromaContrast';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/ColorPickerForm';
 
 function ColorPickerForm(props) {

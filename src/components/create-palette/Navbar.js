@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SnackBar from 'components/ui/Snackbar';
 import SavePaletteDialog from 'components/create-palette/SavePaletteDialog';
 import ConfirmDialog from 'components/ui/ConfirmDialog';
-import { withStyles } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/navbar/CreatePalette';
 
 function Navbar(props) {

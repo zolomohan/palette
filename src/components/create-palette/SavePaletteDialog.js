@@ -10,7 +10,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 
-function SavePaletteDialog(props) {
+export default function SavePaletteDialog(props) {
 	const [ stage, setStage ] = useState('form');
 	const [ newPaletteName, setNewPaletteName, resetNewPaletteName ] = useInputState();
 
@@ -74,5 +74,3 @@ function SavePaletteDialog(props) {
 		</Fragment>
 	);
 }
-
-export default SavePaletteDialog;

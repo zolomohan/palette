@@ -2,7 +2,7 @@ import React, { memo, useContext } from 'react';
 import { ColorDispatchContext } from 'contexts/color.context';
 import { SortableElement } from 'react-sortable-hoc';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/DraggableColorBox';
 
 function DraggableColorBox(props) {
