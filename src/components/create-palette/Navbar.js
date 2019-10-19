@@ -12,7 +12,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import AddCircle from '@material-ui/icons/AddCircle';
 import SavePaletteDialog from 'components/create-palette/dialogs/SavePalette';
 import DiscardPaletteDialog from 'components/create-palette/dialogs/DiscardPalette';
-import styles from 'styles/Navbar';
+import styles from 'styles/navbar/CreatePalette';
 import { PaletteContext } from 'contexts/palette.context';
 
 export default withStyles(styles)(function Navbar({
