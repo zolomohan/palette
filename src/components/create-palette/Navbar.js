@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import React, { useContext } from 'react';
+import { PaletteContext } from 'contexts/palette.context';
 import useToggleState from 'hooks/useToggleState';
 import { withStyles } from '@material-ui/core';
 import SnackBar from 'components/ui/Snackbar';
@@ -9,13 +10,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import AddCircle from '@material-ui/icons/AddCircle';
-import SavePaletteDialog from 'components/create-palette/dialogs/SavePalette';
-import DiscardPaletteDialog from 'components/create-palette/dialogs/DiscardPalette';
+import SavePaletteDialog from 'components/create-palette/SavePaletteDialog';
+import ConfirmDialog from 'components/ui/ConfirmDialog';
 import styles from 'styles/navbar/CreatePalette';
-import { PaletteContext } from 'contexts/palette.context';
 
 export default withStyles(styles)(function Navbar({
-	open,
+	history,
+	drawerOpen,
 	openDrawer,
 	enableSave,
 	savePalette,
@@ -25,6 +26,8 @@ export default withStyles(styles)(function Navbar({
 	const [ emptyPaletteSnackbar, toggleEmptyPaletteSnackbar ] = useToggleState();
 	const [ saveDialog, toggleSaveDialog ] = useToggleState();
 	const [ discardDialog, toggleDiscardDialog ] = useToggleState();
+
+	const onDiscard = () => history.push(`${process.env.PUBLIC_URL}/`);
 
 	const handleSavePalette = () => {
 		if (enableSave) toggleSaveDialog();
@@ -36,16 +39,16 @@ export default withStyles(styles)(function Navbar({
 			position='fixed'
 			color='inherit'
 			className={clsx(appBar, {
-				[appBarShift]: open
+				[appBarShift]: drawerOpen
 			})}
 			elevation={0}
 		>
-			<Toolbar disableGutters={!open}>
+			<Toolbar disableGutters={!drawerOpen}>
 				<IconButton
 					color='inherit'
 					aria-label='Open drawer'
 					onClick={openDrawer}
-					className={clsx(menuButton, open && hide)}
+					className={clsx(menuButton, drawerOpen && hide)}
 				>
 					<AddCircle />
 				</IconButton>
@@ -76,7 +79,13 @@ export default withStyles(styles)(function Navbar({
 					savePalette={savePalette}
 					palettes={palettes}
 				/>
-				<DiscardPaletteDialog open={discardDialog} toggle={toggleDiscardDialog} />
+				<ConfirmDialog
+					open={discardDialog}
+					content='This action is irreversible. All Your Colors will be lost. Are you
+					sure you want to Discard your palette?'
+					onCancel={toggleDiscardDialog}
+					onSure={onDiscard}
+				/>
 			</div>
 		</AppBar>
 	);

@@ -33,6 +33,7 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 		emptyPalettePlaceholderContainer
 	}
 }) {
+	console.log(history)
 	const colors = useContext(ColorContext);
 	const palettes = useContext(PaletteContext);
 	const colorsDispatch = useContext(ColorDispatchContext);
@@ -69,7 +70,8 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 		<div className={root}>
 			<CssBaseline />
 			<Navbar
-				open={drawerOpen}
+				history={history}
+				drawerOpen={drawerOpen}
 				savePalette={handleSavePalette}
 				openDrawer={toggleOpen}
 				enableSave={colors.length > 0}
