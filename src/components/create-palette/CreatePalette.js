@@ -2,38 +2,27 @@ import clsx from 'clsx';
 import React, { useContext } from 'react';
 import useToggleState from 'hooks/useToggleState';
 import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Button from '@material-ui/core/Button';
 import Navbar from 'components/create-palette/Navbar';
-import ColorPickerForm from 'components/create-palette/ColorPickerForm';
 import DraggableColorList from 'components/create-palette/DraggableColorList';
 import styles from 'styles/CreatePalette';
 import { PaletteContext, PaletteDispatchContext } from 'contexts/palette.context';
 import { ColorContext, ColorDispatchContext } from 'contexts/color.context';
+import AddColorDrawer from './AddColorDrawer';
 
 export default withStyles(styles, { withTheme: true })(function CreatePalette({
 	history,
 	paletteMaxColors = 20,
 	classes: {
 		root,
-		drawer,
-		drawerPaper,
-		drawerHeader,
-		drawerContainer,
-		drawerButtons,
-		drawerButton,
+		contentHeader,
 		content,
 		contentShift,
-		chevronLeftIcon,
 		emptyPalettePlaceholder,
 		emptyPalettePlaceholderContainer
 	}
 }) {
-	console.log(history)
 	const colors = useContext(ColorContext);
 	const palettes = useContext(PaletteContext);
 	const colorsDispatch = useContext(ColorDispatchContext);
@@ -48,10 +37,12 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 			: colorsDispatch({ type: 'ADD', color: random });
 	};
 
-	const handleSortColors = ({ oldIndex, newIndex }) =>
+	const clearColors = () => colorsDispatch({ type: 'CLEAR' });
+
+	const sortColors = ({ oldIndex, newIndex }) =>
 		colorsDispatch({ type: 'SORT', oldIndex, newIndex });
 
-	const handleSavePalette = (newPaletteName, emoji) => {
+	const savePalette = (newPaletteName, emoji) => {
 		paletteDispatch({
 			type: 'ADD',
 			palette: {
@@ -64,66 +55,33 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 		history.push(`${process.env.PUBLIC_URL}/`);
 	};
 
-	const paletteFull = colors.length >= paletteMaxColors;
-
 	return (
 		<div className={root}>
 			<CssBaseline />
 			<Navbar
 				history={history}
 				drawerOpen={drawerOpen}
-				savePalette={handleSavePalette}
+				savePalette={savePalette}
 				openDrawer={toggleOpen}
 				enableSave={colors.length > 0}
 			/>
-			<Drawer
-				className={drawer}
-				variant='persistent'
-				anchor='left'
+			<AddColorDrawer
 				open={drawerOpen}
-				classes={{
-					paper: drawerPaper
-				}}
-			>
-				<div className={drawerHeader}>
-					<Typography variant='h5'>Pick a Color</Typography>
-					<IconButton onClick={toggleOpen} className={chevronLeftIcon}>
-						<ChevronLeftIcon />
-					</IconButton>
-				</div>
-				<div className={drawerContainer}>
-					<div className={drawerButtons}>
-						<Button
-							variant='outlined'
-							color='primary'
-							onClick={randomColor}
-							disabled={colors.length >= paletteMaxColors}
-							className={drawerButton}
-						>
-							Random Color
-						</Button>
-						<Button
-							variant='outlined'
-							color='secondary'
-							onClick={() => colorsDispatch({ type: 'CLEAR' })}
-							className={drawerButton}
-						>
-							Clear Palette
-						</Button>
-					</div>
-					<ColorPickerForm paletteFull={paletteFull} />
-				</div>
-			</Drawer>
+				onClear={clearColors}
+				onClose={toggleOpen}
+				randomColor={randomColor}
+				paletteFull={colors.length >= paletteMaxColors}
+			/>
 			<main
 				className={clsx(content, {
 					[contentShift]: drawerOpen
 				})}
 			>
-				<div className={drawerHeader} />
+				<div className={contentHeader} />
 				{colors.length > 0 ? (
 					<DraggableColorList
 						axis='xy'
-						onSortEnd={handleSortColors}
+						onSortEnd={sortColors}
 						lockToContainerEdges
 						distance={2}
 					/>
