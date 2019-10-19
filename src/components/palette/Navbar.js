@@ -5,9 +5,7 @@ import { withStyles } from '@material-ui/core';
 import Slider from '@material-ui/core/Slider';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+import SnackBar from 'components/ui/Snackbar';
 import styles from 'styles/navbar/Palette';
 
 export default withStyles(styles)(function Navbar({
@@ -50,29 +48,10 @@ export default withStyles(styles)(function Navbar({
 					<MenuItem value='rgba'>RGBA</MenuItem>
 				</Select>
 			</div>
-			<Snackbar
-				message={
-					<span id='message-id'>Format Changed to {format.toUpperCase()}</span>
-				}
-				anchorOrigin={{
-					vertical: 'bottom',
-					horizontal: 'left'
-				}}
+			<SnackBar
+				message={`Format Changed to ${format.toUpperCase()}`}
 				open={formatSnackbar}
-				autoHideDuration={3000}
-				ContentProps={{
-					'aria-describedby': 'message-id'
-				}}
 				onClose={toggleFormatSnackbar}
-				action={[
-					<IconButton
-						onClick={toggleFormatSnackbar}
-						color='inherit'
-						key='Close Snackbar'
-					>
-						<CloseIcon />
-					</IconButton>
-				]}
 			/>
 		</nav>
 	);

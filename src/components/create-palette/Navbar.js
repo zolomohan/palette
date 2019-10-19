@@ -2,13 +2,12 @@ import clsx from 'clsx';
 import React, { useContext } from 'react';
 import useToggleState from 'hooks/useToggleState';
 import { withStyles } from '@material-ui/core';
-import Snackbar from '@material-ui/core/Snackbar';
+import SnackBar from 'components/ui/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import CloseIcon from '@material-ui/icons/Close';
 import AddCircle from '@material-ui/icons/AddCircle';
 import SavePaletteDialog from 'components/create-palette/dialogs/SavePalette';
 import DiscardPaletteDialog from 'components/create-palette/dialogs/DiscardPalette';
@@ -65,29 +64,11 @@ export default withStyles(styles)(function Navbar({
 				<Button className={navBtn} onClick={handleSavePalette} color='primary'>
 					Save
 				</Button>
-				<Snackbar
-					message={
-						<span id='message-id'>Palette is Empty! Add Some Colors</span>
-					}
-					anchorOrigin={{
-						vertical: 'bottom',
-						horizontal: 'right'
-					}}
+				<SnackBar
+					message='Palette is Empty! Add Some Colors'
 					open={emptyPaletteSnackbar}
-					autoHideDuration={3000}
-					ContentProps={{
-						'aria-describedby': 'message-id'
-					}}
 					onClose={toggleEmptyPaletteSnackbar}
-					action={[
-						<IconButton
-							onClick={toggleEmptyPaletteSnackbar}
-							color='inherit'
-							key='Close Snackbar'
-						>
-							<CloseIcon />
-						</IconButton>
-					]}
+					horizontalOrigin='right'
 				/>
 				<SavePaletteDialog
 					open={saveDialog}
