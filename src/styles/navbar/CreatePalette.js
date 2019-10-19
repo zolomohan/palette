@@ -1,4 +1,3 @@
-import media from 'helpers/mediaQuery';
 import { DRAWER_WIDTH } from 'helpers/constants';
 
 export default (theme) => ({
