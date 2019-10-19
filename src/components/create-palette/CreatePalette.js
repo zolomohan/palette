@@ -1,28 +1,13 @@
-import clsx from 'clsx';
 import React, { useContext } from 'react';
 import useToggleState from 'hooks/useToggleState';
-import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import Navbar from 'components/create-palette/Navbar';
 import DraggableColorList from 'components/create-palette/DraggableColorList';
-import styles from 'styles/CreatePalette';
 import { PaletteContext, PaletteDispatchContext } from 'contexts/palette.context';
 import { ColorContext, ColorDispatchContext } from 'contexts/color.context';
-import AddColorDrawer from './AddColorDrawer';
+import AddColorDrawer from 'components/create-palette/AddColorDrawer';
 
-export default withStyles(styles, { withTheme: true })(function CreatePalette({
-	history,
-	paletteMaxColors = 20,
-	classes: {
-		root,
-		contentHeader,
-		content,
-		contentShift,
-		emptyPalettePlaceholder,
-		emptyPalettePlaceholderContainer
-	}
-}) {
+export default function CreatePalette({ history, paletteMaxColors = 20 }) {
 	const colors = useContext(ColorContext);
 	const palettes = useContext(PaletteContext);
 	const colorsDispatch = useContext(ColorDispatchContext);
@@ -56,7 +41,7 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 	};
 
 	return (
-		<div className={root}>
+		<div style={{ display: 'flex' }}>
 			<CssBaseline />
 			<Navbar
 				history={history}
@@ -72,27 +57,13 @@ export default withStyles(styles, { withTheme: true })(function CreatePalette({
 				randomColor={randomColor}
 				paletteFull={colors.length >= paletteMaxColors}
 			/>
-			<main
-				className={clsx(content, {
-					[contentShift]: drawerOpen
-				})}
-			>
-				<div className={contentHeader} />
-				{colors.length > 0 ? (
-					<DraggableColorList
-						axis='xy'
-						onSortEnd={sortColors}
-						lockToContainerEdges
-						distance={2}
-					/>
-				) : (
-					<div className={emptyPalettePlaceholderContainer}>
-						<Typography className={emptyPalettePlaceholder}>
-							Add Colors +
-						</Typography>
-					</div>
-				)}
-			</main>
+			<DraggableColorList
+				axis='xy'
+				distance={2}
+				drawerOpen={drawerOpen}
+				onSortEnd={sortColors}
+				lockToContainerEdges
+			/>
 		</div>
 	);
-});
+}

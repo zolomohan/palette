@@ -1,14 +1,11 @@
 import { DRAWER_WIDTH } from 'helpers/constants';
 
 export default (theme) => ({
-	root: {
-		display: 'flex',
-		fontFamily: 'Blinker'
-	},
 	contentHeader: {
 		...theme.mixins.toolbar
 	},
 	content: {
+		fontFamily: 'Blinker',
 		flexGrow: 1,
 		height: 'calc(100vh - 64px)',
 		transition: theme.transitions.create('margin', {
