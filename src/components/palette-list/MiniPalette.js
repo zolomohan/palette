@@ -7,43 +7,44 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import ConfirmDialog from 'components/ui/ConfirmDialog';
 import styles from 'styles/MiniPalette';
 
-export default memo(
-	withStyles(styles)(function MiniPalette({ classes, paletteName, emoji, id, colors }) {
-		const [ deleteDialog, toggleDeleteDialog ] = useToggleState();
-		const { root, deleteIcon, miniBox, title } = classes;
+function MiniPalette(props) {
+	const [ deleteDialog, toggleDeleteDialog ] = useToggleState();
+	const { classes } = props;
 
-		const paletteDispatch = useContext(PaletteDispatchContext);
+	const paletteDispatch = useContext(PaletteDispatchContext);
 
-		const onDelete = () => {
-			toggleDeleteDialog();
-			paletteDispatch({ type: 'DELETE', id: id });
-		};
+	const onDelete = () => {
+		toggleDeleteDialog();
+		paletteDispatch({ type: 'DELETE', id: props.id });
+	};
 
-		return (
-			<div className={root}>
-				<DeleteIcon className={deleteIcon} onClick={toggleDeleteDialog} />
-				<Link to={`palette/${id}`} style={{ textDecoration: 'none' }}>
-					<div className={classes.colors}>
-						{colors.map(({ color, name }) => (
-							<div
-								className={miniBox}
-								style={{ backgroundColor: color }}
-								key={name}
-							/>
-						))}
-					</div>
-					<h5 className={title}>
-						{paletteName} <span className={classes.emoji}>{emoji}</span>
-					</h5>
-				</Link>
-				<ConfirmDialog
-					content='	This action is irreversible. All Your Colors will be lost. Are you sure you want
-					to Delete your palette?'
-					open={deleteDialog}
-					onSure={onDelete}
-					onCancel={toggleDeleteDialog}
-				/>
-			</div>
-		);
-	})
-);
+	return (
+		<div className={classes.root}>
+			<DeleteIcon className={classes.deleteIcon} onClick={toggleDeleteDialog} />
+			<Link to={`palette/${props.id}`} style={{ textDecoration: 'none' }}>
+				<div className={classes.colors}>
+					{props.colors.map(({ color, name }) => (
+						<div
+							className={classes.miniBox}
+							style={{ backgroundColor: color }}
+							key={name}
+						/>
+					))}
+				</div>
+				<h5 className={classes.title}>
+					{props.paletteName}{' '}
+					<span className={classes.emoji}>{props.emoji}</span>
+				</h5>
+			</Link>
+			<ConfirmDialog
+				content='This action is irreversible. All Your Colors will be lost. Are you sure you want
+				to Delete your palette?'
+				open={deleteDialog}
+				onSure={onDelete}
+				onCancel={toggleDeleteDialog}
+			/>
+		</div>
+	);
+}
+
+export default memo(withStyles(styles)(MiniPalette));

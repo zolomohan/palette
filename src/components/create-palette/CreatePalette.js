@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import useToggleState from 'hooks/useToggleState';
+import { ColorContext, ColorDispatchContext } from 'contexts/color.context';
+import { PaletteContext, PaletteDispatchContext } from 'contexts/palette.context';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Navbar from 'components/create-palette/Navbar';
 import DraggableColorList from 'components/create-palette/DraggableColorList';
-import { PaletteContext, PaletteDispatchContext } from 'contexts/palette.context';
-import { ColorContext, ColorDispatchContext } from 'contexts/color.context';
 import AddColorDrawer from 'components/create-palette/AddColorDrawer';
 
-export default function CreatePalette({ history, paletteMaxColors = 20 }) {
+function CreatePalette(props) {
 	const colors = useContext(ColorContext);
 	const palettes = useContext(PaletteContext);
 	const colorsDispatch = useContext(ColorDispatchContext);
@@ -37,14 +37,14 @@ export default function CreatePalette({ history, paletteMaxColors = 20 }) {
 				colors: colors
 			}
 		});
-		history.push(`${process.env.PUBLIC_URL}/`);
+		props.history.push(`${process.env.PUBLIC_URL}/`);
 	};
 
 	return (
 		<div style={{ display: 'flex' }}>
 			<CssBaseline />
 			<Navbar
-				history={history}
+				history={props.history}
 				drawerOpen={drawerOpen}
 				savePalette={savePalette}
 				openDrawer={toggleOpen}
@@ -55,7 +55,7 @@ export default function CreatePalette({ history, paletteMaxColors = 20 }) {
 				onClear={clearColors}
 				onClose={toggleOpen}
 				randomColor={randomColor}
-				paletteFull={colors.length >= paletteMaxColors}
+				paletteFull={colors.length >= props.paletteMaxColors}
 			/>
 			<DraggableColorList
 				axis='xy'
@@ -67,3 +67,5 @@ export default function CreatePalette({ history, paletteMaxColors = 20 }) {
 		</div>
 	);
 }
+
+export default CreatePalette;

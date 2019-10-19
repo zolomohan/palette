@@ -1,67 +1,58 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import ColorPickerForm from 'components/create-palette/ColorPickerForm';
+import { withStyles } from '@material-ui/core/styles';
 import styles from 'styles/AddColorDrawer';
 
-export default withStyles(styles)(function AddColorDrawer({
-	open,
-	onClose,
-	onClear,
-	randomColor,
-  paletteFull,
-  classes: {
-		drawer,
-		drawerPaper,
-		drawerHeader,
-		drawerContainer,
-		drawerButtons,
-		drawerButton,
-		chevronLeftIcon,
-	}
-}) {
+function AddColorDrawer(props) {
+	const { classes } = props;
 	return (
 		<Drawer
-			className={drawer}
+			className={classes.drawer}
 			variant='persistent'
 			anchor='left'
-			open={open}
+			open={props.open}
 			classes={{
-				paper: drawerPaper
+				paper: classes.drawerPaper
 			}}
 		>
-			<div className={drawerHeader}>
+			<div className={classes.drawerHeader}>
 				<Typography variant='h5'>Pick a Color</Typography>
-				<IconButton onClick={onClose} className={chevronLeftIcon}>
+				<IconButton
+					onClick={props.onClose}
+					className={classes.chevronLeftIcon}
+				>
 					<ChevronLeftIcon />
 				</IconButton>
 			</div>
-			<div className={drawerContainer}>
-				<div className={drawerButtons}>
+			<div className={classes.drawerContainer}>
+				<div className={classes.drawerButtons}>
 					<Button
 						variant='outlined'
 						color='primary'
-						onClick={randomColor}
-						disabled={paletteFull}
-						className={drawerButton}
+						onClick={props.randomColor}
+						disabled={props.paletteFull}
+						className={classes.drawerButton}
 					>
 						Random Color
 					</Button>
 					<Button
 						variant='outlined'
 						color='secondary'
-						onClick={onClear}
-						className={drawerButton}
+						onClick={props.onClear}
+						className={classes.drawerButton}
 					>
 						Clear Palette
 					</Button>
 				</div>
-				<ColorPickerForm paletteFull={paletteFull} />
+				<ColorPickerForm paletteFull={props.paletteFull} />
 			</div>
 		</Drawer>
 	);
-});
+}
+
+export default withStyles(styles)(AddColorDrawer);

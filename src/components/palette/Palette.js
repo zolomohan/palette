@@ -5,39 +5,33 @@ import Navbar from 'components/palette/Navbar';
 import Footer from 'components/palette/Footer';
 import styles from 'styles/Palette';
 
-export default withStyles(styles)(function Palette({
-	id,
-	emoji,
-	colors,
-	paletteName,
-	classes: { palette, paletteColors }
-}) {
+function Palette(props) {
 	const [ level, setLevel ] = useState(400);
 	const [ format, setFormat ] = useState('hex');
-
-	const changeLevel = (level) => setLevel(level),
-		changeColorFormat = (format) => setFormat(format);
+	const { classes } = props;
 
 	return (
-		<div className={palette}>
+		<div className={classes.palette}>
 			<Navbar
-				changeLevel={changeLevel}
-				changeColorFormat={changeColorFormat}
+				changeLevel={setLevel}
+				changeColorFormat={setFormat}
 				level={level}
 				format={format}
 			/>
-			<div className={paletteColors}>
-				{colors[level].map((color) => (
+			<div className={classes.paletteColors}>
+				{props.colors[level].map((color) => (
 					<ColorBox
 						{...color}
 						format={format}
 						key={color.id}
-						paletteId={id}
+						paletteId={props.id}
 						singleColorPalette={false}
 					/>
 				))}
 			</div>
-			<Footer paletteName={paletteName} emoji={emoji} />
+			<Footer paletteName={props.paletteName} emoji={props.emoji} />
 		</div>
 	);
-});
+};
+
+export default withStyles(styles)(Palette);

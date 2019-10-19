@@ -10,24 +10,24 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 
-export default function SaveDialog({ open, toggleDialog, savePalette, palettes }) {
+function SavePaletteDialog(props) {
 	const [ stage, setStage ] = useState('form');
 	const [ newPaletteName, setNewPaletteName, resetNewPaletteName ] = useInputState();
 
 	function selectEmoji(emoji) {
 		setStage('');
-		savePalette(newPaletteName, emoji.native);
+		props.savePalette(newPaletteName, emoji.native);
 	}
 
 	function hideDialog() {
 		setStage('form');
 		resetNewPaletteName();
-		toggleDialog();
+		props.toggleDialog();
 	}
 
 	useEffect(() => {
 		ValidatorForm.addValidationRule('uniquePaletteName', (value) =>
-			palettes.every(
+			props.palettes.every(
 				({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
 			)
 		);
@@ -35,12 +35,12 @@ export default function SaveDialog({ open, toggleDialog, savePalette, palettes }
 
 	return (
 		<Fragment>
-			<Dialog open={open && stage === 'emoji'} onClose={hideDialog}>
+			<Dialog open={props.open && stage === 'emoji'} onClose={hideDialog}>
 				<Picker onSelect={selectEmoji} title='Pick an Emoji' />
 			</Dialog>
 			<Dialog
-				open={open && stage === 'form'}
-				onClose={toggleDialog}
+				open={props.open && stage === 'form'}
+				onClose={props.toggleDialog}
 				aria-labelledby='form-dialog-title'
 			>
 				<ValidatorForm onSubmit={() => setStage('emoji')}>
@@ -61,7 +61,7 @@ export default function SaveDialog({ open, toggleDialog, savePalette, palettes }
 							errorMessages={[ 'Palette Name is Required', 'Palette Name Already Taken' ]}
 						/>
 						<DialogActions>
-							<Button onClick={toggleDialog} color='secondary'>
+							<Button onClick={props.toggleDialog} color='secondary'>
 								Cancel
 							</Button>
 							<Button type='submit' color='primary'>
@@ -74,3 +74,5 @@ export default function SaveDialog({ open, toggleDialog, savePalette, palettes }
 		</Fragment>
 	);
 }
+
+export default SavePaletteDialog;

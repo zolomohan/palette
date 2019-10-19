@@ -1,25 +1,17 @@
-import { withStyles } from '@material-ui/core/styles';
 import React, { useContext } from 'react';
+import { ColorContext } from 'contexts/color.context';
 import Typography from '@material-ui/core/Typography';
 import { SortableContainer } from 'react-sortable-hoc';
 import DraggableColorBox from 'components/create-palette/DraggableColorBox';
-import { ColorContext } from 'contexts/color.context';
+import { withStyles } from '@material-ui/core/styles';
 import styles from 'styles/DraggableColorList';
 
-function DraggableColorList({
-	drawerOpen,
-	classes: {
-		contentHeader,
-		content,
-		contentShift,
-		emptyPalettePlaceholder,
-		emptyPalettePlaceholderContainer
-	}
-}) {
+function DraggableColorList(props) {
+	const { classes } = props;
 	const colors = useContext(ColorContext);
 	return (
-		<main className={`${content} ${drawerOpen && contentShift}`}>
-			<div className={contentHeader} />
+		<main className={`${classes.content} ${props.drawerOpen && classes.contentShift}`}>
+			<div className={classes.contentHeader} />
 			{colors.length > 0 ? (
 				<div style={{ height: '100%' }}>
 					{colors.map((color, index) => (
@@ -27,8 +19,8 @@ function DraggableColorList({
 					))}
 				</div>
 			) : (
-				<div className={emptyPalettePlaceholderContainer}>
-					<Typography className={emptyPalettePlaceholder}>
+				<div className={classes.emptyPalettePlaceholderContainer}>
+					<Typography className={classes.emptyPalettePlaceholder}>
 						Add Colors +
 					</Typography>
 				</div>

@@ -7,26 +7,17 @@ import Footer from 'components/palette/Footer';
 import stylesPalette from 'styles/Palette';
 import stylesColorBox from 'styles/ColorBox';
 
-export default withStyles({
-	...stylesColorBox,
-	...stylesPalette
-})(function SingleColorPalette({
-	id,
-	emoji,
-	colors,
-	colorId,
-	paletteName,
-	classes: { palette, paletteColors, button, colorBox }
-}) {
+function SingleColorPalette(props) {
+	const { classes } = props;
 	let shades = [];
-	for (let shade in colors)
-		shades.push(colors[shade].filter((color) => color.id === colorId)[0]);
+	for (let shade in props.colors)
+		shades.push(props.colors[shade].filter((color) => color.id === props.colorId)[0]);
 	shades = shades.slice(1);
 	const [ format, setFormat ] = useState('hex');
 	return (
-		<div className={palette}>
+		<div className={classes.palette}>
 			<Navbar changeColorFormat={setFormat} format={format} singleColorPalette />
-			<div className={paletteColors}>
+			<div className={classes.paletteColors}>
 				{shades.map((color) => (
 					<ColorBox
 						{...color}
@@ -35,13 +26,18 @@ export default withStyles({
 						singleColorPalette
 					/>
 				))}
-				<Link to={`${process.env.PUBLIC_URL}/palette/${id}`}>
-					<div className={`${colorBox} goBack`}>
-						<button className={button}>Go Back</button>
+				<Link to={`${process.env.PUBLIC_URL}/palette/${props.id}`}>
+					<div className={`${classes.colorBox} goBack`}>
+						<button className={classes.button}>Go Back</button>
 					</div>
 				</Link>
 			</div>
-			<Footer paletteName={paletteName} emoji={emoji} />
+			<Footer paletteName={props.paletteName} emoji={props.emoji} />
 		</div>
 	);
-});
+}
+
+export default withStyles({
+	...stylesColorBox,
+	...stylesPalette
+})(SingleColorPalette);

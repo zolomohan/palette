@@ -3,22 +3,26 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-export default function SnackBar({ open, message, onClose, horizontalOrigin = 'left' }) {
+export default function SnackBar(props) {
 	return (
 		<Snackbar
-			message={<span>{message}</span>}
+			message={<span>{props.message}</span>}
 			anchorOrigin={{
 				vertical: 'bottom',
-				horizontal: horizontalOrigin
+				horizontal: props.horizontalOrigin
 			}}
-			open={open}
+			open={props.open}
 			autoHideDuration={3000}
-			onClose={onClose}
+			onClose={props.onClose}
 			action={[
-				<IconButton onClick={onClose} color='inherit' key='Close Snackbar'>
+				<IconButton onClick={props.onClose} color='inherit' key='Close Snackbar'>
 					<CloseIcon />
 				</IconButton>
 			]}
 		/>
 	);
+}
+
+SnackBar.defaultProps = {
+	horizontalOrigin: 'left'
 }

@@ -5,23 +5,21 @@ import { withStyles } from '@material-ui/styles';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import MiniPalette from 'components/palette-list/MiniPalette';
 import styles from 'styles/PaletteList';
-import 'styles/animations/MiniPaletteFade.css'
+import 'styles/animations/MiniPaletteFade.css';
 
-export default withStyles(styles)(function PaletteList({
-	classes: { root, container, nav, palettes }
-}) {
+function PaletteList({ classes }) {
 	const paletteList = useContext(PaletteContext);
 
 	return (
-		<div className={root}>
-			<div className={container}>
-				<nav className={nav}>
+		<div className={classes.root}>
+			<div className={classes.container}>
+				<nav className={classes.nav}>
 					<h1>Palette</h1>
 					<Link to={`${process.env.PUBLIC_URL}/palette/new`}>
 						Create Palette
 					</Link>
 				</nav>
-				<TransitionGroup className={palettes}>
+				<TransitionGroup className={classes.palettes}>
 					{paletteList.map((palette) => (
 						<CSSTransition key={palette.id} classNames='fade' timeout={500}>
 							<MiniPalette {...palette} key={palette.id} />
@@ -31,4 +29,6 @@ export default withStyles(styles)(function PaletteList({
 			</div>
 		</div>
 	);
-});
+}
+
+export default withStyles(styles)(PaletteList);

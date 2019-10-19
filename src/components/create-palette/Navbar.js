@@ -1,36 +1,30 @@
 import clsx from 'clsx';
 import React, { useContext } from 'react';
-import { PaletteContext } from 'contexts/palette.context';
 import useToggleState from 'hooks/useToggleState';
-import { withStyles } from '@material-ui/core';
-import SnackBar from 'components/ui/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
+import { PaletteContext } from 'contexts/palette.context';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
 import AddCircle from '@material-ui/icons/AddCircle';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import SnackBar from 'components/ui/Snackbar';
 import SavePaletteDialog from 'components/create-palette/SavePaletteDialog';
 import ConfirmDialog from 'components/ui/ConfirmDialog';
+import { withStyles } from '@material-ui/core';
 import styles from 'styles/navbar/CreatePalette';
 
-export default withStyles(styles)(function Navbar({
-	history,
-	drawerOpen,
-	openDrawer,
-	enableSave,
-	savePalette,
-	classes: { appBar, appBarShift, menuButton, hide, title, navBtns, navBtn }
-}) {
+function Navbar(props) {
+	const { classes } = props;
 	const palettes = useContext(PaletteContext);
 	const [ emptyPaletteSnackbar, toggleEmptyPaletteSnackbar ] = useToggleState();
 	const [ saveDialog, toggleSaveDialog ] = useToggleState();
 	const [ discardDialog, toggleDiscardDialog ] = useToggleState();
 
-	const onDiscard = () => history.push(`${process.env.PUBLIC_URL}/`);
+	const onDiscard = () => props.history.push(`${process.env.PUBLIC_URL}/`);
 
 	const handleSavePalette = () => {
-		if (enableSave) toggleSaveDialog();
+		if (props.enableSave) toggleSaveDialog();
 		else toggleEmptyPaletteSnackbar();
 	};
 
@@ -38,33 +32,33 @@ export default withStyles(styles)(function Navbar({
 		<AppBar
 			position='fixed'
 			color='inherit'
-			className={clsx(appBar, {
-				[appBarShift]: drawerOpen
+			className={clsx(classes.appBar, {
+				[classes.appBarShift]: props.drawerOpen
 			})}
 			elevation={0}
 		>
-			<Toolbar disableGutters={!drawerOpen}>
+			<Toolbar disableGutters={!props.drawerOpen}>
 				<IconButton
 					color='inherit'
 					aria-label='Open drawer'
-					onClick={openDrawer}
-					className={clsx(menuButton, drawerOpen && hide)}
+					onClick={props.openDrawer}
+					className={clsx(classes.menuButton, props.drawerOpen && classes.hide)}
 				>
 					<AddCircle />
 				</IconButton>
-				<Typography variant='h6' color='inherit' noWrap className={title}>
+				<Typography variant='h6' color='inherit' noWrap className={classes.title}>
 					New Palette
 				</Typography>
 			</Toolbar>
-			<div className={navBtns}>
+			<div className={classes.navBtns}>
 				<Button
-					className={navBtn}
+					className={classes.navBtn}
 					color='secondary'
 					onClick={toggleDiscardDialog}
 				>
 					Discard
 				</Button>
-				<Button className={navBtn} onClick={handleSavePalette} color='primary'>
+				<Button className={classes.navBtn} onClick={handleSavePalette} color='primary'>
 					Save
 				</Button>
 				<SnackBar
@@ -76,7 +70,7 @@ export default withStyles(styles)(function Navbar({
 				<SavePaletteDialog
 					open={saveDialog}
 					toggleDialog={toggleSaveDialog}
-					savePalette={savePalette}
+					savePalette={props.savePalette}
 					palettes={palettes}
 				/>
 				<ConfirmDialog
@@ -89,4 +83,6 @@ export default withStyles(styles)(function Navbar({
 			</div>
 		</AppBar>
 	);
-});
+};
+
+export default withStyles(styles)(Navbar);

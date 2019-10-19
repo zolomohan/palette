@@ -6,11 +6,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function ConfirmDialog({ open,content, onCancel, onSure }) {
+export default function ConfirmDialog(props) {
 	return (
 		<Dialog
-			open={open}
-			onClose={onCancel}
+			open={props.open}
+			onClose={props.onCancel}
 			aria-labelledby='alert-dialog-title'
 			aria-describedby='alert-dialog-description'
 			fontFamily='Blinker'
@@ -18,14 +18,14 @@ export default function ConfirmDialog({ open,content, onCancel, onSure }) {
 			<DialogTitle>Are You Sure?</DialogTitle>
 			<DialogContent>
 				<DialogContentText>
-          {content}
+          {props.content}
 				</DialogContentText>
 			</DialogContent>
 			<DialogActions>
-				<Button onClick={onCancel} color='primary'>
+				<Button onClick={props.onCancel} color='primary'>
 					Cancel
 				</Button>
-				<Button color='secondary' autoFocus onClick={onSure}>
+				<Button color='secondary' autoFocus onClick={props.onSure}>
 					Yes, I'm Sure
 				</Button>
 			</DialogActions>
