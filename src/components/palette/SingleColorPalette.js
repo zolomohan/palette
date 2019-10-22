@@ -2,16 +2,13 @@ import React, { useState } from 'react';
 import Navbar from 'components/palette/Navbar';
 import Footer from 'components/palette/Footer';
 import withStyles from '@material-ui/core/styles/withStyles';
-import stylesPalette from 'styles/Palette';
-import stylesColorBox from 'styles/ColorBox';
+import styles from 'styles/Palette';
 import ColorList from 'components/palette/ColorList';
+import { singleColorShades } from 'helpers/generateShades';
 
 function SingleColorPalette(props) {
 	const { classes } = props;
-	let shades = [];
-	for (let shade in props.colors)
-		shades.push(props.colors[shade].filter((color) => color.id === props.colorId)[0]);
-	shades = shades.slice(1);
+	const shades = singleColorShades(props.colors, props.colorId);
 	const [ format, setFormat ] = useState('hex');
 	return (
 		<div className={classes.palette}>
@@ -27,7 +24,4 @@ function SingleColorPalette(props) {
 	);
 }
 
-export default withStyles({
-	...stylesColorBox,
-	...stylesPalette
-})(SingleColorPalette);
+export default withStyles(styles)(SingleColorPalette);

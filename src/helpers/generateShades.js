@@ -25,3 +25,11 @@ export default (starterPalette) => {
 	}
 	return newPalette;
 };
+
+export function singleColorShades(colors, colorId){
+  let shades = [];
+	for (let shade in colors)
+		shades.push(colors[shade].filter((color) => color.id === colorId)[0]);
+  shades = shades.slice(1);
+  return shades;
+}
