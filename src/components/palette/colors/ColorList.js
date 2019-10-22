@@ -1,5 +1,5 @@
 import React from 'react';
-import ColorBox from 'components/palette/ColorBox';
+import ColorBox from 'components/palette/colors/ColorBox';
 import { Link } from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
 import stylesPalette from 'styles/Palette';
