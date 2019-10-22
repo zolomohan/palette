@@ -10,7 +10,7 @@ export default {
 		display            : 'inline-block',
 		marginBottom       : '-4px',
 		transition         : 'all 0.1s linear',
-		backgroundColor    : (props) => props[props.format],
+		backgroundColor    : (props) => props['hex'],
 		'&:hover $button'  : {
 			opacity : '1'
 		},

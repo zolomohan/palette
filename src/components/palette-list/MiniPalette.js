@@ -1,7 +1,7 @@
 import React, { memo, useContext } from 'react';
 import { PaletteDispatchContext } from 'contexts/palette.context';
 import useToggleState from 'hooks/useToggleState';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ConfirmDialog from 'components/ui/ConfirmDialog';
 import withStyles from '@material-ui/core/styles/withStyles';

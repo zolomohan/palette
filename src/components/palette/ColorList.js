@@ -1,23 +1,35 @@
 import React from 'react';
 import ColorBox from 'components/palette/ColorBox';
+import { Link } from 'react-router-dom';
 import withStyles from '@material-ui/core/styles/withStyles';
-import styles from 'styles/Palette';
+import stylesPalette from 'styles/Palette';
+import stylesColorBox from 'styles/ColorBox';
 
 function Palette(props) {
-  const { classes } = props;
+	const { classes } = props;
 	return (
 		<div className={classes.paletteColors}>
-			{props.colors[props.level].map((color) => (
+			{props.colors.map((color) => (
 				<ColorBox
 					{...color}
 					format={props.format}
-					key={color.id}
+					key={`${color.name}${color.id}`}
 					paletteId={props.paletteId}
-					singleColorPalette={false}
+					singleColorPalette={props.singleColorPalette}
 				/>
 			))}
+			{props.singleColorPalette && (
+				<Link to={`${process.env.PUBLIC_URL}/palette/${props.paletteId}`}>
+					<div className={`${classes.colorBox} goBack`}>
+						<button className={classes.button}>Go Back</button>
+					</div>
+				</Link>
+			)}
 		</div>
 	);
 }
 
-export default withStyles(styles)(Palette);
+export default withStyles({
+	...stylesColorBox,
+	...stylesPalette
+})(Palette);

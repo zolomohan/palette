@@ -1,6 +1,6 @@
 import React from 'react';
 import useToggleState from 'hooks/useToggleState';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 import Slider from '@material-ui/core/Slider';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
