@@ -12,7 +12,8 @@ export default {
 			opacity : '1'
 		},
 		'&:hover'              : {
-			transform : 'translateY(-2px)'
+      transform : 'scale(1.02)',
+      boxShadow: '-1px 11px 17px 0px rgba(0,0,0,0.2)'
 		}
 	},
 	colors     : {
@@ -37,13 +38,6 @@ export default {
 	emoji      : {
 		marginLeft : '0.5rem',
 		fontSize   : '1.2srem'
-	},
-	miniBox    : {
-		display      : 'inline-block',
-		height       : '25%',
-		width        : '20%',
-		margin       : '0 auto',
-		marginBottom : '-4px'
 	},
 	deleteIcon : {
 		position               : 'absolute',

@@ -14,16 +14,18 @@ export default function SavePaletteDialog(props) {
 	const [ stage, setStage ] = useState('form');
 	const [ newPaletteName, setNewPaletteName, resetNewPaletteName ] = useInputState();
 
-	function selectEmoji(emoji) {
+	const selectEmoji = (emoji) => {
 		setStage('');
 		props.savePalette(newPaletteName, emoji.native);
 	}
 
-	function hideDialog() {
+	const hideDialog = () => {
 		setStage('form');
 		resetNewPaletteName();
 		props.toggleDialog();
 	}
+
+	const onSubmit = () => setStage('emoji');
 
 	useEffect(() => {
 		ValidatorForm.addValidationRule('uniquePaletteName', (value) =>
@@ -38,27 +40,26 @@ export default function SavePaletteDialog(props) {
 			<Dialog open={props.open && stage === 'emoji'} onClose={hideDialog}>
 				<Picker onSelect={selectEmoji} title='Pick an Emoji' />
 			</Dialog>
-			<Dialog
-				open={props.open && stage === 'form'}
-				onClose={props.toggleDialog}
-				aria-labelledby='form-dialog-title'
-			>
-				<ValidatorForm onSubmit={() => setStage('emoji')}>
-					<DialogTitle id='form-dialog-title'>Palette Name</DialogTitle>
+			<Dialog open={props.open && stage === 'form'} onClose={props.toggleDialog}>
+				<ValidatorForm onSubmit={onSubmit}>
+					<DialogTitle>Palette Name</DialogTitle>
 					<DialogContent>
 						<DialogContentText>
-							Please enter a name for your amazing palette and make sure it's unique from
-							the rest.
+							Please enter a name for your amazing palette and make sure
+							it's unique from the rest.
 						</DialogContentText>
 						<TextValidator
 							fullWidth
 							autoFocus
 							value={newPaletteName}
-							placeholder='Enter a Palette Name'
 							name='newPaletteName'
+							placeholder='Enter a Palette Name'
 							onChange={setNewPaletteName}
 							validators={[ 'required', 'uniquePaletteName' ]}
-							errorMessages={[ 'Palette Name is Required', 'Palette Name Already Taken' ]}
+							errorMessages={[
+								'Palette Name is Required',
+								'Palette Name Already Taken'
+							]}
 						/>
 						<DialogActions>
 							<Button onClick={props.toggleDialog} color='secondary'>

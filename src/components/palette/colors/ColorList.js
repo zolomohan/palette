@@ -8,7 +8,7 @@ import stylesColorBox from 'styles/ColorBox';
 function Palette(props) {
 	const { classes } = props;
 	return (
-		<div className={classes.paletteColors}>
+		<main className={classes.paletteColors}>
 			{props.colors.map((color) => (
 				<ColorBox
 					{...color}
@@ -25,7 +25,7 @@ function Palette(props) {
 					</div>
 				</Link>
 			)}
-		</div>
+		</main>
 	);
 }
 

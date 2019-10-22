@@ -8,11 +8,13 @@ import styles from 'styles/ColorBox';
 
 function ColorBox(props) {
 	const { classes } = props;
-	const [ copying, toggleCopying, setCopying ] = useToggleState();
+  const [ copying, toggleCopying, setCopying ] = useToggleState();
+  
 	const handleCopy = () => {
 		toggleCopying();
 		setTimeout(() => setCopying(false), 1500);
-	};
+  };
+  
 	const color = props[props.format];
 	return (
 		<div className={classes.colorBox}>
