@@ -1,9 +1,8 @@
 import React from 'react';
 import ColorBox from 'components/palette/colors/ColorBox';
-import { Link } from 'react-router-dom';
+import GoBackButton from 'components/palette/colors/GoBackButton';
 import withStyles from '@material-ui/core/styles/withStyles';
-import stylesPalette from 'styles/Palette';
-import stylesColorBox from 'styles/ColorBox';
+import styles from 'styles/Palette';
 
 function Palette(props) {
 	const { classes } = props;
@@ -13,23 +12,14 @@ function Palette(props) {
 				<ColorBox
 					{...color}
 					format={props.format}
-					key={`${color.name}${color.id}`}
 					paletteId={props.paletteId}
+					key={`${color.name}${color.id}`}
 					singleColorPalette={props.singleColorPalette}
 				/>
 			))}
-			{props.singleColorPalette && (
-				<Link to={`${process.env.PUBLIC_URL}/palette/${props.paletteId}`}>
-					<div className={`${classes.colorBox} goBack`}>
-						<button className={classes.button}>Go Back</button>
-					</div>
-				</Link>
-			)}
+			{props.singleColorPalette && <GoBackButton paletteId={props.paletteId} />}
 		</main>
 	);
 }
 
-export default withStyles({
-	...stylesColorBox,
-	...stylesPalette
-})(Palette);
+export default withStyles(styles)(Palette);
