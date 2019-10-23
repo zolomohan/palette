@@ -35,7 +35,7 @@ export default {
 		fontSize       : '4rem',
 		color          : '#fff',
 		transform      : 'scale(0.1)',
-		opacity        : '0',
+		visibility     : 'hidden',
 		'& h1'         : {
 			backgroundColor    : (props) =>
 				chromaContrast(props[props.format]) === '#000'
@@ -56,7 +56,7 @@ export default {
 	},
 
 	showMessage : {
-		opacity         : '1',
+		visibility      : 'visible',
 		transform       : 'scale(1)',
 		zIndex          : '2',
 		transition      : 'all 0.4s ease-in-out',
