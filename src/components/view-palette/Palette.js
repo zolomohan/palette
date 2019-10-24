@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Navbar from 'components/palette/Navbar';
-import Footer from 'components/palette/Footer';
+import Navbar from 'components/view-palette/Navbar';
+import Footer from 'components/view-palette/Footer';
 import withStyles from '@material-ui/core/styles/withStyles';
-import styles from 'styles/Palette';
-import ColorList from 'components/palette/colors/ColorList';
+import ColorList from 'components/view-palette/colors/ColorList';
 import { singleColorShades } from 'helpers/generateShades';
+import styles from 'styles/Palette';
 
 function Palette(props) {
 	const [ level, setLevel ] = useState(400);

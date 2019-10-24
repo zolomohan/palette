@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Page from 'components/Page';
-import Palette from 'components/palette/Palette';
+import Palette from 'components/view-palette/Palette';
 import PaletteList from 'components/palette-list/PaletteList';
 import CreatePalette from 'components/create-palette/CreatePalette';
 import generateShades from 'helpers/generateShades';
