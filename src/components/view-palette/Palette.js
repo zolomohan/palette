@@ -18,6 +18,7 @@ function Palette(props) {
 	return (
 		<div className={classes.palette}>
 			<Navbar
+        paletteId={props.palette.id}
 				level={level}
 				format={format}
 				changeLevel={setLevel}
