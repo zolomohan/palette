@@ -30,7 +30,7 @@ function Palette(props) {
 				paletteId={props.palette.id}
         singleColorShades={props.singleColorShades}
 			/>
-			<Footer paletteName={props.paletteName} emoji={props.emoji} />
+			<Footer paletteName={props.palette.paletteName} emoji={props.palette.emoji} />
 		</div>
 	);
 }

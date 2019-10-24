@@ -42,7 +42,7 @@ export default {
 			textAlign          : 'center',
 			textTransform      : 'uppercase',
 			backgroundColor    : (props) =>
-				chromaContrast(props.color) === '#000' ? '#0000001a' : '#ffffff33',
+				chromaContrast(props.color) ? '#0000001a' : '#ffffff33',
 			[media.down('xs')]: {
 				fontSize : '6rem'
 			}
@@ -61,6 +61,6 @@ export default {
 	},
 
 	copyText    : {
-		color : (props) => (chromaContrast(props.color) === '#000' ? '#232323	' : '#fff')
+		color : (props) => (chromaContrast(props.color) ? '#232323	' : '#fff')
 	}
 };

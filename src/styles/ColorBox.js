@@ -8,8 +8,7 @@ export default {
 		marginBottom          : '-4px',
 		width                 : '20%',
 		height                : (props) => (props.singleColorShades ? '50%' : '25%'),
-		backgroundColor       : (props) =>
-			props.goBackBox ? '#222' : props[props.format],
+		backgroundColor       : (props) => (props.goBackBox ? '#222' : props['hex']),
 		transition            : 'all 0.1s linear',
 		'&:hover .copyButton' : {
 			opacity    : '1',
@@ -49,7 +48,7 @@ export default {
 		backgroundColor : (props) =>
 			props.goBackBox
 				? 'transparent'
-				: chromaContrast(props['hex']) === '#000' ? '#0000001a' : '#ffffff33',
+				: chromaContrast(props['hex'])  ? '#0000001a' : '#ffffff33',
 		'&.copyButton'  : {
 			opacity : 0
 		}
@@ -79,6 +78,6 @@ export default {
 	},
 
 	text      : {
-		color : (props) => chromaContrast(props[props.format])
+		color : (props) => chromaContrast(props['hex']) ? '#000' : '#fff'
 	}
 };
