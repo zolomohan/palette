@@ -1,16 +1,16 @@
 import { DRAWER_WIDTH } from 'helpers/constants';
 
 export default (theme) => ({
-	drawer                           : {
+	drawer          : {
 		width      : DRAWER_WIDTH,
 		flexShrink : 0
 	},
-	drawerPaper                      : {
+	drawerPaper     : {
 		width      : DRAWER_WIDTH,
 		display    : 'flex',
 		alignItems : 'center'
 	},
-	drawerHeader                     : {
+	drawerHeader    : {
 		display        : 'flex',
 		alignItems     : 'center',
 		justifyContent : 'space-between',
@@ -20,7 +20,7 @@ export default (theme) => ({
 			fontFamily : 'Blinker'
 		}
 	},
-	drawerContainer                  : {
+	drawerContainer : {
 		width          : '90%',
 		height         : '100%',
 		display        : 'flex',
@@ -28,12 +28,12 @@ export default (theme) => ({
 		justifyContent : 'center',
 		alignItems     : 'center'
 	},
-	drawerButtons                    : {
+	drawerButtons   : {
 		width  : '100%',
 		margin : '1rem'
 	},
-	drawerButton                     : {
+	drawerButton    : {
 		width     : '100%',
 		marginTop : '0.5rem'
-	},
+	}
 });

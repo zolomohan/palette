@@ -7,8 +7,8 @@ export default {
 		zIndex             : '0',
 		height             : '100%',
 		width              : '100%',
-		transition         : '0.7s transform linear',
 		transform          : 'scale(0.1)',
+		transition         : '0.7s transform linear',
 		backgroundColor    : (props) => props.color,
 		[media.down('sm')]: {
 			transition : '0.2s transform linear'
@@ -41,7 +41,6 @@ export default {
 			width              : '100%',
 			textAlign          : 'center',
 			textTransform      : 'uppercase',
-			textShadow         : '1px 2px #6666669a',
 			backgroundColor    : (props) =>
 				chromaContrast(props.color) === '#000' ? '#0000001a' : '#ffffff33',
 			[media.down('xs')]: {

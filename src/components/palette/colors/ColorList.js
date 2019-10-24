@@ -17,7 +17,9 @@ function Palette(props) {
 					singleColorPalette={props.singleColorPalette}
 				/>
 			))}
-			{props.singleColorPalette && <GoBackButton paletteId={props.paletteId} />}
+			{props.singleColorPalette && (
+				<GoBackButton paletteId={props.paletteId} singleColorPalette goBackBox />
+			)}
 		</main>
 	);
 }

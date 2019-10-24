@@ -18,7 +18,7 @@ export default {
 		display         : 'flex',
 		justifyContent  : 'center',
 		alignItems      : 'flex-start',
-		height          : '100vh',
+		height          : '100%',
 		overflowY       : 'scroll'
 	},
 	container : {
@@ -51,7 +51,7 @@ export default {
 			textDecoration : 'none',
 			color          : 'white',
 			'&:hover'      : {
-				color : '#dddddd'
+				color : '#ddd'
 			}
 		},
 		'& h1'         : {

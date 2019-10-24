@@ -1,19 +1,19 @@
 export default {
 	root       : {
-		cursor                 : 'pointer',
+    cursor                 : 'pointer',
 		position               : 'relative',
 		overflow               : 'hidden',
 		padding                : '0.5em',
 		backgroundColor        : 'white',
 		borderRadius           : '5px',
-		transition             : 'transform 0.1s ease-out',
 		color                  : '#525252',
+		transition             : 'transform 0.1s ease-out',
 		'&:hover $deleteIcon	' : {
 			opacity : '1'
 		},
 		'&:hover'              : {
-      transform : 'scale(1.02)',
-      boxShadow: '-1px 11px 17px 0px rgba(0,0,0,0.2)'
+			transform : 'scale(1.02)',
+			boxShadow : '-1px 11px 17px 0px #0000002a'
 		}
 	},
 	colors     : {
@@ -25,11 +25,11 @@ export default {
 	},
 	title      : {
 		display        : 'flex',
-		justifyContent : 'space-between',
 		alignItems     : 'center',
+		justifyContent : 'space-between',
 		fontFamily     : 'Blinker',
 		fontWeight     : '400',
-		fontSize       : '1.1rem',
+    fontSize       : '1.05rem',
 		color          : '#525252',
 		letterSpacing  : '0.5px',
 		margin         : '0',

@@ -5,6 +5,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import CopyOverlay from 'components/palette/colors/CopyOverlay'
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/ColorBox';
+import clsx from 'clsx';
 
 function ColorBox(props) {
 	const { classes } = props;
@@ -19,13 +20,13 @@ function ColorBox(props) {
 	return (
 		<div className={classes.colorBox}>
       <CopyOverlay open={copying} color={color} />
-			<span className={classes.colorName}>{props.name}</span>
+			<span className={clsx(classes.colorName, classes.text)}>{props.name}</span>
 			<CopyToClipboard text={color} onCopy={handleCopy}>
-				<button className={`${classes.button} copyButton`}>copy</button>
+				<button className={clsx('copyButton', classes.button, classes.text)}>copy</button>
 			</CopyToClipboard>
 			{!props.singleColorPalette && (
         <Link to={`${props.paletteId}/${props.id}`}>
-					<span className={classes.seeMore}>more</span>
+					<span className={clsx(classes.seeMore, classes.text)}>more</span>
 				</Link>
 			)}
 		</div>

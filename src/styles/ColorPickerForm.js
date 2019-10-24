@@ -1,7 +1,6 @@
 export default {
 	picker         : {
-		width     : '100% !important',
-		boxShadow : 'none'
+		width     : '100% !important'
 	},
 	addColorBtn    : {
 		width        : '100%',
@@ -10,7 +9,6 @@ export default {
 		fontSize     : '1.5rem',
 		fontFamily   : 'Blinker',
 		fontWeight   : '100',
-		borderRadius : 'none'
 	},
 	colorNameInput : {
 		marginTop : '1.5rem',

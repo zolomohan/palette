@@ -5,15 +5,11 @@ export default {
 	root       : {
 		width              : '20%',
 		height             : '25%',
-		position           : 'relative',
-		margin             : '0 auto',
-		display            : 'inline-block',
+		cursor             : 'move',
 		marginBottom       : '-6px',
-		cursor             : 'pointer',
+		position           : 'relative',
+		display            : 'inline-block',
 		backgroundColor    : (props) => props.color.color,
-		'&:hover'          : {
-			cursor : 'move'
-		},
 		[media.down('lg')]: {
 			height : '20%',
 			width  : '25%'
@@ -28,18 +24,18 @@ export default {
 		}
 	},
 	boxContent : {
+		display        : 'flex',
+		alignItems     : 'flex-end',
+		justifyContent : 'space-between',
 		position       : 'absolute',
-		width          : '100%',
 		left           : '0',
 		bottom         : '0',
 		letterSpacing  : '1px',
-		textTransform  : 'uppercase',
+		width          : '100%',
 		fontSize       : '12px',
 		padding        : '10px',
-		color          : (props) => chromaContrast(props.color.color),
-		display        : 'flex',
-		justifyContent : 'space-between',
-		alignItems     : 'flex-end'
+		textTransform  : 'uppercase',
+		color          : (props) => chromaContrast(props.color.color)
 	},
 	deleteIcon : {
 		cursor     : 'pointer',
