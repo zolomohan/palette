@@ -63,7 +63,7 @@ function ColorPickerForm(props) {
 					disabled={props.paletteFull}
 					style={{
 						backgroundColor: !props.paletteFull ? newColor : 'grey',
-						color: chromaContrast(newColor)
+						color: chromaContrast(newColor) ? '#000' : '#fff'
 					}}
 					className={classes.addColorBtn}
 				>
