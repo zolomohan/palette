@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import classes from 'styles/Page.module.css';
-import 'styles/animations/PageTransitions.css';
 
 export default function Page({ variant, children }) {
 	if (variant === '404')

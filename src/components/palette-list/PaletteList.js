@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import MiniPalette from 'components/palette-list/MiniPalette';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/PaletteList';
-import 'styles/animations/MiniPaletteFade.css';
 
 function PaletteList({ classes }) {
 	const paletteList = useContext(PaletteContext);
