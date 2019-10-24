@@ -1,16 +1,15 @@
 import React, { createContext, useReducer } from 'react';
-import colorReducer from '../reducers/colors.reducer';
-import seedColors from '../helpers/seedColors';
+import colorReducer from 'reducers/colors.reducer';
+
 
 export const ColorContext = createContext();
 export const ColorDispatchContext = createContext();
 
-export default function PaletteProvider({ children }) {
-	const [ colors, dispatch ] = useReducer(colorReducer, seedColors[0].colors);
-
+export default function PaletteProvider(props) {
+  const [ colors, dispatch ] = useReducer(colorReducer, props.initialColors);
 	return(
 		<ColorContext.Provider value={colors}>
-			<ColorDispatchContext.Provider value={dispatch}>{children}</ColorDispatchContext.Provider>
+			<ColorDispatchContext.Provider value={dispatch}>{props.children}</ColorDispatchContext.Provider>
 		</ColorContext.Provider>
 	);
 }
