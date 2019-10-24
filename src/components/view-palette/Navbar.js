@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Settings from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import withStyles from '@material-ui/core/styles/withStyles';
-import styles from 'styles/navbar/Palette';
+import styles from 'styles/navbar/ViewPalette';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Edit from '@material-ui/icons/Edit';
 

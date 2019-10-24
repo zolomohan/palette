@@ -12,7 +12,7 @@ import SnackBar from 'components/ui/Snackbar';
 import SavePaletteDialog from 'components/create-edit-palette/SavePaletteDialog';
 import ConfirmDialog from 'components/ui/ConfirmDialog';
 import withStyles from '@material-ui/core/styles/withStyles';
-import styles from 'styles/navbar/CreatePalette';
+import styles from 'styles/navbar/CreateAndEdit';
 
 function Navbar(props) {
 	const { classes } = props;

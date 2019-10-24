@@ -51,8 +51,5 @@ export default {
 	moreMenu         : {
 		alignSelf   : 'center',
 		marginRight : '0.5rem',
-		'& ul li a'       : {
-			textDecoration : 'none'
-		}
 	}
 };
