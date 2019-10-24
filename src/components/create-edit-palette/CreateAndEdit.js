@@ -7,7 +7,7 @@ import Navbar from 'components/create-edit-palette/Navbar';
 import DraggableColorList from 'components/create-edit-palette/DraggableColorList';
 import AddColorDrawer from 'components/create-edit-palette/AddColorDrawer';
 
-export default function CreatePalette(props) {
+export default function CreateAndEditPalette(props) {
 	const colors = useContext(ColorContext);
 	const palettes = useContext(PaletteContext);
 	const colorsDispatch = useContext(ColorDispatchContext);
