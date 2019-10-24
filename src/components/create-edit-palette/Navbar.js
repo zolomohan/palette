@@ -9,22 +9,25 @@ import AddCircle from '@material-ui/icons/AddCircle';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import SnackBar from 'components/ui/Snackbar';
-import SavePaletteDialog from 'components/create-palette/SavePaletteDialog';
+import SavePaletteDialog from 'components/create-edit-palette/SavePaletteDialog';
 import ConfirmDialog from 'components/ui/ConfirmDialog';
 import withStyles from '@material-ui/core/styles/withStyles';
-import styles from 'styles/navbar/CreatePalette';
+import styles from 'styles/navbar/CreateAndEdit';
 
 function Navbar(props) {
 	const { classes } = props;
 	const palettes = useContext(PaletteContext);
 	const [ emptyPaletteSnackbar, toggleEmptyPaletteSnackbar ] = useToggleState();
-	const [ saveDialog, toggleSaveDialog ] = useToggleState();
+	const [ createDialog, toggleCreateDialog ] = useToggleState();
+	const [ editDialog, toggleEditDialog ] = useToggleState();
 	const [ discardDialog, toggleDiscardDialog ] = useToggleState();
 
 	const onDiscard = () => props.history.push(`${process.env.PUBLIC_URL}/`);
 
 	const handleSavePalette = () => {
-		if (props.enableSave) toggleSaveDialog();
+		if (props.enableSave) {
+      props.editMode ? toggleEditDialog() : toggleCreateDialog();
+    }
 		else toggleEmptyPaletteSnackbar();
 	};
 
@@ -47,7 +50,7 @@ function Navbar(props) {
 					<AddCircle />
 				</IconButton>
 				<Typography variant='h6' color='inherit' noWrap className={classes.title}>
-					New Palette
+					{props.editMode ? 'Edit Palette' : 'New Palette'}
 				</Typography>
 			</Toolbar>
 			<div className={classes.navBtns}>
@@ -68,8 +71,8 @@ function Navbar(props) {
 					horizontalOrigin='right'
 				/>
 				<SavePaletteDialog
-					open={saveDialog}
-					toggleDialog={toggleSaveDialog}
+					open={createDialog}
+					toggleDialog={toggleCreateDialog}
 					savePalette={props.savePalette}
 					palettes={palettes}
 				/>
@@ -79,6 +82,13 @@ function Navbar(props) {
 					sure you want to Discard your palette?'
 					onCancel={toggleDiscardDialog}
 					onSure={onDiscard}
+				/>
+				<ConfirmDialog
+					open={editDialog}
+					content='This action is irreversible. All Your Colors will be Replaced. Are you
+					sure you want to Edit your palette?'
+					onCancel={toggleEditDialog}
+					onSure={props.savePalette}
 				/>
 			</div>
 		</AppBar>

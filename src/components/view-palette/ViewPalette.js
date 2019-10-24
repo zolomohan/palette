@@ -6,7 +6,7 @@ import ColorList from 'components/view-palette/colors/ColorList';
 import { singleColorShades } from 'helpers/generateShades';
 import styles from 'styles/Palette';
 
-function Palette(props) {
+function ViewPalette(props) {
 	const [ level, setLevel ] = useState(400);
 	const [ format, setFormat ] = useState('hex');
   const { classes } = props;
@@ -18,6 +18,7 @@ function Palette(props) {
 	return (
 		<div className={classes.palette}>
 			<Navbar
+        paletteId={props.palette.id}
 				level={level}
 				format={format}
 				changeLevel={setLevel}
@@ -35,4 +36,4 @@ function Palette(props) {
 	);
 }
 
-export default withStyles(styles)(Palette);
+export default withStyles(styles)(ViewPalette);

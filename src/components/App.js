@@ -2,17 +2,21 @@ import React, { useContext } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Page from 'components/Page';
-import Palette from 'components/view-palette/Palette';
+import Palette from 'components/view-palette/ViewPalette';
 import PaletteList from 'components/palette-list/PaletteList';
-import CreatePalette from 'components/create-palette/CreatePalette';
+import CreatePalette from 'components/create-edit-palette/CreateAndEdit';
 import generateShades from 'helpers/generateShades';
 import ColorProvider from 'contexts/color.context';
 import { PaletteContext } from 'contexts/palette.context';
+import seedColors from 'helpers/seedColors';
 import 'styles/animations/PageTransition.css';
 
 export default function App() {
 	const palettes = useContext(PaletteContext);
-	const palette = (id) => generateShades(palettes.find((palette) => palette.id === id));
+	const palette = (route) =>
+		generateShades(
+			palettes.find((palette) => palette.id === route.match.params.paletteId)
+		);
 
 	return (
 		<Route
@@ -34,7 +38,9 @@ export default function App() {
 								path={`${process.env.PUBLIC_URL}/palette/new`}
 								render={({ history }) => (
 									<Page>
-										<ColorProvider>
+										<ColorProvider
+											initialColors={seedColors[0].colors}
+										>
 											<CreatePalette history={history} />
 										</ColorProvider>
 									</Page>
@@ -42,15 +48,36 @@ export default function App() {
 							/>
 							<Route
 								exact
-								path={`${process.env.PUBLIC_URL}/palette/:id`}
+								path={`${process.env.PUBLIC_URL}/palette/:paletteId`}
 								render={(route) => (
 									<Page>
 										<Palette
 											singleColorShades={false}
-											palette={palette(route.match.params.id)}
+											palette={palette(route)}
 										/>
 									</Page>
 								)}
+							/>
+							<Route
+								exact
+								path={`${process.env.PUBLIC_URL}/palette/:paletteId/edit`}
+								render={(route) => {
+									return (
+										<Page>
+											<ColorProvider
+												initialColors={
+													palettes.find(
+														(palette) =>
+															palette.id ===
+															route.match.params.paletteId
+													).colors
+												}
+											>
+												<CreatePalette route={route} editMode />
+											</ColorProvider>
+										</Page>
+									);
+								}}
 							/>
 							<Route
 								exact
@@ -61,9 +88,7 @@ export default function App() {
 										<Palette
 											colorId={route.match.params.colorId}
 											singleColorShades={true}
-											palette={palette(
-												route.match.params.paletteId
-											)}
+											palette={palette(route)}
 										/>
 									</Page>
 								)}

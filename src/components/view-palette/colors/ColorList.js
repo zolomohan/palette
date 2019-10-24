@@ -6,7 +6,7 @@ import styles from 'styles/Palette';
 
 function ColorList(props) {
   const { classes } = props;
-  console.log(props.colors)
+
 	return (
 		<main className={classes.paletteColors}>
 			{props.colors.map((color) => (

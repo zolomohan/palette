@@ -47,5 +47,9 @@ export default {
 		marginLeft  : 'auto',
 		marginRight : '8px',
 		marginTop   : '7px'
+	},
+	moreMenu         : {
+		alignSelf   : 'center',
+		marginRight : '0.5rem',
 	}
 };
