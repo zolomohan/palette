@@ -54,8 +54,8 @@ export default function CreateAndEditPalette(props) {
 		<div style={{ display: 'flex' }}>
 			<CssBaseline />
 			<Navbar
+				route={props.route}
 				editMode={props.editMode}
-				history={props.history}
 				drawerOpen={drawerOpen}
 				savePalette={props.editMode ? editPalette : addPalette}
 				openDrawer={toggleOpen}

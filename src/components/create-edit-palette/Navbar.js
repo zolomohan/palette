@@ -22,13 +22,17 @@ function Navbar(props) {
 	const [ editDialog, toggleEditDialog ] = useToggleState();
 	const [ discardDialog, toggleDiscardDialog ] = useToggleState();
 
-	const onDiscard = () => props.history.push(`${process.env.PUBLIC_URL}/`);
+	const onDiscard = () => {
+		const link = props.editMode
+			? `palette/${props.route.match.params.paletteId}`
+      : '';
+    props.route.history.push(`${process.env.PUBLIC_URL}/${link}`);
+	};
 
 	const handleSavePalette = () => {
 		if (props.enableSave) {
-      props.editMode ? toggleEditDialog() : toggleCreateDialog();
-    }
-		else toggleEmptyPaletteSnackbar();
+			props.editMode ? toggleEditDialog() : toggleCreateDialog();
+		} else toggleEmptyPaletteSnackbar();
 	};
 
 	return (
@@ -61,7 +65,11 @@ function Navbar(props) {
 				>
 					Discard
 				</Button>
-				<Button className={classes.navBtn} onClick={handleSavePalette} color='primary'>
+				<Button
+					className={classes.navBtn}
+					onClick={handleSavePalette}
+					color='primary'
+				>
 					Save
 				</Button>
 				<SnackBar
@@ -93,6 +101,6 @@ function Navbar(props) {
 			</div>
 		</AppBar>
 	);
-};
+}
 
 export default withStyles(styles)(Navbar);
