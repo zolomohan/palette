@@ -4,7 +4,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Page from 'components/Page';
 import Palette from 'components/view-palette/Palette';
 import PaletteList from 'components/palette-list/PaletteList';
-import CreatePalette from 'components/create-palette/CreatePalette';
+import CreatePalette from 'components/create-edit-palette/CreatePalette';
 import generateShades from 'helpers/generateShades';
 import ColorProvider from 'contexts/color.context';
 import { PaletteContext } from 'contexts/palette.context';
