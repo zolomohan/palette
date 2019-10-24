@@ -16,7 +16,7 @@ export default {
 		},
 		'&.goBack'         : {
 			height             : '50%',
-			backgroundColor    : '#222222',
+			backgroundColor    : '#222',
 			'& $button'        : {
 				color           : '#fff',
 				backgroundColor : 'transparent'
@@ -66,9 +66,7 @@ export default {
 		fontSize        : '1.1rem',
 		transition      : '0.1s opacity linear',
 		backgroundColor : (props) =>
-			chromaContrast(props[props.format]) === '#000'
-				? 'rgba(0,0,0,0.1)'
-				: 'rgba(255,255,255,0.2)',
+			chromaContrast(props[props.format]) === '#000' ? '#0000001a' : '#ffffff33',
 		color           : (props) => chromaContrast(props[props.format]),
 		'&.copyButton'  : {
 			opacity : 0
