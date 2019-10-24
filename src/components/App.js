@@ -4,7 +4,6 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Page from 'components/Page';
 import Palette from 'components/palette/Palette';
 import PaletteList from 'components/palette-list/PaletteList';
-import SingleColorPalette from 'components/palette/SingleColorPalette';
 import CreatePalette from 'components/create-palette/CreatePalette';
 import generateShades from 'helpers/generateShades';
 import ColorProvider from 'contexts/color.context';
@@ -44,10 +43,11 @@ export default function App() {
 							<Route
 								exact
 								path={`${process.env.PUBLIC_URL}/palette/:id`}
-								render={(routeProps) => (
+								render={(route) => (
 									<Page>
 										<Palette
-											{...palette(routeProps.match.params.id)}
+											singleColorShades={false}
+											palette={palette(route.match.params.id)}
 										/>
 									</Page>
 								)}
@@ -56,12 +56,13 @@ export default function App() {
 								exact
 								path={`${process.env
 									.PUBLIC_URL}/palette/:paletteId/:colorId`}
-								render={(routeProps) => (
+								render={(route) => (
 									<Page>
-										<SingleColorPalette
-											colorId={routeProps.match.params.colorId}
-											{...palette(
-												routeProps.match.params.paletteId
+										<Palette
+											colorId={route.match.params.colorId}
+											singleColorShades={true}
+											palette={palette(
+												route.match.params.paletteId
 											)}
 										/>
 									</Page>

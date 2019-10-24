@@ -7,8 +7,9 @@ export default {
 		display               : 'inline-block',
 		marginBottom          : '-4px',
 		width                 : '20%',
-		height                : (props) => (props.singleColorPalette ? '50%' : '25%'),
-		backgroundColor       : (props) => (props.goBackBox ? '#222' : props['hex']),
+		height                : (props) => (props.singleColorShades ? '50%' : '25%'),
+		backgroundColor       : (props) =>
+			props.goBackBox ? '#222' : props[props.format],
 		transition            : 'all 0.1s linear',
 		'&:hover .copyButton' : {
 			opacity    : '1',
@@ -16,15 +17,15 @@ export default {
 		},
 		[media.down('lg')]: {
 			width  : (props) => (props.goBackBox ? '75%' : '25%'),
-			height : (props) => (props.singleColorPalette ? '33.3333%' : '20%')
+			height : (props) => (props.singleColorShades ? '33.3333%' : '20%')
 		},
 		[media.down('md')]: {
 			width  : () => '50%',
-			height : (props) => (props.singleColorPalette ? '20%' : '10%')
+			height : (props) => (props.singleColorShades ? '20%' : '10%')
 		},
 		[media.down('xs')]: {
 			width  : () => '100%',
-			height : (props) => (props.singleColorPalette ? '10%' : '5%')
+			height : (props) => (props.singleColorShades ? '10%' : '5%')
 		}
 	},
 
@@ -48,9 +49,7 @@ export default {
 		backgroundColor : (props) =>
 			props.goBackBox
 				? 'transparent'
-				: chromaContrast(props[props.format]) === '#000'
-					? '#0000001a'
-					: '#ffffff33',
+				: chromaContrast(props['hex']) === '#000' ? '#0000001a' : '#ffffff33',
 		'&.copyButton'  : {
 			opacity : 0
 		}

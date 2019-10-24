@@ -24,7 +24,7 @@ function ColorBox(props) {
 			<CopyToClipboard text={color} onCopy={handleCopy}>
 				<button className={clsx('copyButton', classes.button, classes.text)}>copy</button>
 			</CopyToClipboard>
-			{!props.singleColorPalette && (
+			{!props.singleColorShades && (
         <Link to={`${props.paletteId}/${props.id}`}>
 					<span className={clsx(classes.seeMore, classes.text)}>more</span>
 				</Link>

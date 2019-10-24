@@ -24,7 +24,7 @@ function Navbar(props) {
 			<Link to={`${process.env.PUBLIC_URL}/`} style={{ textDecoration: 'none' }}>
 				<span className={classes.NavbarBrand}>palette</span>
 			</Link>
-			{props.level && (
+			{!props.singleColorShades && (
 				<div className={classes.NavbarSlider}>
 					<span className={classes.NavbarSliderText}>{props.level}</span>
 					<Slider

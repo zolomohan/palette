@@ -7,7 +7,7 @@ function GoBackButton(props) {
   const { classes } = props;
 	return (
 		<Link to={`${process.env.PUBLIC_URL}/palette/${props.paletteId}`}>
-			<div className={`${classes.colorBox}`}>
+			<div className={classes.colorBox}>
 				<button className={classes.button}>Go Back</button>
 			</div>
 		</Link>

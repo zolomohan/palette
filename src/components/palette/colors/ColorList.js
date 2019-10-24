@@ -4,8 +4,9 @@ import GoBackButton from 'components/palette/colors/GoBackButton';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/Palette';
 
-function Palette(props) {
-	const { classes } = props;
+function ColorList(props) {
+  const { classes } = props;
+  console.log(props.colors)
 	return (
 		<main className={classes.paletteColors}>
 			{props.colors.map((color) => (
@@ -14,14 +15,14 @@ function Palette(props) {
 					format={props.format}
 					paletteId={props.paletteId}
 					key={`${color.name}${color.id}`}
-					singleColorPalette={props.singleColorPalette}
+					singleColorShades={props.singleColorShades}
 				/>
 			))}
-			{props.singleColorPalette && (
-				<GoBackButton paletteId={props.paletteId} singleColorPalette goBackBox />
+			{props.singleColorShades && (
+				<GoBackButton paletteId={props.paletteId} singleColorShades goBackBox />
 			)}
 		</main>
 	);
 }
 
-export default withStyles(styles)(Palette);
+export default withStyles(styles)(ColorList);
