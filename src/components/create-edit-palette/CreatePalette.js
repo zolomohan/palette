@@ -41,9 +41,13 @@ export default function CreatePalette(props) {
 	};
 
 	const editPalette = () => {
-		props.route.history.push(
-			`${process.env.PUBLIC_URL}/palette/${props.route.match.params.paletteId}`
-		);
+		const paletteId = props.route.match.params.paletteId;
+		paletteDispatch({
+			type   : 'EDIT',
+			paletteId     : paletteId,
+			colors : colors
+		});
+		props.route.history.push(`${process.env.PUBLIC_URL}/palette/${paletteId}`);
 	};
 
 	return (
