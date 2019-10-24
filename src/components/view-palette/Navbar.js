@@ -10,7 +10,7 @@ import Settings from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/navbar/Palette';
-import { ListItemIcon, Typography } from '@material-ui/core';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Edit from '@material-ui/icons/Edit';
 
 function Navbar(props) {
@@ -53,10 +53,9 @@ function Navbar(props) {
 					<MenuItem value='rgba'>RGBA</MenuItem>
 				</Select>
 			</div>
-			{console.log(classes.moreMenu)}
 			<div className={classes.moreMenu}>
-				<IconButton color='inherit' size='small'>
-					<Settings onClick={openMore} />
+				<IconButton color='inherit' size='small' onClick={openMore}>
+					<Settings />
 				</IconButton>
 				<Menu
 					anchorEl={more}

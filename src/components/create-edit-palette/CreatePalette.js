@@ -27,26 +27,33 @@ export default function CreatePalette(props) {
 	const sortColors = ({ oldIndex, newIndex }) =>
 		colorsDispatch({ type: 'SORT', oldIndex, newIndex });
 
-	const savePalette = (newPaletteName, emoji) => {
+	const addPalette = (newPaletteName, emoji) => {
 		paletteDispatch({
-			type: 'ADD',
-			palette: {
-				paletteName: newPaletteName,
-				id: newPaletteName.toLowerCase().replace(/ /g, '-'),
-				emoji: emoji,
-				colors: colors
+			type    : 'ADD',
+			palette : {
+				paletteName : newPaletteName,
+				id          : newPaletteName.toLowerCase().replace(/ /g, '-'),
+				emoji       : emoji,
+				colors      : colors
 			}
 		});
-		props.history.push(`${process.env.PUBLIC_URL}/`);
+		props.route.history.push(`${process.env.PUBLIC_URL}/`);
+	};
+
+	const editPalette = () => {
+		props.route.history.push(
+			`${process.env.PUBLIC_URL}/palette/${props.route.match.params.paletteId}`
+		);
 	};
 
 	return (
 		<div style={{ display: 'flex' }}>
 			<CssBaseline />
 			<Navbar
+				editMode={props.editMode}
 				history={props.history}
 				drawerOpen={drawerOpen}
-				savePalette={savePalette}
+				savePalette={props.editMode ? editPalette : addPalette}
 				openDrawer={toggleOpen}
 				enableSave={colors.length > 0}
 			/>

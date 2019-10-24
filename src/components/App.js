@@ -60,7 +60,7 @@ export default function App() {
 							/>
 							<Route
 								exact
-								path={`${process.env.PUBLIC_URL}/palette/:id/edit`}
+								path={`${process.env.PUBLIC_URL}/palette/:paletteId/edit`}
 								render={(route) => {
 									return (
 										<Page>
@@ -69,11 +69,11 @@ export default function App() {
 													palettes.find(
 														(palette) =>
 															palette.id ===
-															route.match.params.id
+															route.match.params.paletteId
 													).colors
 												}
 											>
-												<CreatePalette history={route.history} />
+												<CreatePalette route={route} editMode />
 											</ColorProvider>
 										</Page>
 									);
