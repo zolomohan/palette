@@ -11,7 +11,8 @@ function ColorList(props) {
 		<main className={classes.paletteColors}>
 			{props.colors.map((color) => (
 				<ColorBox
-					{...color}
+          {...color}
+          colorsLength={props.colors.length}
 					format={props.format}
 					paletteId={props.paletteId}
 					key={`${color.name}${color.id}`}

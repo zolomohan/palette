@@ -1,13 +1,27 @@
 import chromaContrast from 'helpers/chromaContrast';
 import media from 'helpers/mediaQuery';
 
+const colorBoxHeight = (length, media, singleColorShades) => {
+	if (singleColorShades) {
+		if (media === 'lg') return '33.33%';
+		if (media === 'md') return '20%';
+		if (media === 'xs') return '10%';
+		return '50%';
+  }
+  
+	if (media === 'xs') return `${100 / length}%`;
+  if (media === 'md') return `${100 / (length % 2 === 0 ? length : length + 1) * 2}%`;
+  return '25%';
+};
+
 export default {
 	colorBox  : {
 		position              : 'relative',
 		display               : 'inline-block',
 		marginBottom          : '-4px',
 		width                 : '20%',
-		height                : (props) => (props.singleColorShades ? '50%' : '25%'),
+		height                : (props) =>
+			colorBoxHeight(props.colorsLength, 'xl', props.singleColorShades),
 		backgroundColor       : (props) => (props.goBackBox ? '#222' : props['hex']),
 		transition            : 'all 0.1s linear',
 		'&:hover .copyButton' : {
@@ -16,15 +30,18 @@ export default {
 		},
 		[media.down('lg')]: {
 			width  : (props) => (props.goBackBox ? '75%' : '25%'),
-			height : (props) => (props.singleColorShades ? '33.3333%' : '20%')
+			height : (props) =>
+				colorBoxHeight(props.colorsLength, 'lg', props.singleColorShades)
 		},
 		[media.down('md')]: {
 			width  : () => '50%',
-			height : (props) => (props.singleColorShades ? '20%' : '10%')
+			height : (props) =>
+				colorBoxHeight(props.colorsLength, 'md', props.singleColorShades)
 		},
 		[media.down('xs')]: {
 			width  : () => '100%',
-			height : (props) => (props.singleColorShades ? '10%' : '5%')
+			height : (props) =>
+				colorBoxHeight(props.colorsLength, 'xs', props.singleColorShades)
 		}
 	},
 
@@ -48,7 +65,7 @@ export default {
 		backgroundColor : (props) =>
 			props.goBackBox
 				? 'transparent'
-				: chromaContrast(props['hex'])  ? '#0000001a' : '#ffffff33',
+				: chromaContrast(props['hex']) ? '#0000001a' : '#ffffff33',
 		'&.copyButton'  : {
 			opacity : 0
 		}
@@ -78,6 +95,6 @@ export default {
 	},
 
 	text      : {
-		color : (props) => chromaContrast(props['hex']) ? '#000' : '#fff'
+		color : (props) => (chromaContrast(props['hex']) ? '#000' : '#fff')
 	}
 };
