@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useToggleState from 'hooks/useToggleState';
+import Menu from '@material-ui/core/Menu';
 import Slider from '@material-ui/core/Slider';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import SnackBar from 'components/ui/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import Settings from '@material-ui/icons/MoreVert';
-import Menu from '@material-ui/core/Menu';
 import withStyles from '@material-ui/core/styles/withStyles';
-import styles from 'styles/navbar/ViewPalette';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ColorsIcon from '@material-ui/icons/Apps';
 import RenameIcon from '@material-ui/icons/TextFields';
 import SavePaletteDialog from 'components/dialogs/SavePalette';
+import styles from 'styles/navbar/ViewPalette';
 
 function Navbar(props) {
 	const { classes } = props;
+	const [ more, setMore ] = useState(null);
 	const [ renameDialog, toggleRenameDialog ] = useToggleState();
 	const [ formatSnackbar, toggleFormatSnackbar ] = useToggleState();
-	const [ more, setMore ] = useState(null);
 
 	const openMore = (event) => setMore(event.currentTarget);
   const closeMore = () => setMore(null);
@@ -74,14 +74,14 @@ function Navbar(props) {
 						to={`${process.env.PUBLIC_URL}/palette/${props.paletteId}/edit`}
 						style={{ textDecoration: 'none', color: 'black' }}
 					>
-						<MenuItem onClick={closeMore} className='anchor'>
+						<MenuItem onClick={closeMore}>
 							<ListItemIcon>
 								<ColorsIcon />
 							</ListItemIcon>
 							Edit Colors
 						</MenuItem>
 					</Link>
-					<MenuItem onClick={openRenameDialog} className='anchor'>
+					<MenuItem onClick={openRenameDialog}>
 						<ListItemIcon>
 							<RenameIcon />
 						</ListItemIcon>
@@ -95,7 +95,9 @@ function Navbar(props) {
 				onClose={toggleFormatSnackbar}
 			/>
 			<SavePaletteDialog
+        renameMode
 				open={renameDialog}
+        paletteId={props.paletteId}
 				toggleDialog={toggleRenameDialog}
 				savePalette={props.renamePalette}
 			/>

@@ -13,21 +13,26 @@ import 'emoji-mart/css/emoji-mart.css';
 
 export default function SavePaletteDialog(props) {
   const palettes = useContext(PaletteContext);
-  const [ stage, setStage ] = useState('form');
-	const [ newPaletteName, setNewPaletteName, resetNewPaletteName ] = useInputState();
-
+  const paletteName = () =>
+		props.renameMode
+			? palettes.filter((palette) => palette.id === props.paletteId)[0].paletteName
+      : '';
+      
+	const [ stage, setStage ] = useState('form');
+	const [ newPaletteName, setNewPaletteName, resetNewPaletteName ] = useInputState(paletteName());
+	
 	const selectEmoji = (emoji) => {
 		setStage('');
 		props.savePalette(newPaletteName, emoji.native);
-	}
+	};
 
 	const hideDialog = () => {
 		setStage('form');
 		resetNewPaletteName();
 		props.toggleDialog();
-	}
+	};
 
-	const onSubmit = () => setStage('emoji');
+	const onNameSubmit = () => setStage('emoji');
 
 	useEffect(() => {
 		ValidatorForm.addValidationRule('uniquePaletteName', (value) =>
@@ -43,7 +48,7 @@ export default function SavePaletteDialog(props) {
 				<Picker onSelect={selectEmoji} title='Pick an Emoji' />
 			</Dialog>
 			<Dialog open={props.open && stage === 'form'} onClose={props.toggleDialog}>
-				<ValidatorForm onSubmit={onSubmit}>
+				<ValidatorForm onSubmit={onNameSubmit}>
 					<DialogTitle>Palette Name</DialogTitle>
 					<DialogContent>
 						<DialogContentText>
