@@ -78,3 +78,7 @@ export default function CreateAndEditPalette(props) {
 		</div>
 	);
 }
+
+CreateAndEditPalette.defaultProps = {
+  paletteMaxColors: '20'
+}
