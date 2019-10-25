@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from 'contexts/theme.context';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -20,16 +19,10 @@ function Navbar(props) {
 
 	const theme = useContext(ThemeContext);
 
-	const MUITheme = createMuiTheme({
-		palette : {
-			type : theme.darkMode ? 'dark' : 'light'
-		}
-	});
-
 	const openMore = (event) => setMore(event.currentTarget);
-  const closeMore = () => setMore(null);
-  
-  const openRenameDialog = () => {
+	const closeMore = () => setMore(null);
+
+	const openRenameDialog = () => {
 		closeMore();
 		props.onRename();
 	};
@@ -40,46 +33,39 @@ function Navbar(props) {
 	};
 
 	return (
-		<ThemeProvider theme={MUITheme}>
-			<div className={classes.moreMenu} style={styles}>
-				<IconButton size='small' onClick={openMore} style={styles}>
-					<Settings />
-				</IconButton>
-				<Menu
-					anchorEl={more}
-					open={Boolean(more)}
-					onClose={closeMore}
-					keepMounted
+		<div className={classes.moreMenu}>
+			<IconButton size='small' onClick={openMore}>
+				<Settings />
+			</IconButton>
+			<Menu anchorEl={more} open={Boolean(more)} onClose={closeMore} keepMounted>
+				<Link
+					to={`${process.env.PUBLIC_URL}/palette/${props.paletteId}/edit`}
+					style={{
+						textDecoration : 'none',
+						color          : theme.darkMode ? '#fff' : '#000'
+					}}
 				>
-					<Link
-						to={`${process.env.PUBLIC_URL}/palette/${props.paletteId}/edit`}
-						style={{
-							textDecoration : 'none',
-							color          : theme.darkMode ? '#fff' : '#000'
-						}}
-					>
-						<MenuItem onClick={closeMore}>
-							<ListItemIcon>
-								<ColorsIcon />
-							</ListItemIcon>
-							Edit Colors
-						</MenuItem>
-					</Link>
-					<MenuItem onClick={openRenameDialog}>
+					<MenuItem onClick={closeMore}>
 						<ListItemIcon>
-							<RenameIcon />
+							<ColorsIcon />
 						</ListItemIcon>
-						Rename Palette
+						Edit Colors
 					</MenuItem>
-					<MenuItem onClick={onToggleTheme}>
-						<ListItemIcon>
-							{theme.darkMode ? <DarkModeIcon /> : <LightModeIcon />}
-						</ListItemIcon>
-						{theme.darkMode ? 'Light Mode' : 'Dark Mode'}
-					</MenuItem>
-				</Menu>
-			</div>
-		</ThemeProvider>
+				</Link>
+				<MenuItem onClick={openRenameDialog}>
+					<ListItemIcon>
+						<RenameIcon />
+					</ListItemIcon>
+					Rename Palette
+				</MenuItem>
+				<MenuItem onClick={onToggleTheme}>
+					<ListItemIcon>
+						{theme.darkMode ? <DarkModeIcon /> : <LightModeIcon />}
+					</ListItemIcon>
+					{theme.darkMode ? 'Light Mode' : 'Dark Mode'}
+				</MenuItem>
+			</Menu>
+		</div>
 	);
 }
 

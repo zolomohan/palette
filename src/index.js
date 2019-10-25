@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import ThemeProvider from 'contexts/theme.context';
 import PaletteProvider from 'contexts/palette.context';
 import App from 'components/App';
 import * as serviceWorker from 'helpers/serviceWorker';
 import 'styles/index.css';
-import ThemeProvider from 'contexts/theme.context';
 
 ReactDOM.render(
 	<BrowserRouter>
