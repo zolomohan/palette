@@ -16,14 +16,22 @@ import LightModeIcon from '@material-ui/icons/WbIncandescent';
 import DarkModeIcon from '@material-ui/icons/WbIncandescentOutlined';
 import SavePaletteDialog from 'components/dialogs/SavePalette';
 import styles from 'styles/navbar/ViewPalette';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { ThemeContext } from 'contexts/theme.context';
+
 function Navbar(props) {
 	const { classes } = props;
 	const [ more, setMore ] = useState(null);
 	const [ renameDialog, toggleRenameDialog ] = useToggleState();
 	const [ formatSnackbar, toggleFormatSnackbar ] = useToggleState();
 
-	const theme = useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
+  
+  const MUITheme = createMuiTheme({
+		palette : {
+			type : theme.darkMode ? 'dark' : 'light'
+		}
+	});
 
 	const openMore = (event) => setMore(event.currentTarget);
 	const closeMore = () => setMore(null);
@@ -31,12 +39,12 @@ function Navbar(props) {
 	const openRenameDialog = () => {
 		closeMore();
 		toggleRenameDialog();
-  };
-  
-  const onToggleTheme = () => {
-    closeMore();
-    theme.toggleDarkMode();
-  }
+	};
+
+	const onToggleTheme = () => {
+		closeMore();
+		theme.toggleDarkMode();
+	};
 
 	const changeColorLevel = (event, level) => props.changeLevel(level);
 
@@ -78,48 +86,51 @@ function Navbar(props) {
 					/>
 				</div>
 			)}
-			<div className={classes.NavbarSelect}>
-				<Select value={props.format} onChange={changeColorFormat}>
-					<MenuItem value='hex'>HEX</MenuItem>
-					<MenuItem value='rgb'>RGB</MenuItem>
-					<MenuItem value='rgba'>RGBA</MenuItem>
-				</Select>
-			</div>
-			<div className={classes.moreMenu}>
-				<IconButton color={theme.darkMode ? 'primary' : 'inherit'} size='small' onClick={openMore}>
-					<Settings />
-				</IconButton>
-				<Menu
-					anchorEl={more}
-					open={Boolean(more)}
-					onClose={closeMore}
-					keepMounted
-				>
-					<Link
-						to={`${process.env.PUBLIC_URL}/palette/${props.paletteId}/edit`}
-						style={{ textDecoration: 'none', color: 'black' }}
+			<ThemeProvider theme={MUITheme}>
+				<div className={classes.NavbarSelect}>
+					<Select value={props.format} onChange={changeColorFormat}>
+						<MenuItem value='hex'>HEX</MenuItem>
+						<MenuItem value='rgb'>RGB</MenuItem>
+						<MenuItem value='rgba'>RGBA</MenuItem>
+					</Select>
+				</div>
+				<div className={classes.moreMenu} style={styles}>
+					<IconButton size='small' onClick={openMore} style={styles}>
+						<Settings />
+					</IconButton>
+					<Menu
+						anchorEl={more}
+						open={Boolean(more)}
+						onClose={closeMore}
+						keepMounted
 					>
-						<MenuItem onClick={closeMore}>
+						<Link
+							to={`${process.env
+								.PUBLIC_URL}/palette/${props.paletteId}/edit`}
+							style={{ textDecoration: 'none', color: theme.darkMode ? '#fff' : '#000' }}
+						>
+							<MenuItem onClick={closeMore}>
+								<ListItemIcon>
+									<ColorsIcon />
+								</ListItemIcon>
+								Edit Colors
+							</MenuItem>
+						</Link>
+						<MenuItem onClick={openRenameDialog}>
 							<ListItemIcon>
-								<ColorsIcon />
+								<RenameIcon />
 							</ListItemIcon>
-							Edit Colors
+							Rename Palette
 						</MenuItem>
-					</Link>
-					<MenuItem onClick={openRenameDialog}>
-						<ListItemIcon>
-							<RenameIcon />
-						</ListItemIcon>
-						Rename Palette
-					</MenuItem>
-					<MenuItem onClick={onToggleTheme}>
-						<ListItemIcon>
-							{theme.darkMode ? <DarkModeIcon /> : <LightModeIcon />}
-						</ListItemIcon>
-						{theme.darkMode ? 'Light Mode' : 'Dark Mode'}
-					</MenuItem>
-				</Menu>
-			</div>
+						<MenuItem onClick={onToggleTheme}>
+							<ListItemIcon>
+								{theme.darkMode ? <DarkModeIcon /> : <LightModeIcon />}
+							</ListItemIcon>
+							{theme.darkMode ? 'Light Mode' : 'Dark Mode'}
+						</MenuItem>
+					</Menu>
+				</div>
+			</ThemeProvider>
 			<SnackBar
 				message={`Format Changed to ${props.format.toUpperCase()}`}
 				open={formatSnackbar}
