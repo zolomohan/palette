@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,9 +7,13 @@ import Button from '@material-ui/core/Button';
 import ColorPickerForm from 'components/create-edit-palette/ColorPickerForm';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/AddColorDrawer';
+import { ThemeContext } from 'contexts/theme.context';
+import clsx from 'clsx';
 
 function AddColorDrawer(props) {
-	const { classes } = props;
+  const { classes } = props;
+  const theme = useContext(ThemeContext);
+
 	return (
 		<Drawer
 			className={classes.drawer}
@@ -17,7 +21,9 @@ function AddColorDrawer(props) {
 			anchor='left'
 			open={props.open}
 			classes={{
-				paper: classes.drawerPaper
+				paper: clsx(classes.drawerPaper, {
+          [classes.drawerPaperDark] : theme.darkMode
+        })
 			}}
 		>
 			<div className={classes.drawerHeader}>

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import React from 'react';
+import React, { useContext } from 'react';
 import useToggleState from 'hooks/useToggleState';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -12,9 +12,11 @@ import SavePaletteDialog from 'components/dialogs/SavePalette';
 import ConfirmDialog from 'components/dialogs/Confirm';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/navbar/CreateAndEdit';
+import { ThemeContext } from 'contexts/theme.context';
 
 function Navbar(props) {
 	const { classes } = props;
+	const theme = useContext(ThemeContext);
 	const [ emptyPaletteSnackbar, toggleEmptyPaletteSnackbar ] = useToggleState();
 	const [ createDialog, toggleCreateDialog ] = useToggleState();
 	const [ editDialog, toggleEditDialog ] = useToggleState();
@@ -23,8 +25,8 @@ function Navbar(props) {
 	const onDiscard = () => {
 		const link = props.editMode
 			? `palette/${props.route.match.params.paletteId}`
-      : '';
-    props.route.history.push(`${process.env.PUBLIC_URL}/${link}`);
+			: '';
+		props.route.history.push(`${process.env.PUBLIC_URL}/${link}`);
 	};
 
 	const handleSavePalette = () => {
@@ -38,6 +40,7 @@ function Navbar(props) {
 			position='fixed'
 			color='inherit'
 			className={clsx(classes.appBar, {
+				[classes.appBarDark]: theme.darkMode,
 				[classes.appBarShift]: props.drawerOpen
 			})}
 			elevation={0}
@@ -58,8 +61,8 @@ function Navbar(props) {
 			<div className={classes.navBtns}>
 				<Button
 					className={classes.navBtn}
-					color='secondary'
 					onClick={toggleDiscardDialog}
+					color='secondary'
 				>
 					Discard
 				</Button>

@@ -6,10 +6,13 @@ export default (theme) => ({
 		flexShrink : 0
 	},
 	drawerPaper     : {
-		width      : DRAWER_WIDTH,
-		display    : 'flex',
-		alignItems : 'center'
-	},
+		width           : DRAWER_WIDTH,
+		display         : 'flex',
+    alignItems      : 'center'
+  },
+  drawerPaperDark: {
+    backgroundColor : '#222'
+  },
 	drawerHeader    : {
 		display        : 'flex',
 		alignItems     : 'center',
