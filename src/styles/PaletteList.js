@@ -11,12 +11,13 @@ export default {
 		}
 	},
 	root      : {
-		backgroundSize  : 'cover',
-		display         : 'flex',
-		justifyContent  : 'center',
-		alignItems      : 'flex-start',
-		height          : '100%',
-		overflowY       : 'scroll'
+		transition     : '0.1s background linear',
+		backgroundSize : 'cover',
+		display        : 'flex',
+		justifyContent : 'center',
+		alignItems     : 'flex-start',
+		height         : '100%',
+		overflowY      : 'scroll'
 	},
 	container : {
 		width              : '60%',
@@ -47,6 +48,8 @@ export default {
 		'& a'          : {
 			textDecoration : 'none',
 			color          : 'white',
+			paddingLeft    : '1em',
+			cursor         : 'pointer',
 			'&:hover'      : {
 				color : '#ddd'
 			}

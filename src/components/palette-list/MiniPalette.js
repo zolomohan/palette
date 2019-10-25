@@ -12,7 +12,6 @@ import { ThemeContext } from 'contexts/theme.context';
 function MiniPalette(props) {
 	const [ deleteDialog, toggleDeleteDialog ] = useToggleState();
 	const { classes } = props;
-	const theme = useContext(ThemeContext);
 
 	const paletteDispatch = useContext(PaletteDispatchContext);
 
@@ -30,12 +29,7 @@ function MiniPalette(props) {
 		>
 			<DeleteIcon className={classes.deleteIcon} onClick={toggleDeleteDialog} />
 			<Link to={`palette/${props.id}`} style={{ textDecoration: 'none' }}>
-				<div
-					className={classes.colors}
-					style={{
-						backgroundColor : theme.darkMode ? '#333' : '#dae1e4'
-					}}
-				>
+				<div className={classes.colors}>
 					{props.colors.map(({ color, name }) => (
 						<MiniBox
 							color={color}

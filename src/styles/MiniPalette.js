@@ -19,7 +19,8 @@ export default {
 		overflow        : 'hidden',
 		height          : '150px',
 		width           : '100%',
-		borderRadius    : '5px'
+    borderRadius    : '5px',
+    backgroundColor : '#dae1e4'
 	},
 	title      : {
 		display        : 'flex',
