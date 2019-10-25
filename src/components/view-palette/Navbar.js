@@ -13,16 +13,22 @@ import styles from 'styles/navbar/ViewPalette';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ColorsIcon from '@material-ui/icons/Apps';
 import RenameIcon from '@material-ui/icons/TextFields';
+import SavePaletteDialog from 'components/dialogs/SavePalette';
 
 function Navbar(props) {
 	const { classes } = props;
-
+	const [ renameDialog, toggleRenameDialog ] = useToggleState();
 	const [ formatSnackbar, toggleFormatSnackbar ] = useToggleState();
 	const [ more, setMore ] = useState(null);
 
 	const openMore = (event) => setMore(event.currentTarget);
-	const closeMore = () => setMore(null);
+  const closeMore = () => setMore(null);
 
+  const openRenameDialog = () => {
+    closeMore();
+    toggleRenameDialog();
+  }
+  
 	const changeColorLevel = (event, level) => props.changeLevel(level);
 
 	const changeColorFormat = (event) => {
@@ -75,18 +81,23 @@ function Navbar(props) {
 							Edit Colors
 						</MenuItem>
 					</Link>
-          <MenuItem onClick={closeMore} className='anchor'>
-							<ListItemIcon>
-								<RenameIcon />
-							</ListItemIcon>
-							Rename Palette
-						</MenuItem>
+					<MenuItem onClick={openRenameDialog} className='anchor'>
+						<ListItemIcon>
+							<RenameIcon />
+						</ListItemIcon>
+						Rename Palette
+					</MenuItem>
 				</Menu>
 			</div>
 			<SnackBar
 				message={`Format Changed to ${props.format.toUpperCase()}`}
 				open={formatSnackbar}
 				onClose={toggleFormatSnackbar}
+			/>
+			<SavePaletteDialog
+				open={renameDialog}
+				toggleDialog={toggleRenameDialog}
+				savePalette={props.renamePalette}
 			/>
 		</nav>
 	);

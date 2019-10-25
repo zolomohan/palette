@@ -52,8 +52,9 @@ export default function App() {
 								render={(route) => (
 									<Page>
 										<Palette
-											singleColorShades={false}
+                      route={route}
 											palette={palette(route)}
+											singleColorShades={false}
 										/>
 									</Page>
 								)}
