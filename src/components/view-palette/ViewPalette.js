@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { PaletteDispatchContext } from 'contexts/palette.context';
-import Navbar from 'components/view-palette/Navbar';
+import Navbar from 'components/view-palette/navbar/Navbar';
 import Footer from 'components/view-palette/Footer';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ColorList from 'components/view-palette/colors/ColorList';

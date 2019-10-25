@@ -9,7 +9,7 @@ function Footer(props) {
 	return (
 		<footer
 			className={classes.Footer}
-			style={{ backgroundColor: theme.darkMode ? '#222' : '#e7e7e7' }}
+			style={{ backgroundColor: theme.darkMode ? '#222' : '#f6f7fb' }}
 		>
 			<span
 				className={classes.FooterPaletteName}

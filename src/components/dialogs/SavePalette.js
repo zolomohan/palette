@@ -13,13 +13,9 @@ import 'emoji-mart/css/emoji-mart.css';
 
 export default function SavePaletteDialog(props) {
   const palettes = useContext(PaletteContext);
-  const paletteName = () =>
-		props.renameMode
-			? palettes.filter((palette) => palette.id === props.paletteId)[0].paletteName
-      : '';
-      
+
 	const [ stage, setStage ] = useState('form');
-	const [ newPaletteName, setNewPaletteName, resetNewPaletteName ] = useInputState(paletteName());
+	const [ newPaletteName, setNewPaletteName, resetNewPaletteName ] = useInputState();
 	
 	const selectEmoji = (emoji) => {
 		setStage('');
