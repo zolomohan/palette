@@ -11,13 +11,13 @@ export default {
 		}
 	},
 	root      : {
-		transition     : '0.1s background linear',
-		backgroundSize : 'cover',
+    backgroundSize : 'cover',
 		display        : 'flex',
 		justifyContent : 'center',
 		alignItems     : 'flex-start',
 		height         : '100%',
-		overflowY      : 'scroll'
+		overflowY      : 'scroll',
+		transition     : '0.1s background linear',
 	},
 	container : {
 		width              : '60%',

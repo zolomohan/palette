@@ -7,7 +7,6 @@ import ConfirmDialog from 'components/dialogs/Confirm';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/MiniPalette';
 import MiniBox from './MiniBox';
-import { ThemeContext } from 'contexts/theme.context';
 
 function MiniPalette(props) {
 	const [ deleteDialog, toggleDeleteDialog ] = useToggleState();
@@ -21,12 +20,7 @@ function MiniPalette(props) {
 	};
 
 	return (
-		<div
-			className={classes.root}
-			style={{
-				backgroundColor : '#f6f7fb'
-			}}
-		>
+		<div className={classes.root}>
 			<DeleteIcon className={classes.deleteIcon} onClick={toggleDeleteDialog} />
 			<Link to={`palette/${props.id}`} style={{ textDecoration: 'none' }}>
 				<div className={classes.colors}>

@@ -31,7 +31,12 @@ function Navbar(props) {
 	const openRenameDialog = () => {
 		closeMore();
 		toggleRenameDialog();
-	};
+  };
+  
+  const onToggleTheme = () => {
+    closeMore();
+    theme.toggleDarkMode();
+  }
 
 	const changeColorLevel = (event, level) => props.changeLevel(level);
 
@@ -107,7 +112,7 @@ function Navbar(props) {
 						</ListItemIcon>
 						Rename Palette
 					</MenuItem>
-					<MenuItem onClick={theme.toggleDarkMode}>
+					<MenuItem onClick={onToggleTheme}>
 						<ListItemIcon>
 							{theme.darkMode ? <DarkModeIcon /> : <LightModeIcon />}
 						</ListItemIcon>

@@ -2,21 +2,23 @@ import media from 'helpers/mediaQuery';
 
 export default {
 	Navbar           : {
-		height  : '6%',
-    display : 'flex',
+		height     : '6%',
+		display    : 'flex',
+		transition : '0.3s background linear'
 	},
 	NavbarBrand      : {
+		letterSpacing      : '1px',
 		display            : 'flex',
 		justifyContent     : 'center',
 		alignItems         : 'center',
 		height             : '100%',
 		minWidth           : '150px',
 		width              : '10%',
-		fontFamily         : 'Blinker, sans-serif',
 		fontSize           : '24px',
-		textTransform      : 'uppercase',
 		textAlign          : 'center',
-		letterSpacing      : '1px',
+		textTransform      : 'uppercase',
+		transition         : '0.3s all linear',
+		fontFamily         : 'Blinker, sans-serif',
 		[media.down('xs')]: {
 			display : (props) => !props.singleColorPalette && 'none'
 		}
@@ -36,6 +38,7 @@ export default {
 	},
 
 	NavbarSliderText : {
+		transition         : '0.3s color linear',
 		fontVariantNumeric : 'tabular-nums',
 		fontFamily         : 'Blinker, sans-serif',
 		margin             : '0 10px'
@@ -48,6 +51,6 @@ export default {
 	},
 	moreMenu         : {
 		alignSelf   : 'center',
-		marginRight : '0.5rem',
+		marginRight : '0.5rem'
 	}
 };

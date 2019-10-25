@@ -1,9 +1,10 @@
 export default {
 	Footer            : {
-		height          : '4vh',
-		display         : 'flex',
-		alignItems      : 'center',
-		justifyContent  : 'flex-end',
+		height         : '4vh',
+		display        : 'flex',
+		alignItems     : 'center',
+		justifyContent : 'flex-end',
+		transition     : 'all 0.3s linear'
 	},
 
 	FooterPaletteName : {
