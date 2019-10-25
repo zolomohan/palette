@@ -7,11 +7,14 @@ import ChromePicker from 'react-color';
 import chromaContrast from 'helpers/chromaContrast';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/ColorPickerForm';
+import { ThemeContext } from 'contexts/theme.context';
+import clsx from 'clsx';
 
 function ColorPickerForm(props) {
 	const { classes } = props;
+  const theme = useContext(ThemeContext);
 	const colors = useContext(ColorContext);
-	const colorsDispatch = useContext(ColorDispatchContext);
+  const colorsDispatch = useContext(ColorDispatchContext);
 	const [ newColor, setNewColor ] = useState('#000');
 	const [ newColorName, setNewColorName, resetNewColorName ] = useInputState();
 
@@ -38,7 +41,9 @@ function ColorPickerForm(props) {
 			<ChromePicker
 				color={newColor}
 				onChange={handleColorChange}
-				className={classes.picker}
+				className={clsx(classes.picker, {
+          [classes.pickerDark] : theme.darkMode
+        })}
 				disableAlpha
 			/>
 			<ValidatorForm onSubmit={handleAddColor} instantValidate={false}>
