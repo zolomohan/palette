@@ -30,7 +30,7 @@ function PaletteList({ classes }) {
 						<Link to={`${process.env.PUBLIC_URL}/palette/new`}>
 							Create Palette
 						</Link>
-						<a onClick={theme.toggleDarkMode}>{theme.darkMode ? 'Light Mode' : 'Dark Mode'}</a>
+						<a href onClick={theme.toggleDarkMode}>{theme.darkMode ? 'Light Mode' : 'Dark Mode'}</a>
 					</span>
 				</nav>
 				<TransitionGroup className={classes.palettes}>

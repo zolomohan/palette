@@ -19,6 +19,7 @@ function LevelSlider(props) {
 				{props.level}
 			</span>
 			<Slider
+
 				defaultValue={props.level}
 				step={100}
 				min={100}

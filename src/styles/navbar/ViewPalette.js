@@ -23,12 +23,11 @@ export default {
 			display : (props) => !props.singleColorPalette && 'none'
 		}
 	},
-
 	NavbarSlider     : {
 		width              : '450px',
 		display            : 'flex',
 		alignItems         : 'center',
-		transition         : '0.15s width linear',
+    transition         : '0.15s width linear',
 		[media.down('sm')]: {
 			width : '350px'
 		},
@@ -36,14 +35,12 @@ export default {
 			width : '300px'
 		}
 	},
-
 	NavbarSliderText : {
 		transition         : '0.3s color linear',
 		fontVariantNumeric : 'tabular-nums',
 		fontFamily         : 'Blinker, sans-serif',
 		margin             : '0 10px'
 	},
-
 	NavbarSelect     : {
 		marginLeft  : 'auto',
 		marginRight : '8px',

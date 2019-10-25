@@ -4,7 +4,6 @@ export default {
 		position               : 'relative',
 		overflow               : 'hidden',
 		padding                : '0.5em',
-		backgroundColor        : 'white',
 		borderRadius           : '5px',
 		transition             : 'transform 0.1s ease-out',
 		backgroundColor        : '#f6f7fb',

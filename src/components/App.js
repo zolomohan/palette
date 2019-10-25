@@ -22,8 +22,17 @@ export default function App() {
 		);
 
 	const MUITheme = createMuiTheme({
-		palette : {
-			type : theme.darkMode ? 'dark' : 'light'
+		overrides : {
+			MuiSlider : {
+				thumb  : { color: theme.darkMode ? '#a68efb' : '#5142b2' },
+				track  : { color: theme.darkMode ? '#a68efb' : '#5142b2' },
+				active : { color: theme.darkMode ? '#ebe2ff' : '#a68efb' }
+      }
+    },
+		palette   : {
+			primary   : { main: theme.darkMode ? '#bfa9fd' : '#5142b2' },
+			secondary : { main: theme.darkMode ? '#ee7e70' : '#d83125' },
+			type      : theme.darkMode ? 'dark' : 'light'
 		}
 	});
 
