@@ -11,7 +11,8 @@ import Menu from '@material-ui/core/Menu';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/navbar/ViewPalette';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Edit from '@material-ui/icons/Edit';
+import ColorsIcon from '@material-ui/icons/Apps';
+import RenameIcon from '@material-ui/icons/TextFields';
 
 function Navbar(props) {
 	const { classes } = props;
@@ -69,11 +70,17 @@ function Navbar(props) {
 					>
 						<MenuItem onClick={closeMore} className='anchor'>
 							<ListItemIcon>
-								<Edit />
+								<ColorsIcon />
 							</ListItemIcon>
-							Edit Palette
+							Edit Colors
 						</MenuItem>
 					</Link>
+          <MenuItem onClick={closeMore} className='anchor'>
+							<ListItemIcon>
+								<RenameIcon />
+							</ListItemIcon>
+							Rename Palette
+						</MenuItem>
 				</Menu>
 			</div>
 			<SnackBar
