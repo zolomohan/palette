@@ -6,6 +6,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+const darkBackground = {
+	backgroundColor : '#222'
+};
+
 export default function ConfirmDialog(props) {
 	return (
 		<Dialog
@@ -15,13 +19,11 @@ export default function ConfirmDialog(props) {
 			aria-describedby='alert-dialog-description'
 			fontFamily='Blinker'
 		>
-			<DialogTitle>Are You Sure?</DialogTitle>
-			<DialogContent>
-				<DialogContentText>
-          {props.content}
-				</DialogContentText>
+			<DialogTitle style={darkBackground}>Are You Sure?</DialogTitle>
+			<DialogContent style={darkBackground}>
+				<DialogContentText>{props.content}</DialogContentText>
 			</DialogContent>
-			<DialogActions>
+			<DialogActions style={darkBackground}>
 				<Button onClick={props.onCancel} color='primary'>
 					Cancel
 				</Button>
