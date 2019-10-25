@@ -9,7 +9,7 @@
 	height: 100vh;
 	width: 100%;
 	background-color: '#3f3383';
-	background-image: url('../assets/bg.svg');
+	background-image: url('../assets/backgrounds/LightMode.svg');
 	background-size: cover;
 	display: flex;
 	justify-content: center;

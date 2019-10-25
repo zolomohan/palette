@@ -7,10 +7,12 @@ import ConfirmDialog from 'components/dialogs/Confirm';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/MiniPalette';
 import MiniBox from './MiniBox';
+import { ThemeContext } from 'contexts/theme.context';
 
 function MiniPalette(props) {
 	const [ deleteDialog, toggleDeleteDialog ] = useToggleState();
 	const { classes } = props;
+	const theme = useContext(ThemeContext);
 
 	const paletteDispatch = useContext(PaletteDispatchContext);
 
@@ -20,15 +22,34 @@ function MiniPalette(props) {
 	};
 
 	return (
-		<div className={classes.root}>
+		<div
+			className={classes.root}
+			style={{
+				backgroundColor : '#f6f7fb'
+			}}
+		>
 			<DeleteIcon className={classes.deleteIcon} onClick={toggleDeleteDialog} />
 			<Link to={`palette/${props.id}`} style={{ textDecoration: 'none' }}>
-				<div className={classes.colors}>
+				<div
+					className={classes.colors}
+					style={{
+						backgroundColor : theme.darkMode ? '#333' : '#dae1e4'
+					}}
+				>
 					{props.colors.map(({ color, name }) => (
-						<MiniBox color={color} key={name} colorsLength={props.colors.length} />
+						<MiniBox
+							color={color}
+							key={name}
+							colorsLength={props.colors.length}
+						/>
 					))}
 				</div>
-				<h5 className={classes.title}>
+				<h5
+					className={classes.title}
+					style={{
+						color : '#525252'
+					}}
+				>
 					{props.paletteName}
 					<span className={classes.emoji}>{props.emoji}</span>
 				</h5>

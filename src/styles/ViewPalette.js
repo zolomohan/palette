@@ -4,7 +4,7 @@ export default {
 		overflow : 'hidden'
 	},
 
-	paletteColors : {
-		height : '90%'
+	colorList : {
+    height : '90%',
 	}
 };

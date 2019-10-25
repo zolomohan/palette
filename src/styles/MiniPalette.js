@@ -6,7 +6,6 @@ export default {
 		padding                : '0.5em',
 		backgroundColor        : 'white',
 		borderRadius           : '5px',
-		color                  : '#525252',
 		transition             : 'transform 0.1s ease-out',
 		'&:hover $deleteIcon	' : {
 			opacity : '1'
@@ -20,8 +19,7 @@ export default {
 		overflow        : 'hidden',
 		height          : '150px',
 		width           : '100%',
-		borderRadius    : '5px',
-		backgroundColor : '#dae1e4'
+		borderRadius    : '5px'
 	},
 	title      : {
 		display        : 'flex',
@@ -30,7 +28,6 @@ export default {
 		fontFamily     : 'Blinker',
 		fontWeight     : '400',
     fontSize       : '1.05rem',
-		color          : '#525252',
 		letterSpacing  : '0.5px',
 		margin         : '0',
 		paddingTop     : '0.5rem'

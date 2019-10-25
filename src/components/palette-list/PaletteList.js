@@ -5,12 +5,24 @@ import { Link } from 'react-router-dom';
 import MiniPalette from 'components/palette-list/MiniPalette';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/PaletteList';
+import LightModeBackground from 'assets/backgrounds/LightMode.svg';
+import DarkModeBackground from 'assets/backgrounds/DarkMode.svg';
+import { ThemeContext } from 'contexts/theme.context';
 
 function PaletteList({ classes }) {
 	const paletteList = useContext(PaletteContext);
+	const theme = useContext(ThemeContext);
 
 	return (
-		<div className={classes.root}>
+		<div
+			className={classes.root}
+			style={{
+        backgroundColor :  theme.darkMode ? '#2e2e2e' : '#3f3383',
+				backgroundImage: `url(${theme.darkMode
+					? DarkModeBackground
+					: LightModeBackground})`
+			}}
+		>
 			<div className={classes.container}>
 				<nav className={classes.nav}>
 					<h1>Palette</h1>

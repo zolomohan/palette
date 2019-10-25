@@ -3,7 +3,7 @@ import media from 'helpers/mediaQuery';
 export default {
 	Navbar           : {
 		height  : '6%',
-		display : 'flex'
+    display : 'flex',
 	},
 	NavbarBrand      : {
 		display            : 'flex',
@@ -17,8 +17,6 @@ export default {
 		textTransform      : 'uppercase',
 		textAlign          : 'center',
 		letterSpacing      : '1px',
-		backgroundColor    : '#e7e7e7',
-		color              : '#525252',
 		[media.down('xs')]: {
 			display : (props) => !props.singleColorPalette && 'none'
 		}

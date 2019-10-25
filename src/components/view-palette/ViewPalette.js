@@ -5,7 +5,7 @@ import Footer from 'components/view-palette/Footer';
 import withStyles from '@material-ui/core/styles/withStyles';
 import ColorList from 'components/view-palette/colors/ColorList';
 import { singleColorShades } from 'helpers/generateShades';
-import styles from 'styles/Palette';
+import styles from 'styles/ViewPalette';
 
 function ViewPalette(props) {
 	const { classes } = props;

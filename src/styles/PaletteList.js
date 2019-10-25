@@ -1,4 +1,3 @@
-import background from 'assets/bg.svg';
 import media from 'helpers/mediaQuery';
 
 export default {
@@ -12,8 +11,6 @@ export default {
 		}
 	},
 	root      : {
-		backgroundColor : '#3f3383',
-		backgroundImage : `url(${background})`,
 		backgroundSize  : 'cover',
 		display         : 'flex',
 		justifyContent  : 'center',

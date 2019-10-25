@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ColorBox from 'components/view-palette/colors/ColorBox';
 import GoBackButton from 'components/view-palette/colors/GoBackButton';
 import withStyles from '@material-ui/core/styles/withStyles';
-import styles from 'styles/Palette';
+import styles from 'styles/ViewPalette';
+import { ThemeContext } from 'contexts/theme.context';
 
 function ColorList(props) {
-  const { classes } = props;
-
+	const { classes } = props;
+	const theme = useContext(ThemeContext);
 	return (
-		<main className={classes.paletteColors}>
+		<main
+			className={classes.colorList}
+			style={{ backgroundColor: theme.darkMode ? '#555' : '#eee' }}
+		>
 			{props.colors.map((color) => (
 				<ColorBox
-          {...color}
-          colorsLength={props.colors.length}
+					{...color}
+					colorsLength={props.colors.length}
 					format={props.format}
 					paletteId={props.paletteId}
 					key={`${color.name}${color.id}`}

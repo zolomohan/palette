@@ -5,11 +5,14 @@ import PaletteProvider from 'contexts/palette.context';
 import App from 'components/App';
 import * as serviceWorker from 'helpers/serviceWorker';
 import 'styles/index.css';
+import ThemeProvider from 'contexts/theme.context';
 
 ReactDOM.render(
 	<BrowserRouter>
 		<PaletteProvider>
-			<App />
+			<ThemeProvider>
+				<App />
+			</ThemeProvider>
 		</PaletteProvider>
 	</BrowserRouter>,
 	document.getElementById('root')

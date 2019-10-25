@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import useToggleState from 'hooks/useToggleState';
 import Menu from '@material-ui/core/Menu';
@@ -12,23 +12,27 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ColorsIcon from '@material-ui/icons/Apps';
 import RenameIcon from '@material-ui/icons/TextFields';
+import LightModeIcon from '@material-ui/icons/WbIncandescent';
+import DarkModeIcon from '@material-ui/icons/WbIncandescentOutlined';
 import SavePaletteDialog from 'components/dialogs/SavePalette';
 import styles from 'styles/navbar/ViewPalette';
-
+import { ThemeContext } from 'contexts/theme.context';
 function Navbar(props) {
 	const { classes } = props;
 	const [ more, setMore ] = useState(null);
 	const [ renameDialog, toggleRenameDialog ] = useToggleState();
 	const [ formatSnackbar, toggleFormatSnackbar ] = useToggleState();
 
-	const openMore = (event) => setMore(event.currentTarget);
-  const closeMore = () => setMore(null);
+	const theme = useContext(ThemeContext);
 
-  const openRenameDialog = () => {
-    closeMore();
-    toggleRenameDialog();
-  }
-  
+	const openMore = (event) => setMore(event.currentTarget);
+	const closeMore = () => setMore(null);
+
+	const openRenameDialog = () => {
+		closeMore();
+		toggleRenameDialog();
+	};
+
 	const changeColorLevel = (event, level) => props.changeLevel(level);
 
 	const changeColorFormat = (event) => {
@@ -37,13 +41,29 @@ function Navbar(props) {
 	};
 
 	return (
-		<nav className={classes.Navbar}>
+		<nav
+			className={classes.Navbar}
+			style={{ backgroundColor: theme.darkMode ? '#222' : '' }}
+		>
 			<Link to={`${process.env.PUBLIC_URL}/`} style={{ textDecoration: 'none' }}>
-				<span className={classes.NavbarBrand}>palette</span>
+				<span
+					className={classes.NavbarBrand}
+					style={{
+						backgroundColor : theme.darkMode ? '#333' : '#e7e7e7',
+						color           : theme.darkMode ? '#f6f7fb' : '#525252'
+					}}
+				>
+					palette
+				</span>
 			</Link>
 			{!props.singleColorShades && (
 				<div className={classes.NavbarSlider}>
-					<span className={classes.NavbarSliderText}>{props.level}</span>
+					<span
+						className={classes.NavbarSliderText}
+						style={{ color: theme.darkMode ? '#fff' : '#323232' }}
+					>
+						{props.level}
+					</span>
 					<Slider
 						defaultValue={props.level}
 						step={100}
@@ -61,7 +81,7 @@ function Navbar(props) {
 				</Select>
 			</div>
 			<div className={classes.moreMenu}>
-				<IconButton color='inherit' size='small' onClick={openMore}>
+				<IconButton color={theme.darkMode ? 'primary' : 'inherit'} size='small' onClick={openMore}>
 					<Settings />
 				</IconButton>
 				<Menu
@@ -87,6 +107,12 @@ function Navbar(props) {
 						</ListItemIcon>
 						Rename Palette
 					</MenuItem>
+					<MenuItem onClick={theme.toggleDarkMode}>
+						<ListItemIcon>
+							{theme.darkMode ? <DarkModeIcon /> : <LightModeIcon />}
+						</ListItemIcon>
+						{theme.darkMode ? 'Light Mode' : 'Dark Mode'}
+					</MenuItem>
 				</Menu>
 			</div>
 			<SnackBar
@@ -95,9 +121,9 @@ function Navbar(props) {
 				onClose={toggleFormatSnackbar}
 			/>
 			<SavePaletteDialog
-        renameMode
+				renameMode
 				open={renameDialog}
-        paletteId={props.paletteId}
+				paletteId={props.paletteId}
 				toggleDialog={toggleRenameDialog}
 				savePalette={props.renamePalette}
 			/>
