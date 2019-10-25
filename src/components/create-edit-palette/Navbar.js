@@ -1,7 +1,6 @@
 import clsx from 'clsx';
-import React, { useContext } from 'react';
+import React from 'react';
 import useToggleState from 'hooks/useToggleState';
-import { PaletteContext } from 'contexts/palette.context';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,14 +8,13 @@ import AddCircle from '@material-ui/icons/AddCircle';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import SnackBar from 'components/ui/Snackbar';
-import SavePaletteDialog from 'components/create-edit-palette/SavePaletteDialog';
-import ConfirmDialog from 'components/ui/ConfirmDialog';
+import SavePaletteDialog from 'components/dialogs/SavePalette';
+import ConfirmDialog from 'components/dialogs/Confirm';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/navbar/CreateAndEdit';
 
 function Navbar(props) {
 	const { classes } = props;
-	const palettes = useContext(PaletteContext);
 	const [ emptyPaletteSnackbar, toggleEmptyPaletteSnackbar ] = useToggleState();
 	const [ createDialog, toggleCreateDialog ] = useToggleState();
 	const [ editDialog, toggleEditDialog ] = useToggleState();
@@ -82,7 +80,6 @@ function Navbar(props) {
 					open={createDialog}
 					toggleDialog={toggleCreateDialog}
 					savePalette={props.savePalette}
-					palettes={palettes}
 				/>
 				<ConfirmDialog
 					open={discardDialog}

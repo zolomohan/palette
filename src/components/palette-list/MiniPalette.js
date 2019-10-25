@@ -3,7 +3,7 @@ import { PaletteDispatchContext } from 'contexts/palette.context';
 import useToggleState from 'hooks/useToggleState';
 import { Link } from 'react-router-dom';
 import DeleteIcon from '@material-ui/icons/Delete';
-import ConfirmDialog from 'components/ui/ConfirmDialog';
+import ConfirmDialog from 'components/dialogs/Confirm';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/MiniPalette';
 import MiniBox from './MiniBox';

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment, useContext } from 'react';
+import { PaletteContext } from 'contexts/palette.context';
 import useInputState from 'hooks/useInputState';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -11,7 +12,8 @@ import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 
 export default function SavePaletteDialog(props) {
-	const [ stage, setStage ] = useState('form');
+  const palettes = useContext(PaletteContext);
+  const [ stage, setStage ] = useState('form');
 	const [ newPaletteName, setNewPaletteName, resetNewPaletteName ] = useInputState();
 
 	const selectEmoji = (emoji) => {
@@ -29,7 +31,7 @@ export default function SavePaletteDialog(props) {
 
 	useEffect(() => {
 		ValidatorForm.addValidationRule('uniquePaletteName', (value) =>
-			props.palettes.every(
+			palettes.every(
 				({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
 			)
 		);

@@ -35,7 +35,7 @@ export default {
 		fontSize       : '12px',
 		padding        : '10px',
 		textTransform  : 'uppercase',
-		color          : (props) => chromaContrast(props.color.color)
+		color          : (props) => chromaContrast(props.color.color) ? '#000' : '#fff'
 	},
 	deleteIcon : {
 		cursor     : 'pointer',
