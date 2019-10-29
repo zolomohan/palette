@@ -10,6 +10,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Picker } from 'emoji-mart';
+import classes from 'styles/Dialog.module.css';
 import 'emoji-mart/css/emoji-mart.css';
 
 const darkBackground = { backgroundColor: '#333', color: '#fff' };
@@ -49,13 +50,15 @@ export default function SavePaletteDialog(props) {
 			</Dialog>
 			<Dialog open={props.open && stage === 'form'} onClose={props.toggleDialog}>
 				<ValidatorForm onSubmit={onNameSubmit}>
-					<DialogTitle style={theme.darkMode ? darkBackground : {}}>
-						Palette Name
+					<DialogTitle className={theme.darkMode && classes.darkBackground}>
+						<span className={classes.title}>Palette Name</span>
 					</DialogTitle>
-					<DialogContent style={theme.darkMode ? darkBackground : {}}>
+					<DialogContent className={theme.darkMode && classes.darkBackground}>
 						<DialogContentText>
-							Please enter a name for your amazing palette and make sure
-							it's unique from the rest.
+							<span className={classes.content}>
+								Please enter a name for your amazing palette and make sure
+								it's unique from the rest.
+							</span>
 						</DialogContentText>
 						<TextValidator
 							fullWidth

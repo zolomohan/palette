@@ -51,7 +51,7 @@ function ColorPickerForm(props) {
 					value={newColorName}
 					label='Color Name'
 					variant='outlined'
-					name='newColorName'
+					autoComplete={false}
 					onChange={setNewColorName}
 					validators={[ 'required', 'uniqueColor', 'uniqueColorName' ]}
 					errorMessages={[

@@ -1,0 +1,15 @@
+.title{
+  font-family: 'Blinker';
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+}
+
+.content{
+  font-family: 'Quicksand';
+}
+
+.darkBackground{
+  background-color: #333;
+  color: #fff;
+}
