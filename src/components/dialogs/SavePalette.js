@@ -13,8 +13,6 @@ import { Picker } from 'emoji-mart';
 import classes from 'styles/Dialog.module.css';
 import 'emoji-mart/css/emoji-mart.css';
 
-const darkBackground = { backgroundColor: '#333', color: '#fff' };
-
 export default function SavePaletteDialog(props) {
 	const palettes = useContext(PaletteContext);
 	const theme = useContext(ThemeContext);

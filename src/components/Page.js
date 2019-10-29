@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classes from 'styles/Page.module.css';
 
-export default function Page({ variant, children }) {
-	if (variant === '404')
+export default function Page(props) {
+	if (props.variant === '404')
 		return (
 			<div className={classes.Route404}>
 				<h1>404</h1>
@@ -16,5 +16,6 @@ export default function Page({ variant, children }) {
 				</div>
 			</div>
 		);
-	return <section className={classes.Page}>{children}</section>;
+	return <section className={classes.Page}>{props.children}</section>;
 }
+

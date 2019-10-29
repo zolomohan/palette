@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from 'contexts/theme.context';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Page from 'components/Page';
 import Palette from 'components/view-palette/ViewPalette';
@@ -16,10 +16,8 @@ import 'styles/animations/PageTransition.css';
 export default function App() {
 	const theme = useContext(ThemeContext);
 	const palettes = useContext(PaletteContext);
-	const palette = (route) =>
-		generateShades(
-			palettes.find((palette) => palette.id === route.match.params.paletteId)
-		);
+
+	const findPalette = (route) => palettes.find((palette) => palette.id === route.match.params.paletteId);
 
 	const MUITheme = createMuiTheme({
 		overrides : {
@@ -27,8 +25,8 @@ export default function App() {
 				thumb  : { color: theme.darkMode ? '#a68efb' : '#5142b2' },
 				track  : { color: theme.darkMode ? '#a68efb' : '#5142b2' },
 				active : { color: theme.darkMode ? '#ebe2ff' : '#a68efb' }
-      }
-    },
+			}
+		},
 		palette   : {
 			primary   : { main: theme.darkMode ? '#bfa9fd' : '#5142b2' },
 			secondary : { main: theme.darkMode ? '#ee7e70' : '#d83125' },
@@ -57,9 +55,7 @@ export default function App() {
 									path={`${process.env.PUBLIC_URL}/palette/new`}
 									render={(route) => (
 										<Page>
-											<ColorProvider
-												initialColors={seedColors[0].colors}
-											>
+											<ColorProvider initialColors={seedColors[0].colors}>
 												<CreatePalette route={route} />
 											</ColorProvider>
 										</Page>
@@ -68,37 +64,29 @@ export default function App() {
 								<Route
 									exact
 									path={`${process.env.PUBLIC_URL}/palette/:paletteId`}
-									render={(route) => (
-										<Page>
-											<Palette
-												route={route}
-												palette={palette(route)}
-												singleColorShades={false}
-											/>
-										</Page>
-									)}
+									render={(route) => {
+										let palette = findPalette(route);
+										return palette === undefined ? (
+											<Redirect to={`${process.env.PUBLIC_URL}/notfound`} />
+										) : (
+											<Page>
+												<Palette
+													route={route}
+													singleColorShades={false}
+													palette={generateShades(palette)}
+												/>
+											</Page>
+										);
+									}}
 								/>
 								<Route
 									exact
-									path={`${process.env
-										.PUBLIC_URL}/palette/:paletteId/edit`}
+									path={`${process.env.PUBLIC_URL}/palette/:paletteId/edit`}
 									render={(route) => {
 										return (
 											<Page>
-												<ColorProvider
-													initialColors={
-														palettes.find(
-															(palette) =>
-																palette.id ===
-																route.match.params
-																	.paletteId
-														).colors
-													}
-												>
-													<CreatePalette
-														route={route}
-														editMode
-													/>
+												<ColorProvider initialColors={findPalette(route).colors}>
+													<CreatePalette route={route} editMode />
 												</ColorProvider>
 											</Page>
 										);
@@ -106,17 +94,29 @@ export default function App() {
 								/>
 								<Route
 									exact
-									path={`${process.env
-										.PUBLIC_URL}/palette/:paletteId/:colorId`}
-									render={(route) => (
-										<Page>
-											<Palette
-												colorId={route.match.params.colorId}
-												singleColorShades={true}
-												palette={palette(route)}
-											/>
-										</Page>
-									)}
+									path={`${process.env.PUBLIC_URL}/palette/:paletteId/:colorId`}
+									render={(route) => {
+										let palette = findPalette(route);
+										if (
+											palette === undefined ||
+											palette.colors.filter(
+												(color) =>
+													color.name.toLowerCase().replace(/ /g, '-') ===
+													route.match.params.colorId
+											).length === 0
+										)
+											return <Redirect to={`${process.env.PUBLIC_URL}/notfound`} />;
+										return (
+											<Page>
+												<Palette
+													route={route}
+													singleColorShades={true}
+													palette={generateShades(palette)}
+													colorId={route.match.params.colorId}
+												/>
+											</Page>
+										);
+									}}
 								/>
 								<Route render={() => <Page variant='404' />} />
 							</Switch>
