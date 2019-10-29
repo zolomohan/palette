@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment, useContext } from 'react';
 import { PaletteContext } from 'contexts/palette.context';
+import { ThemeContext } from 'contexts/theme.context';
 import useInputState from 'hooks/useInputState';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -11,16 +12,15 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 
-const darkBackground = {
-	backgroundColor : '#222'
-};
+const darkBackground = { backgroundColor: '#333', color: '#fff' };
 
 export default function SavePaletteDialog(props) {
-  const palettes = useContext(PaletteContext);
+	const palettes = useContext(PaletteContext);
+	const theme = useContext(ThemeContext);
 
 	const [ stage, setStage ] = useState('form');
 	const [ newPaletteName, setNewPaletteName, resetNewPaletteName ] = useInputState();
-	
+
 	const selectEmoji = (emoji) => {
 		setStage('');
 		props.savePalette(newPaletteName, emoji.native);
@@ -49,8 +49,10 @@ export default function SavePaletteDialog(props) {
 			</Dialog>
 			<Dialog open={props.open && stage === 'form'} onClose={props.toggleDialog}>
 				<ValidatorForm onSubmit={onNameSubmit}>
-					<DialogTitle style={darkBackground}>Palette Name</DialogTitle>
-					<DialogContent style={darkBackground}>
+					<DialogTitle style={theme.darkMode ? darkBackground : {}}>
+						Palette Name
+					</DialogTitle>
+					<DialogContent style={theme.darkMode ? darkBackground : {}}>
 						<DialogContentText>
 							Please enter a name for your amazing palette and make sure
 							it's unique from the rest.
@@ -59,7 +61,6 @@ export default function SavePaletteDialog(props) {
 							fullWidth
 							autoFocus
 							value={newPaletteName}
-							name='newPaletteName'
 							placeholder='Enter a Palette Name'
 							onChange={setNewPaletteName}
 							validators={[ 'required', 'uniquePaletteName' ]}
@@ -68,7 +69,7 @@ export default function SavePaletteDialog(props) {
 								'Palette Name Already Taken'
 							]}
 						/>
-						<DialogActions style={darkBackground}>
+						<DialogActions>
 							<Button onClick={props.toggleDialog} color='secondary'>
 								Cancel
 							</Button>

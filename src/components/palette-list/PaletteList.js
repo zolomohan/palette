@@ -26,12 +26,12 @@ function PaletteList({ classes }) {
 			<div className={classes.container}>
 				<nav className={classes.nav}>
 					<h1>Palette</h1>
-					<span>
-						<Link to={`${process.env.PUBLIC_URL}/palette/new`}>
-							Create Palette
-						</Link>
-						<a href onClick={theme.toggleDarkMode}>{theme.darkMode ? 'Light Mode' : 'Dark Mode'}</a>
-					</span>
+					<Link to={`${process.env.PUBLIC_URL}/palette/new`}>
+						Create Palette
+					</Link>
+					<a onClick={theme.toggleDarkMode}>
+						{theme.darkMode ? 'Light Mode' : 'Dark Mode'}
+					</a>
 				</nav>
 				<TransitionGroup className={classes.palettes}>
 					{paletteList.map((palette) => (
