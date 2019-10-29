@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import React, { useContext } from 'react';
+import { withRouter } from 'react-router-dom';
 import useToggleState from 'hooks/useToggleState';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -18,15 +19,13 @@ function Navbar(props) {
 	const { classes } = props;
 	const theme = useContext(ThemeContext);
 	const [ emptyPaletteSnackbar, toggleEmptyPaletteSnackbar ] = useToggleState();
-	const [ createDialog, toggleCreateDialog ] = useToggleState();
 	const [ editDialog, toggleEditDialog ] = useToggleState();
+	const [ createDialog, toggleCreateDialog ] = useToggleState();
 	const [ discardDialog, toggleDiscardDialog ] = useToggleState();
 
 	const onDiscard = () => {
-		const link = props.editMode
-			? `palette/${props.route.match.params.paletteId}`
-			: '';
-		props.route.history.push(`${process.env.PUBLIC_URL}/${link}`);
+		const link = props.editMode ? `palette/${props.match.params.paletteId}` : '';
+		props.history.push(`${process.env.PUBLIC_URL}/${link}`);
 	};
 
 	const handleSavePalette = () => {
@@ -59,18 +58,10 @@ function Navbar(props) {
 				</Typography>
 			</Toolbar>
 			<div className={classes.navBtns}>
-				<Button
-					className={classes.navBtn}
-					onClick={toggleDiscardDialog}
-					color='secondary'
-				>
+				<Button className={classes.navBtn} onClick={toggleDiscardDialog} color='secondary'>
 					Discard
 				</Button>
-				<Button
-					className={classes.navBtn}
-					onClick={handleSavePalette}
-					color='primary'
-				>
+				<Button className={classes.navBtn} onClick={handleSavePalette} color='primary'>
 					Save
 				</Button>
 				<SnackBar
@@ -103,4 +94,4 @@ function Navbar(props) {
 	);
 }
 
-export default withStyles(styles)(Navbar);
+export default withRouter(withStyles(styles)(Navbar));

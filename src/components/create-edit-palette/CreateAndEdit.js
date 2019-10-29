@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { withRouter } from 'react-router-dom';
 import useToggleState from 'hooks/useToggleState';
 import { ColorContext, ColorDispatchContext } from 'contexts/color.context';
 import { PaletteContext, PaletteDispatchContext } from 'contexts/palette.context';
@@ -7,7 +8,7 @@ import Navbar from 'components/create-edit-palette/Navbar';
 import DraggableColorList from 'components/create-edit-palette/DraggableColorList';
 import AddColorDrawer from 'components/create-edit-palette/AddColorDrawer';
 
-export default function CreateAndEditPalette(props) {
+function CreateAndEditPalette(props) {
 	const colors = useContext(ColorContext);
 	const palettes = useContext(PaletteContext);
 	const colorsDispatch = useContext(ColorDispatchContext);
@@ -24,8 +25,7 @@ export default function CreateAndEditPalette(props) {
 
 	const clearColors = () => colorsDispatch({ type: 'CLEAR' });
 
-	const sortColors = ({ oldIndex, newIndex }) =>
-		colorsDispatch({ type: 'SORT', oldIndex, newIndex });
+	const sortColors = ({ oldIndex, newIndex }) => colorsDispatch({ type: 'SORT', oldIndex, newIndex });
 
 	const addPalette = (newPaletteName, emoji) => {
 		paletteDispatch({
@@ -37,24 +37,23 @@ export default function CreateAndEditPalette(props) {
 				colors      : colors
 			}
 		});
-		props.route.history.push(`${process.env.PUBLIC_URL}/`);
+		props.history.push(`${process.env.PUBLIC_URL}/`);
 	};
 
 	const editPalette = () => {
-		const paletteId = props.route.match.params.paletteId;
+		const paletteId = props.match.params.paletteId;
 		paletteDispatch({
-			type   : 'EDIT',
-			paletteId     : paletteId,
-			colors : colors
+			type      : 'EDIT',
+			paletteId : paletteId,
+			colors    : colors
 		});
-		props.route.history.push(`${process.env.PUBLIC_URL}/palette/${paletteId}`);
+		props.history.push(`${process.env.PUBLIC_URL}/palette/${paletteId}`);
 	};
 
 	return (
 		<div style={{ display: 'flex' }}>
 			<CssBaseline />
 			<Navbar
-				route={props.route}
 				editMode={props.editMode}
 				drawerOpen={drawerOpen}
 				savePalette={props.editMode ? editPalette : addPalette}
@@ -79,6 +78,8 @@ export default function CreateAndEditPalette(props) {
 	);
 }
 
+export default withRouter(CreateAndEditPalette);
+
 CreateAndEditPalette.defaultProps = {
-  paletteMaxColors: '20'
-}
+	paletteMaxColors : '20'
+};

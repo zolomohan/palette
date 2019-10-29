@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { withRouter } from 'react-router-dom';
 import { PaletteDispatchContext } from 'contexts/palette.context';
 import Navbar from 'components/view-palette/navbar/Navbar';
 import Footer from 'components/view-palette/Footer';
@@ -23,7 +24,7 @@ function ViewPalette(props) {
 			newId   : newId,
 			emoji   : emoji
 		});
-		props.route.history.push(`${process.env.PUBLIC_URL}/palette/${newId}`);
+		props.history.push(`${process.env.PUBLIC_URL}/palette/${newId}`);
 	};
 
 	const colors = props.singleColorShades
@@ -52,4 +53,4 @@ function ViewPalette(props) {
 	);
 }
 
-export default withStyles(styles)(ViewPalette);
+export default withRouter(withStyles(styles)(ViewPalette));

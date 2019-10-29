@@ -4,7 +4,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Page from 'components/Page';
-import Palette from 'components/view-palette/ViewPalette';
+import ViewPalette from 'components/view-palette/ViewPalette';
 import PaletteList from 'components/palette-list/PaletteList';
 import CreatePalette from 'components/create-edit-palette/CreateAndEdit';
 import generateShades from 'helpers/generateShades';
@@ -70,8 +70,7 @@ export default function App() {
 											<Redirect to={`${process.env.PUBLIC_URL}/notfound`} />
 										) : (
 											<Page>
-												<Palette
-													route={route}
+												<ViewPalette
 													singleColorShades={false}
 													palette={generateShades(palette)}
 												/>
@@ -86,7 +85,7 @@ export default function App() {
 										return (
 											<Page>
 												<ColorProvider initialColors={findPalette(route).colors}>
-													<CreatePalette route={route} editMode />
+													<CreatePalette editMode />
 												</ColorProvider>
 											</Page>
 										);
@@ -108,8 +107,7 @@ export default function App() {
 											return <Redirect to={`${process.env.PUBLIC_URL}/notfound`} />;
 										return (
 											<Page>
-												<Palette
-													route={route}
+												<ViewPalette
 													singleColorShades={true}
 													palette={generateShades(palette)}
 													colorId={route.match.params.colorId}
