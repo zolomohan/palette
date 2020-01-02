@@ -1,19 +1,27 @@
 {
   "files": {
-    "main.css": "/palette/static/css/main.fcc58d2f.chunk.css",
-    "main.js": "/palette/static/js/main.c5744600.chunk.js",
-    "main.js.map": "/palette/static/js/main.c5744600.chunk.js.map",
-    "runtime~main.js": "/palette/static/js/runtime~main.67681100.js",
-    "runtime~main.js.map": "/palette/static/js/runtime~main.67681100.js.map",
-    "static/css/2.b0f64131.chunk.css": "/palette/static/css/2.b0f64131.chunk.css",
-    "static/js/2.bec81cbc.chunk.js": "/palette/static/js/2.bec81cbc.chunk.js",
-    "static/js/2.bec81cbc.chunk.js.map": "/palette/static/js/2.bec81cbc.chunk.js.map",
+    "main.css": "/palette/static/css/main.77c00f1b.chunk.css",
+    "main.js": "/palette/static/js/main.53bb4eb5.chunk.js",
+    "main.js.map": "/palette/static/js/main.53bb4eb5.chunk.js.map",
+    "runtime-main.js": "/palette/static/js/runtime-main.86b5a6fc.js",
+    "runtime-main.js.map": "/palette/static/js/runtime-main.86b5a6fc.js.map",
+    "static/css/2.59f4f2a6.chunk.css": "/palette/static/css/2.59f4f2a6.chunk.css",
+    "static/js/2.b7596e26.chunk.js": "/palette/static/js/2.b7596e26.chunk.js",
+    "static/js/2.b7596e26.chunk.js.map": "/palette/static/js/2.b7596e26.chunk.js.map",
     "index.html": "/palette/index.html",
-    "precache-manifest.73f683f8f259087ca9ee6f1f20746463.js": "/palette/precache-manifest.73f683f8f259087ca9ee6f1f20746463.js",
+    "precache-manifest.722dc58d35dd7de4af5ff44fb41b36a7.js": "/palette/precache-manifest.722dc58d35dd7de4af5ff44fb41b36a7.js",
     "service-worker.js": "/palette/service-worker.js",
-    "static/css/2.b0f64131.chunk.css.map": "/palette/static/css/2.b0f64131.chunk.css.map",
-    "static/css/main.fcc58d2f.chunk.css.map": "/palette/static/css/main.fcc58d2f.chunk.css.map",
+    "static/css/2.59f4f2a6.chunk.css.map": "/palette/static/css/2.59f4f2a6.chunk.css.map",
+    "static/css/main.77c00f1b.chunk.css.map": "/palette/static/css/main.77c00f1b.chunk.css.map",
+    "static/js/2.b7596e26.chunk.js.LICENSE": "/palette/static/js/2.b7596e26.chunk.js.LICENSE",
     "static/media/DarkMode.svg": "/palette/static/media/DarkMode.19420ea4.svg",
     "static/media/LightMode.svg": "/palette/static/media/LightMode.07129233.svg"
-  }
+  },
+  "entrypoints": [
+    "static/js/runtime-main.86b5a6fc.js",
+    "static/css/2.59f4f2a6.chunk.css",
+    "static/js/2.b7596e26.chunk.js",
+    "static/css/main.77c00f1b.chunk.css",
+    "static/js/main.53bb4eb5.chunk.js"
+  ]
 }
