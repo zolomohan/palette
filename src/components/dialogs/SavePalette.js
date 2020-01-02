@@ -42,7 +42,7 @@ export default function SavePaletteDialog(props) {
 	return (
 		<Fragment>
 			<Dialog open={props.open && stage === 'emoji'} onClose={hideDialog}>
-				<Picker onSelect={selectEmoji} title='Pick an Emoji' />
+				<Picker onSelect={selectEmoji} title='Pick an Emoji' darkMode={theme.darkMode}/>
 			</Dialog>
 			<Dialog open={props.open && stage === 'form'} onClose={props.toggleDialog}>
 				<ValidatorForm onSubmit={onNameSubmit}>
