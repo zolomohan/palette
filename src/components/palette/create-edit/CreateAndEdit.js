@@ -4,9 +4,9 @@ import useToggleState from 'hooks/useToggleState';
 import { ColorContext, ColorDispatchContext } from 'contexts/color.context';
 import { PaletteContext, PaletteDispatchContext } from 'contexts/palette.context';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Navbar from 'components/create-edit-palette/Navbar';
-import DraggableColorList from 'components/create-edit-palette/DraggableColorList';
-import AddColorDrawer from 'components/create-edit-palette/AddColorDrawer';
+import Navbar from 'components/palette/create-edit/Navbar';
+import DraggableColorList from 'components/palette/create-edit/DraggableColorList';
+import AddColorDrawer from 'components/palette/create-edit/AddColorDrawer';
 
 function CreateAndEditPalette(props) {
 	const colors = useContext(ColorContext);

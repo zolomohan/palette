@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import useToggleState from 'hooks/useToggleState';
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import CopyOverlay from 'components/view-palette/colors/CopyOverlay'
+import CopyOverlay from 'components/palette/view/colors/CopyOverlay'
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/ColorBox';
 import clsx from 'clsx';

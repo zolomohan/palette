@@ -8,8 +8,8 @@ export default function SnackBar(props) {
 		<Snackbar
 			message={<span>{props.message}</span>}
 			anchorOrigin={{
-				vertical: 'bottom',
-				horizontal: props.horizontalOrigin
+				vertical   : 'bottom',
+				horizontal : props.horizontalOrigin
 			}}
 			open={props.open}
 			autoHideDuration={3000}
@@ -24,5 +24,5 @@ export default function SnackBar(props) {
 }
 
 SnackBar.defaultProps = {
-	horizontalOrigin: 'left'
-}
+	horizontalOrigin : 'left'
+};

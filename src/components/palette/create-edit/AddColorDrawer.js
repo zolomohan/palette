@@ -5,12 +5,12 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
-import ColorPickerForm from 'components/create-edit-palette/ColorPickerForm';
+import ColorPickerForm from 'components/palette/create-edit/ColorPickerForm';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/AddColorDrawer';
 import { ThemeContext } from 'contexts/theme.context';
 import ShuffleIcon from '@material-ui/icons/Shuffle';
-import DeleteIcon from '@material-ui/icons/Delete'
+import DeleteIcon from '@material-ui/icons/Delete';
 
 function AddColorDrawer(props) {
 	const { classes } = props;
@@ -41,8 +41,8 @@ function AddColorDrawer(props) {
 						variant='outlined'
 						onClick={props.randomColor}
 						disabled={props.paletteFull}
-            className={classes.drawerButton}
-            startIcon={<ShuffleIcon />}
+						className={classes.drawerButton}
+						startIcon={<ShuffleIcon />}
 					>
 						Random Color
 					</Button>
@@ -50,8 +50,8 @@ function AddColorDrawer(props) {
 						color='secondary'
 						variant='outlined'
 						onClick={props.onClear}
-            className={classes.drawerButton}
-            startIcon={<DeleteIcon />}
+						className={classes.drawerButton}
+						startIcon={<DeleteIcon />}
 					>
 						Clear Palette
 					</Button>

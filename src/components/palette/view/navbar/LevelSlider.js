@@ -12,20 +12,16 @@ function LevelSlider(props) {
 
 	return (
 		<div className={classes.NavbarSlider}>
-			<span
-				className={classes.NavbarSliderText}
-				style={{ color: theme.darkMode ? '#fff' : '#323232' }}
-			>
+			<span className={classes.NavbarSliderText} style={{ color: theme.darkMode ? '#fff' : '#323232' }}>
 				{props.level}
 			</span>
-			<Slider
-
-				defaultValue={props.level}
-				step={100}
-				min={100}
-				max={900}
-				onChange={changeColorLevel}
-			/>
+      <Slider 
+        defaultValue={props.level} 
+        step={100} 
+        min={100} 
+        max={900} 
+        onChange={changeColorLevel} 
+      />
 		</div>
 	);
 }

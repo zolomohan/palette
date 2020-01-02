@@ -25,11 +25,7 @@ function MiniPalette(props) {
 			<Link to={`palette/${props.id}`} style={{ textDecoration: 'none' }}>
 				<div className={classes.colors}>
 					{props.colors.map(({ color, name }) => (
-						<MiniBox
-							color={color}
-							key={name}
-							colorsLength={props.colors.length}
-						/>
+						<MiniBox color={color} key={name} colorsLength={props.colors.length} />
 					))}
 				</div>
 				<h5

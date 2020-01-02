@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import { PaletteDispatchContext } from 'contexts/palette.context';
-import Navbar from 'components/view-palette/navbar/Navbar';
-import Footer from 'components/view-palette/Footer';
+import Navbar from 'components/palette/view/navbar/Navbar';
+import Footer from 'components/palette/view/Footer';
 import withStyles from '@material-ui/core/styles/withStyles';
-import ColorList from 'components/view-palette/colors/ColorList';
+import ColorList from 'components/palette/view/colors/ColorList';
 import { singleColorShades } from 'helpers/generateShades';
 import styles from 'styles/ViewPalette';
 

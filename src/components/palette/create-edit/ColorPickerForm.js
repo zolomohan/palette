@@ -12,9 +12,9 @@ import clsx from 'clsx';
 
 function ColorPickerForm(props) {
 	const { classes } = props;
-  const theme = useContext(ThemeContext);
+	const theme = useContext(ThemeContext);
 	const colors = useContext(ColorContext);
-  const colorsDispatch = useContext(ColorDispatchContext);
+	const colorsDispatch = useContext(ColorDispatchContext);
 	const [ newColor, setNewColor ] = useState('#000');
 	const [ newColorName, setNewColorName, resetNewColorName ] = useInputState();
 
@@ -28,9 +28,7 @@ function ColorPickerForm(props) {
 	}
 
 	useEffect(() => {
-		ValidatorForm.addValidationRule('uniqueColor', () =>
-			colors.every(({ color }) => color !== newColor)
-		);
+		ValidatorForm.addValidationRule('uniqueColor', () => colors.every(({ color }) => color !== newColor));
 		ValidatorForm.addValidationRule('uniqueColorName', (value) =>
 			colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
 		);
@@ -42,8 +40,8 @@ function ColorPickerForm(props) {
 				color={newColor}
 				onChange={handleColorChange}
 				className={clsx(classes.picker, {
-          [classes.pickerDark] : theme.darkMode
-        })}
+					[classes.pickerDark]: theme.darkMode
+				})}
 				disableAlpha
 			/>
 			<ValidatorForm onSubmit={handleAddColor} instantValidate={false}>
@@ -54,11 +52,7 @@ function ColorPickerForm(props) {
 					autoComplete={false}
 					onChange={setNewColorName}
 					validators={[ 'required', 'uniqueColor', 'uniqueColorName' ]}
-					errorMessages={[
-						'Color Name is Required',
-						'Color Already Used',
-						'Color Name Already Taken'
-					]}
+					errorMessages={[ 'Color Name is Required', 'Color Already Used', 'Color Name Already Taken' ]}
 					className={classes.colorNameInput}
 					disabled={props.paletteFull}
 				/>
@@ -67,8 +61,8 @@ function ColorPickerForm(props) {
 					variant='contained'
 					disabled={props.paletteFull}
 					style={{
-						backgroundColor: !props.paletteFull ? newColor : 'grey',
-						color: chromaContrast(newColor) ? '#000' : '#fff'
+						backgroundColor : !props.paletteFull ? newColor : 'grey',
+						color           : chromaContrast(newColor) ? '#000' : '#fff'
 					}}
 					className={classes.addColorBtn}
 				>
@@ -77,6 +71,6 @@ function ColorPickerForm(props) {
 			</ValidatorForm>
 		</div>
 	);
-};
+}
 
 export default withStyles(styles)(ColorPickerForm);

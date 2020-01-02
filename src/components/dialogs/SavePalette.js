@@ -35,9 +35,7 @@ export default function SavePaletteDialog(props) {
 
 	useEffect(() => {
 		ValidatorForm.addValidationRule('uniquePaletteName', (value) =>
-			palettes.every(
-				({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-			)
+			palettes.every(({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase())
 		);
 	}, []);
 
@@ -54,8 +52,7 @@ export default function SavePaletteDialog(props) {
 					<DialogContent className={theme.darkMode && classes.darkBackground}>
 						<DialogContentText>
 							<span className={classes.content}>
-								Please enter a name for your amazing palette and make sure
-								it's unique from the rest.
+								Please enter a name for your amazing palette and make sure it's unique from the rest.
 							</span>
 						</DialogContentText>
 						<TextValidator
@@ -65,10 +62,7 @@ export default function SavePaletteDialog(props) {
 							placeholder='Enter a Palette Name'
 							onChange={setNewPaletteName}
 							validators={[ 'required', 'uniquePaletteName' ]}
-							errorMessages={[
-								'Palette Name is Required',
-								'Palette Name Already Taken'
-							]}
+							errorMessages={[ 'Palette Name is Required', 'Palette Name Already Taken' ]}
 						/>
 						<DialogActions>
 							<Button onClick={props.toggleDialog} color='secondary'>

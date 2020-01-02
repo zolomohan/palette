@@ -6,7 +6,7 @@ export default function MiniBox(props) {
 		<div
 			style={{
 				display         : 'inline-block',
-				height          : colorBoxHeight(props.colorsLength , 'xl'),
+				height          : colorBoxHeight(props.colorsLength, 'xl'),
 				width           : '20%',
 				marginBottom    : '-4px',
 				backgroundColor : props.color

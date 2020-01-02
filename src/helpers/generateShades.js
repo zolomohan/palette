@@ -3,15 +3,14 @@ import chroma from 'chroma-js';
 const levels = [ 50, 100, 200, 300, 400, 500, 600, 700, 800, 900 ];
 
 const getRange = (hexColor) => [ chroma(hexColor).darken(1.4), hexColor, '#fff' ],
-			getScale = (hexColor, numberOfColors) =>
-				chroma.scale(getRange(hexColor)).mode('lab').colors(numberOfColors);
+	    getScale = (hexColor, numberOfColors) => chroma.scale(getRange(hexColor)).mode('lab').colors(numberOfColors);
 
-export default (starterPalette) => {
+export function generatePalette(starterPalette) {
 	let newPalette = {
 		...starterPalette,
 		colors : {}
 	};
-	for (let level of levels) newPalette.colors[level] = [];
+  for (let level of levels) newPalette.colors[level] = [];
 	for (let color of starterPalette.colors) {
 		let scale = getScale(color.color, levels.length).reverse();
 		for (let i in scale)
@@ -24,12 +23,10 @@ export default (starterPalette) => {
 			});
 	}
 	return newPalette;
-};
+}
 
-export function singleColorShades(colors, colorId){
+export function singleColorShades(levels, id) {
   let shades = [];
-	for (let shade in colors)
-		shades.push(colors[shade].filter((color) => color.id === colorId)[0]);
-  shades = shades.slice(1);
-  return shades;
+	for (let level in levels) shades.push(levels[level].filter((color) => color.id === id)[0]);
+	return shades.slice(1);
 }

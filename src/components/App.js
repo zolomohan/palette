@@ -4,10 +4,10 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Page from 'components/Page';
-import ViewPalette from 'components/view-palette/ViewPalette';
-import PaletteList from 'components/palette-list/PaletteList';
-import CreatePalette from 'components/create-edit-palette/CreateAndEdit';
-import generateShades from 'helpers/generateShades';
+import ViewPalette from 'components/palette/view/ViewPalette';
+import PaletteList from 'components/palette/list/PaletteList';
+import CreatePalette from 'components/palette/create-edit/CreateAndEdit';
+import { generatePalette } from 'helpers/generateShades';
 import ColorProvider from 'contexts/color.context';
 import { PaletteContext } from 'contexts/palette.context';
 import seedColors from 'helpers/seedColors';
@@ -72,7 +72,7 @@ export default function App() {
 											<Page>
 												<ViewPalette
 													singleColorShades={false}
-													palette={generateShades(palette)}
+													palette={generatePalette(palette)}
 												/>
 											</Page>
 										);
@@ -109,7 +109,7 @@ export default function App() {
 											<Page>
 												<ViewPalette
 													singleColorShades={true}
-													palette={generateShades(palette)}
+													palette={generatePalette(palette)}
 													colorId={route.match.params.colorId}
 												/>
 											</Page>

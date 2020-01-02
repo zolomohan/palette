@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { PaletteContext } from 'contexts/palette.context';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Link } from 'react-router-dom';
-import MiniPalette from 'components/palette-list/MiniPalette';
+import MiniPalette from 'components/palette/list/MiniPalette';
 import withStyles from '@material-ui/core/styles/withStyles';
 import styles from 'styles/PaletteList';
 import LightModeBackground from 'assets/backgrounds/LightMode.svg';
@@ -18,20 +18,14 @@ function PaletteList({ classes }) {
 			className={classes.root}
 			style={{
 				backgroundColor : theme.darkMode ? '#2e2e2e' : '#3f3383',
-				backgroundImage : `url(${theme.darkMode
-					? DarkModeBackground
-					: LightModeBackground})`
+				backgroundImage : `url(${theme.darkMode ? DarkModeBackground : LightModeBackground})`
 			}}
 		>
 			<div className={classes.container}>
 				<nav className={classes.nav}>
 					<h1>Palette</h1>
-					<Link to={`${process.env.PUBLIC_URL}/palette/new`}>
-						Create Palette
-					</Link>
-					<a onClick={theme.toggleDarkMode}>
-						{theme.darkMode ? 'Light Mode' : 'Dark Mode'}
-					</a>
+					<Link to={`${process.env.PUBLIC_URL}/palette/new`}>Create Palette</Link>
+					<a onClick={theme.toggleDarkMode}>{theme.darkMode ? 'Light Mode' : 'Dark Mode'}</a>
 				</nav>
 				<TransitionGroup className={classes.palettes}>
 					{paletteList.map((palette) => (

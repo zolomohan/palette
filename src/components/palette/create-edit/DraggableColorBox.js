@@ -8,9 +8,8 @@ import styles from 'styles/DraggableColorBox';
 function DraggableColorBox(props) {
 	const { classes } = props;
 	const colorsDispatch = useContext(ColorDispatchContext);
-	const handleDelete = () =>
-		colorsDispatch({ type: 'DELETE', color: props.color.color });
-		
+	const handleDelete = () => colorsDispatch({ type: 'DELETE', color: props.color.color });
+
 	return (
 		<div className={classes.root}>
 			<div className={classes.boxContent}>
